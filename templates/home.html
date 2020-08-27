@@ -1,0 +1,16 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Django</title>
+    </head>
+    <body>
+        <h1>Django Allauth Setup</h1>
+        {% if user.is_authenticated %}
+            <p>Welcome {{ user.username }} !!!</p>
+        {% else %}
+            <a href="{% provider_login_url 'github' %}">Sign Up</a>
+        {% endif %}
+    </body>
+</html>
