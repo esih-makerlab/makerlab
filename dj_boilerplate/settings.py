@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +66,10 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+
+                # `allauth` needs this from django
                 'django.template.context_processors.request',
+
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -131,3 +139,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 MEDIA_URL = "/media/"
+
+
+
+AUTHENTICATION_BACKENDS = [
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+
+
