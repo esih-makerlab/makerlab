@@ -1,0 +1,70 @@
+
+ {% load static %}
+
+<header id="header" class="fixed-top">
+    <div class="container d-flex" >
+
+      <div class="logo mr-auto">
+        <header>
+         
+          <h1 class="text-light"><a href="{% url 'home' %}">MakerLab</a></h1>
+       
+       </header>
+        
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+      
+      <nav class="nav-menu d-none d-lg-block" >
+        <ul>
+          <li  
+          {% if 'home' in request.path  %}
+           class="nav-item active mr-3"
+          {% else %}  
+           class="nav-item  mr-3"
+          {% endif %}   
+        >
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+
+          <li  
+          {% if 'about' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}  
+            class="nav-item  mr-3"
+          {% endif %}   
+        >
+          <a class="nav-link"  href="{% url 'about' %}">About</a>
+            
+          </li>
+        
+          <li 
+            {% if 'membership' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}  
+              class="nav-item  mr-3"
+            {% endif %}   
+          >
+            <a class="nav-link" href="{% url 'membership' %}">Membership</a>
+          <li  
+          {% if 'cours' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}  
+            class="nav-item  mr-3"
+          {% endif %}   
+        >
+          <a class="nav-link" href="{% url 'cours' %}">Course</a>
+          
+          <li><a href="contact.html">Contact</a></li>
+
+          <li class="get-started"><a href="{% url 'home' %}">Login</a></li>
+                    
+          <li class="sign-up"><a href="" >Sign up</a></li>
+
+          
+
+                 
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->

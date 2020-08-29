@@ -1,0 +1,34 @@
+{% load i18n %}
+{% blocktrans %}
+    {% if messages %}
+        {% for message in messages %}
+            <div id="message" class="container">
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger alert-dismissible text-center" role="alert" >
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                        </button>
+                        <strong>
+                                Error:
+                        </strong>
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-dark alert-dismissible text-center" role="alert" >
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                        </button>
+                        <strong>
+                                {{ message.tags|title }}
+                        </strong>
+                        {{ message }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblocktrans %}
