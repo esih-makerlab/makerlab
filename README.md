@@ -11,7 +11,9 @@ ESIH MAKERLAB
             sudo apt-get install python3-dev build-essential wget libpd-dev 
 
 1. Installer et configurer la base de donnée PostgreSQL 
+            
             make install-db
+            
 1. Configurez les variables d'envirronnement, copiez les éléments du fichier 
    .env.template dans le fichier bashrc:  
             
