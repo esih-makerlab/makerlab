@@ -54,10 +54,7 @@ fi
 _psql "CREATE USER $DB_MK_USER WITH ENCRYPTED PASSWORD '$DB_MK_PASSWORD';"
 _psql "GRANT ALL PRIVILEGES ON DATABASE $DB_MK_NAME TO $DB_MK_USER;"
 _psql "\connect $DB_MK_NAME;"
-_psql "ALTER USER $DB_MK_USER WITH SUPERUSER;"
+_psql "ALTER USER $DB_MK_USER WITH SUPERUSER;" 
 
-################ ~ MIGRATE DATABASE
-print_info "- Migrate database"
-venv/bin/python manage.py migrate
 
 print_info "INSTALLATION RÉUSSIE"
