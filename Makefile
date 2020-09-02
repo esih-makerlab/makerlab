@@ -6,3 +6,6 @@ install:
 
 install-db: 
 	./scripts/postgres.sh 
+
+run:
+	venv/bin/python manage.py runserver
