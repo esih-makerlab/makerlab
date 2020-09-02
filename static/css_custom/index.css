@@ -6,3 +6,31 @@
     margin-left: 0px;
     margin-right: 0px;
 }
+.d-block {
+    display: block;
+}
+#login_modal .modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    z-index: 9999;
+}
+#login_modal .modal-header {
+    padding: 0 0 5px 0;
+}
+.close {
+    line-height: 1.5;
+}
+
+#login_modal .modal-content {
+    padding: 1rem;
+}
+@media (max-width: 768px) {
+    #login_modal .modal-dialog {
+        margin-left: 0;
+        width: 100vw;
+    }
+
+}

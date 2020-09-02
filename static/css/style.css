@@ -274,7 +274,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: ease-in-out 0.2s;
   opacity: 0;
   visibility: hidden;
-  border-radius: 10px;
+  border-radius: 7px;
   padding: 10px 0;
 }
 
