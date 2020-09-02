@@ -1,4 +1,8 @@
 
 install: 
-	chmod +x ./scripts/install_dev.sh
-	./scripts/install_dev.sh
+	virtualenv -p python3.8 venv 
+	venv/bin/pip install -r requirements.txt 
+	venv/bin/python manage.py migrate 
+
+install-db: 
+	./scripts/postgres.sh 
