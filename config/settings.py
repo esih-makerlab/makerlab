@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
     'home',
     'pages',
 ]
@@ -164,4 +164,4 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = 'home'
 
-
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
