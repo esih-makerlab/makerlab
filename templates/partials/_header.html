@@ -7,7 +7,7 @@
       <div class="logo mr-auto">
         <header>
          
-          <h1 class="text-light"><a href="{% url 'home' %}">MakerLab</a></h1>
+          <h1 class="text-light"><a href="{% url 'home' %}">ESIH MakerLab</a></h1>
        
        </header>
         
@@ -56,9 +56,13 @@
           
           <li><a href="contact.html">Contact</a></li>
 
-          <li class="get-started"><a href="{% url 'home' %}">Login</a></li>
+          {% if user.is_authenticated %}
+             <li><a>{{user}}</a></li>
+          {% else %}
+            <li class="get-started"><a href="{% url 'home' %}">Login</a></li>
                     
-          <li class="sign-up"><a href="" >Sign up</a></li>
+            <li class="sign-up"><a href="" >Sign up</a></li>
+          {% endif %}
 
           
 

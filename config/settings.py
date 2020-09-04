@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'home',
     'pages',
+    'moncash',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = 'home'
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
+
+
+MONCASH = {
+    'CLIENT_ID' : '680e96ffecc2bc04bd2aa18d528f1de7',
+    'SECRET_KEY': 'MHq_JAVxqABdWoKzcHO_YLPkOMrMBFq5Y8A-hwcd9MDBs_F1dgOY8dL0f2XstVpL',
+}
