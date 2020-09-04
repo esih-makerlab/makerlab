@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'home',
     'pages',
+    'myaccount'
 ]
 
 MIDDLEWARE = [
