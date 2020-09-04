@@ -1,0 +1,42 @@
+{% load static %}
+<!-- The Modal -->
+<div class="containe">
+    <div class="modal" id="login_modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+              <h4 class="text-center text-warning">Sign In With</h4>
+              <a href="" class="btn border-secondary btn-large"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABFElEQVRIieWVXRXCMAyFPwmTgIRJmAQcgANwQB2AAyphDsBBcbA5GA7GAy3LerKfjrMHDjknD8tu7k3TNoV/sC1wBRzQenc+tvuWuBKkQ155bJKZGcSxn9ckD36ZIi8EuARynxRiD+/h2/ocK2Kj7aoF0Ih4pmBlzIi8aoh8S3+5dqySyKRAC+w1kI1ARYJAPqe4O/1ep5rMdxrgKQD3LwVaDSB/riIgAc0CAdmBWgPYqIJjAvmRGZtcCECo5oR+B4JlwCEiHzym8F5aw/vYWZFQRkKZjzUKeT1S0GcVDbCh2xejYGUBSfcn9HNqOhqFfHLYxSIOuKH3NBYwc8mDFXTDT0sOAjVpY0UVypV4zoKX7PfsBVXXqVr+ExjpAAAAAElFTkSuQmCC"/>Github</a>
+              <a href="#" class="btn border-light"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA4klEQVRIie2V4Q2DIBSEvxE6AiMwgiN0gzqKG9QN6gjdQEZwBDfADdofYEIoPEFN+sdLLjHkuHfh8RAunIAGeAIjYD1Hv6aOGCtv9NngC7jVmmufdMt8ZX+G+QIYz3B9qE0fGyzAPaHrapODa2hsXn2+EoaoQCr5IZjAfBY0o0AtFQjTmwJNit1fC5hAaAVNyImKvvWRuJXEmT1KEjeR2CI3LR7KuSDQz6BZ4JHQtfxOfFtSQOEGLG7e+ormHsCpxHyFzhTJcWLHxCvgXWA+7DEPoXE3xeCaOPvvjoM/nAsAfAEkTaFccMndIAAAAABJRU5ErkJggg=="/>Google</a>
+              
+              
+              <form action="{% url 'login_for_modal' %}" method="post">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input id="username" type="text" class="form-control" placeholder="Ex: BogosOk" name="login_user">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input id="password" type="text" class="form-control" placeholder="*********" name="login_pass">
+                </div>
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary" value="Sign In">
+              </form>
+              <div class="text-center">
+                <div>Not a member?<a href="">Sign up now</div>
+                <a href="">Password forgotten?</a>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
+</div>

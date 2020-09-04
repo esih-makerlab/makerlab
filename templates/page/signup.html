@@ -14,7 +14,7 @@
             <div class="row">
                 <section id="form_signup" class="col-xs-12 col-sm-10 col-md-6 offset-xs-0 offset-sm-1 offset-md-3 d-flex justify-content-center align-items-center">
                     <form action="" method="post">
-                        {{ form.as_p }}
+                        {{ signupform.as_p }}
                         {% csrf_token %}
                         <input type="submit" value="Create account" class="btn btn-danger">
                     </form>
