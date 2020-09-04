@@ -9,3 +9,4 @@ install-db:
 
 run:
 	venv/bin/python manage.py runserver
+env

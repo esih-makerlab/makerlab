@@ -28,7 +28,11 @@
     
     <!-- Template Main CSS File -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+<<<<<<< HEAD
     <link href="{% static 'css_custom/index.css' %}" rel="stylesheet">
+=======
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+>>>>>>> 0b8326f563c225b3adce6a09d53a89a69550e3c8
 
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,13 +50,20 @@
 </head>
 <body  style="height: 100vh; font-size: 1em;">
      <!-- Top bar -->
+  
     {% include 'partials/_header.html' %}
     
     {% block content %} {% endblock %}
 
      <!-- Footer -->
+<<<<<<< HEAD
     {% include 'partials/_footer.html' %} 
     {% include 'partials/_modal-login.html' %} 
+=======
+    {% include 'partials/_footer.html' %}
+    {% include 'partials/login.html' %}
+
+>>>>>>> 0b8326f563c225b3adce6a09d53a89a69550e3c8
 
 
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
