@@ -15,17 +15,30 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#setup env 
+import environ
+
+env = environ.Env()
+
+try:
+    PRODUCTION = env("PRODUCTION")
+except:
+    PRODUCTION = None
+
+if not PRODUCTION:
+    # reading .env file
+    environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')jq8cu+)5apwxso&e=#=q$&3-dsmaxlhet2e#(d8i=r0o1080d'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,11 +103,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_MK_NAME"),
-        'USER': os.environ.get("DB_MK_USER"),
-        'PASSWORD': os.environ.get("DB_MK_PASSWORD"),
-        'HOST': os.environ.get("DB_MK_HOST"),
-        'PORT': os.environ.get("DB_MK_PORT"),
+        'NAME': env("DB_MK_NAME"),
+        'USER': env("DB_MK_USER"),
+        'PASSWORD': env("DB_MK_PASSWORD"),
+        'HOST': env("DB_MK_HOST"),
+        'PORT': env("DB_MK_PORT"),
     }
 }
 
@@ -157,6 +170,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
 # Don't forget this little dude.
 SITE_ID = 1
@@ -169,6 +183,6 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
 
 MONCASH = {
-    'CLIENT_ID' : '680e96ffecc2bc04bd2aa18d528f1de7',
-    'SECRET_KEY': 'MHq_JAVxqABdWoKzcHO_YLPkOMrMBFq5Y8A-hwcd9MDBs_F1dgOY8dL0f2XstVpL',
+    'CLIENT_ID' : env('MONCASH_CLIENT_ID'),
+    'SECRET_KEY': env('MONCASH_SECRET_KEY'),
 }
