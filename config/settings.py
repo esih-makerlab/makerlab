@@ -56,9 +56,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'home',
-    'pages',
-    'moncash',
+
+    'pages.apps.PagesConfig',
+    'courses.apps.CoursesConfig',
+    'moncash.apps.MoncashConfig',
+    'membership.apps.MembershipConfig',
 ]
 
 MIDDLEWARE = [
