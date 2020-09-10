@@ -6,41 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MakerLab</title>
-    <meta content="" name="descriptison">
-    <meta content="" name="keywords">
+    {# https://metatags.io #}
+    <!-- Primary Meta Tags -->
+    <title>ESIH Makerlab</title>
+    <meta name="title" content="ESIH Makerlab">
+    <meta name="description" content="ESIH Makerlab est un makerspace ou un Atelier de fabrication pluridisciplinaire, ouvert aux jeunes (élèves et étudiants) et à toutes autres personnes intéressées à utiliser de manière créative les nouvelles techniques pour réaliser leurs propres projets numériques.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metatags.io/">
+    <meta property="og:title" content="ESIH Makerlab">
+    <meta property="og:description" content="ESIH Makerlab est un makerspace ou un Atelier de fabrication pluridisciplinaire, ouvert aux jeunes (élèves et étudiants) et à toutes autres personnes intéressées à utiliser de manière créative les nouvelles techniques pour réaliser leurs propres projets numériques.">
+    <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metatags.io/">
+    <meta property="twitter:title" content="ESIH Makerlab">
+    <meta property="twitter:description" content="ESIH Makerlab est un makerspace ou un Atelier de fabrication pluridisciplinaire, ouvert aux jeunes (élèves et étudiants) et à toutes autres personnes intéressées à utiliser de manière créative les nouvelles techniques pour réaliser leurs propres projets numériques.">
+    <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+
 
     <!-- Favicons -->
     <link href="{% static 'img/images.png' %}" rel="icon">
     <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
     
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
     <!-- Template Main CSS File -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
     
-    {% block extra_head %}
-
-    
-
-    {% endblock %}
-
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
     <!-- Top bar -->
     {% include 'partials/_header.html' %}
     
-    {% block content %}
-      
-    {% endblock %}
+    {% block content %}{% endblock %}
+
     <!-- Footer -->
     {% include 'partials/_footer.html' %} 
+    
     <script type="text/javascript" src="{% static '/js/jquery_v3.5.1.js' %} "></script>
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %} "></script>
 </body>
