@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.facebook',
 
     'pages.apps.PagesConfig',
     'courses.apps.CoursesConfig',
@@ -180,8 +181,6 @@ SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = 'home'
-
-ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
 
 MONCASH = {
