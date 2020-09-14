@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 def index(request):
-    return redirect('/courses')
+    return render(request, 'pages/home.html')
 
 def about(request):
-    return render(request, 'page/about.html')           
+    return render(request, 'pages/about.html')           
