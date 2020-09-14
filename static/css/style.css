@@ -23,7 +23,34 @@ html {
   background: var(--gray-dark);
 }
 
+.main_home {
+  background-image: url('../img/esih1.jpg');
+  background-position: center;
+  background-size: cover;
+  min-height: 450px;
+  position: relative;
+}
 
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+/* Searchbar 
+----------------------------------------------------------------------------*/
+.form-control-borderless {
+  border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
 
 /* Header.
 --------------------------------------------------------------------------- */
@@ -33,7 +60,7 @@ html {
 --------------------------------------------------------------------------- */
 
 body:after {
-  content: "BETA";
+  content: "ESIH";
   color: #fff;
   background: #d63626;
   text-align: center;

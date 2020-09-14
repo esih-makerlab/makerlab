@@ -1,42 +1,53 @@
+{% load static %}
 <!--Main Navigation-->
 <header>
-
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#"><strong>Navbar</strong></a>
+            <a class="navbar-brand" href="#"><strong>MakerLab</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="#">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
                     </li>
                 </ul>
+                {% if user.is_authenticated %}
+                <div class='dropdown'>
+                    <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src='{% static "img/user.png" %}' class='ml-4' height=30 />
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item mb-2" href="#">Signed as <strong>{{user.username}}</strong></a>
+                        <a class="dropdown-item" href="#">Dashboard</a>
+                        <a class="dropdown-item" href="#">Edit Profile</a>
+                        <a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a>
+                    </div>
+                </div>
+                {% else %}
+                    {% comment %} <a href="" class='btn btn-primary bt'>Github login</a>
+                    <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2 login</a> {% endcomment %}
+                    <a class="btn btn-primary ml-2" data-toggle="modal" data-target="#loginModal">login</a>
+                {% endif %}
+                
             </div>
         </div>
     </nav>
 
-    <div class="view intro-2">
-        <div class="full-bg-img">
-            <div class="mask rgba-indigo-slight flex-center">
-                <div class="container">
-                    <div class="white-text text-center wow fadeInUp">
-                        <h2>This Navbar isn't fixed</h2>
-                        <h5>When you scroll down it will disappear</h5>
-                        <br>
-                        <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 </header>
 <!--Main Navigation-->

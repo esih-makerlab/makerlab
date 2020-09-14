@@ -1,23 +1,88 @@
 {% extends 'bases/index.html' %}
 {% load static %}
-{% load socialaccount %} 
+
 
 {% block extra_head %}
    
 {% endblock %}
 
 {% block content %}
-    <div class='text-center mt-3'>
-        <h1>Django Allauth Tutorial</h1>
-
-        {% if user.is_authenticated %}
-            <p>Welcome {{ user.username }} !!!</p>
-        {% else %}
-            <a href="{% provider_login_url 'github' %}" class='btn btn-primary btn-github'>Github login</a>
-            <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2 login</a>
-        {% endif %}
+    <div class="main_home">
+        <div class='overlay'>
+            <div class="container mt-5">
+                <div class='row justify-content-center text-white'>
+                    <div class="col-12 col-md-10 col-lg-8">
+                        <h1 class='font-weight-bold'>Explore</h1>
+                        <h2>explore people, projects, space and courses</h2>
+                    </div>
+                </div>
+	            <div class="row justify-content-center mt-2">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-lg btn-dark" type="submit">Search</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-
+    <div class="container">
+        <div class="row mt-5 justify-content-center text-center">
+            <div class="col-md-3 col-sm-12">
+                <i class='fa fa-4x fa-globe-americas'></i>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <i class='fa fa-4x fa-binoculars'></i>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <i class='fa fa-4x fa-wrench'></i>
+            </div>
+             <div class="col-md-3 col-sm-12">
+                <i class='fa fa-4x fa-robot'></i>
+            </div>
+        </div>
+    </div>
+    <div class="bg-dark mt-4">
+        <div class="container">
+            <div class="d-flex flex-column mt-5 p-3 justify-content-center align-items-center text-center">
+                <h3 class='text-white font-weight-bold'>"Innovate and Do It Yourself"</h3>
+                <h5 class='text-white'>Intervention by Gian Michele Toglia, former Head at the MakerLab</h5>
+                <iframe class="m-4" width="505" height="285"
+                    src="https://www.youtube.com/embed/m2puqY6wec8">
+                    </iframe> 
+            </div>
+        </div>
+    </div>
+    <div class="mt-4">
+        <div class="container">
+            <div class='row text-center font-weight-bold h4 p-3'>
+                <div class='col-md-4'>
+                    <i class="fa fa-phone"></i>
+                    Need Help ?
+                </div>
+                <div class='col-md-4'>
+                    +509 48 43 83 30
+                </div>
+                <div class='col-md-4'>
+                    makerlab@esih.edu
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
