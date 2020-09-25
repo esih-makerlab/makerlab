@@ -1,37 +1,37 @@
 {% load static %}
 <!--Main Navigation-->
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
         <div class="container">
-            <a class="navbar-brand" href="#"><strong>MakerLab</strong></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><strong>MakerLab</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item {% if request.get_full_path == '/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                    <li class="nav-item {% if request.get_full_path == '/courses/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'courses_home' %}">Courses</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Membership</a>
+                     <li class="nav-item {% if request.get_full_path == '/membership/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'membership' %}">Membership</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Courses</a>
+                    <li class="nav-item {% if request.get_full_path == '/projects/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'projects' %}">Projects</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Projects</a>
+                    <li class="nav-item {% if request.get_full_path == '/about/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
-                <div class='dropdown'>
+                <div class='dropdown d-flex'>
                     <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src='{% static "img/user.png" %}' class='ml-4' height=30 />
+                        <img src='{% static "img/user.png" %}' height=30 class='pl-5' />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item mb-2" href="#">Signed as <strong>{{user.username}}</strong></a>
+                        <a class="dropdown-item mb-2 text-muted" href="#"><strong>{{user.username}}</strong></a>
                         <a class="dropdown-item" href="#">Dashboard</a>
                         <a class="dropdown-item" href="#">Edit Profile</a>
                         <a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a>
@@ -40,7 +40,7 @@
                 {% else %}
                     {% comment %} <a href="" class='btn btn-primary bt'>Github login</a>
                     <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2 login</a> {% endcomment %}
-                    <a class="btn btn-primary ml-2" data-toggle="modal" data-target="#loginModal">login</a>
+                    <a class="btn btn-light ml-2" data-toggle="modal" data-target="#loginModal">login</a>
                 {% endif %}
                 
             </div>

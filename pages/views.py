@@ -4,4 +4,7 @@ def index(request):
     return render(request, 'pages/home.html')
 
 def about(request):
-    return render(request, 'pages/about.html')           
+    return render(request, 'pages/about.html') 
+
+def projects(request):
+    return render(request, 'projects/home.html')             
