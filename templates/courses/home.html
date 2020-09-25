@@ -1,6 +1,125 @@
 {% extends 'bases/index.html' %}
 {% load static %}
 
+{% block extra_head %}
+
+    <style>
+        body{
+            background-color: #f9f9f9;
+        }
+    </style>
+
+{% endblock %}
+
 {% block content %}
-    
+    {% include 'partials/_subheader.html' with subheader_title='Courses' %}
+    <div class='container mt-4'>
+        <div class='row'>
+            <div class='col-md-8 col-12'>
+                <div class='row col-12 mt-3'>
+                    <div class='col-md-6 col-12'>
+                        <div class="card shadow">
+                            <img src="{% static 'img/book.svg' %}" class="card-img-top p-2" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Introduction to Algorithm</h5>
+                                <p class="card-text">This course is a prerequisite to go further in programming. Starting at the beginning</p>
+                            </div>
+                            <div class='card-body p-0 px-3'>
+                                <a class='btn btn-primary btn-block' href='#'>Enroll</a>
+                                <a class='btn btn-outline-secondary btn-block' href='#'>Learn more</a>
+                            </div>
+                            <div class="card-body">
+                                <div class='row text-muted'>
+                                    <div href="#" class='col-6'>
+                                        <i class='fa fa-chair'></i>
+                                        12 left
+                                    </div>
+                                    <div href="#" class='col-6 text-right'>
+                                        <i class='fa fa-calendar-alt'></i>
+                                        12/09/20
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-6 col-12'>
+                        <div class="card shadow">
+                            <img src="{% static 'img/book.svg' %}" class="card-img-top p-2" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Introduction to Algorithm</h5>
+                                <p class="card-text">This course is a prerequisite to go further in programming. Starting at the beginning</p>
+                            </div>
+                            <div class='card-body p-0 px-3'>
+                                <a class='btn btn-primary btn-block' href='#'>Enroll</a>
+                                <a class='btn btn-outline-secondary btn-block' href='#'>Learn more</a>
+                            </div>
+                            <div class="card-body">
+                                <div class='row text-muted'>
+                                    <div href="#" class='col-6'>
+                                        <i class='fa fa-chair'></i>
+                                        12 left
+                                    </div>
+                                    <div href="#" class='col-6 text-right'>
+                                        <i class='fa fa-calendar-alt'></i>
+                                        12/09/20
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-4 col-12'>
+                <div class="card ">
+                    <div class="card-header">
+                        Filters
+                    </div>
+                    <div class="card-body">
+                        <div class='row justify-content-center align-items-center text-center'>
+                            <div class='col-12 mt-2'>
+                                <h6 class='font-weight-bold'>Date (From) </h6>
+                                <input type='date' class='form-control'>
+                            </div>
+                            <div class='col-12 mt-2'>
+                                <h6 class='font-weight-bold'>Price</h6>
+                                <div class="slidecontainer">
+                                    <input type="range" min="500" max="10000" value="50" class="slider" id="myRange">
+                                </div>
+                                <p><span id='demo'></span> HTG</p>
+                            </div>
+                            <div class='col-12 mt-2'>
+                                <h6 class='font-weight-bold'>Tags</h6>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Tags</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01">
+                                        <option selected>algorithms</option>
+                                        <option value="1">c++</option>
+                                        <option value="2">electronics</option>
+                                        <option value="3">arduino</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value; // Display the default slider value
+
+        // Update the current slider value (each time you drag the slider handle)
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+    </script>
 {% endblock %}
