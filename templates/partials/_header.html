@@ -15,9 +15,6 @@
                     <li class="nav-item {% if request.get_full_path == '/courses/' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'courses_home' %}">Courses</a>
                     </li>
-                     <li class="nav-item {% if request.get_full_path == '/membership/' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'membership' %}">Membership</a>
-                    </li>
                     <li class="nav-item {% if request.get_full_path == '/projects/' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'projects' %}">Projects</a>
                     </li>
