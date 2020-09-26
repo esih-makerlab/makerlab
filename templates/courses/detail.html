@@ -1,0 +1,60 @@
+{% extends 'bases/index.html' %}
+{% load static %}
+
+{% block extra_head %}
+
+    <style>
+        body{
+            background-color: #f9f9f9;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    {% include 'partials/_subheader.html' with subheader_title='courses / introduction-to-algorithm' %}
+    <div class='container mt-3'>
+        <div class='row justify-content-center'>
+            <div class='col-md-10 col-12'>
+                <div class='card shadow-sm'>
+                    <div class='row'>
+                        <div class='col-md-6 col-12'>
+                            <img src="{% static 'img/book.svg' %}" class="card-img-top p-2" alt="...">
+                        </div>
+                        <div class='col-md-6 col-12'>
+                          <div class='card-body'>
+                            <h5 class="card-title">Introduction to Algorithm</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            </p>
+                            <a href="" class='btn btn-primary btn-lg btn-block mt-5'>Enroll</a>
+                          </div>
+                        </div>        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class='row justify-content-center mt-3'>
+            <div class='col-md-10 col-12'>
+                <div class='card shadow-sm'>
+                    <div class='row'>
+                        <div class='card-body p-4'>
+                            <h5 class="card-title">Introduction to Algorithm</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            </p>
+                            <a href="" class='btn btn-primary btn-lg btn-block mt-5'>Enroll</a>
+                        </div>       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
