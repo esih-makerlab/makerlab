@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django_better_admin_arrayfield.models.fields import ArrayField
-from django.contrib.postgres.fields import ArrayField as baseArrayField
 
 class Courses(models.Model):
     class Currencies(models.TextChoices):
@@ -19,9 +18,10 @@ class Courses(models.Model):
     nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
     date = models.DateTimeField(_('date'),max_length=255,blank=False)
     next_date = models.DateTimeField(_('next date'),max_length=255,blank=False)
-    links = ArrayField(verbose_name=_('please add link'),base_field=baseArrayField(models.TextField(),1),blank=False,help_text=_('Ex: https://www.site.com/something.pdf'),default=list)
+    links = ArrayField(verbose_name=_('please add link'),base_field=models.URLField(),blank=True,help_text=_('Ex: https://www.site.com/something.pdf'),null=True)
     note = models.TextField(_('note'),help_text=_('some additional note'),blank=True,null=True)
     description = models.TextField(_('description'),help_text=_('some description'),blank=False)
+    tags = ArrayField(verbose_name=_('please add tag'),base_field=models.TextField(),blank=True,help_text=_('Ex: Arduino'),null=True)
     requirements = models.ManyToManyField(to='self',verbose_name='requirements',blank=True)
     attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('course','attendee'),related_name='attendees',blank=True)
 
