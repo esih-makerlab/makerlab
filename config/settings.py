@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'moncash.apps.MoncashConfig',
     'membership.apps.MembershipConfig',
+
+    'django_better_admin_arrayfield',
 ]
 
 MIDDLEWARE = [
