@@ -52,12 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.facebook',
-
     'pages.apps.PagesConfig',
     'courses.apps.CoursesConfig',
     'moncash.apps.MoncashConfig',
@@ -177,10 +171,6 @@ AUTHENTICATION_BACKENDS = [
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
-# Don't forget this little dude.
-SITE_ID = 1
-
-ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = 'home'
 
