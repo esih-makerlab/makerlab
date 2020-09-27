@@ -13,35 +13,52 @@ class Courses(models.Model):
     
     teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title = models.CharField(_('title'),help_text=_('Ex: c++ Introduction'), max_length=255,blank=False)
-    price = models.DecimalField(_('price'),help_text=_('Ex: 12.99'),max_length=255,max_digits=11,decimal_places=2,blank=False)
+    price = models.DecimalField(_('price'),help_text=_('Ex: 1000'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=1000)
     currency = models.CharField(_('currency'),max_length=25,choices=Currencies.choices,default=Currencies.HTG,blank=False)
-    nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
-    date = models.DateTimeField(_('date'),max_length=255,blank=False)
-    next_date = models.DateTimeField(_('next date'),max_length=255,blank=False)
     links = ArrayField(verbose_name=_('please add link'),base_field=models.URLField(),blank=True,help_text=_('Ex: https://www.site.com/something.pdf'),null=True)
     note = models.TextField(_('note'),help_text=_('some additional note'),blank=True,null=True)
     description = models.TextField(_('description'),help_text=_('some description'),blank=False)
     tags = ArrayField(verbose_name=_('please add tag'),base_field=models.TextField(),blank=True,help_text=_('Ex: Arduino'),null=True)
     requirements = models.ManyToManyField(to='self',verbose_name='requirements',blank=True)
-    attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('course','attendee'),related_name='attendees',blank=True)
 
-    REQUIRED_FIELDS = ['title','price','currency','nb_attendees','description','teacher','date']
+    REQUIRED_FIELDS = ['title','price','currency','description','teacher','dates']
 
     def __str__(self):
         return 'TITLE:%s ID:%s' % (self.title,self.id)
+
+    def find_courses(self,keywords):
+        self.filter(title__in=keywords)
+
+class Date(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Dates"
+
+    course = models.ForeignKey(verbose_name=_('course'),to='Courses',on_delete=models.CASCADE)
+    date = models.DateTimeField(_('date'),max_length=255,blank=False)
+    nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
+    attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('date','attendee'),related_name='attendees',blank=True)
+    
+    REQUIRED_FIELDS = ['course','nb_attendees','date','attendees']
+
+    def __str__(self):
+        return 'COURSE:%s  DATE:%s' % (self.course,self.date)
+
+    def get_remain(self):
+        return self.nb_attendees - self.attendees.all().count()
+
 
 class Attendee(models.Model):
 
     class Meta:
         verbose_name_plural = "Attendees"
 
-    course = models.ForeignKey(verbose_name=_('course'),to=Courses, on_delete=models.CASCADE)
+    date = models.ForeignKey(verbose_name=_('date'),to='Date', on_delete=models.CASCADE)
     attendee = models.ForeignKey(verbose_name=_('attendee'),to=get_user_model(), on_delete=models.CASCADE)
     complete = models.BooleanField(verbose_name=_('complete'),blank=False,default=False)
     score = models.DecimalField(_('score'),help_text=_('Ex: 18.5'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=0)
 
-    REQUIRED_FIELDS = ['course','attendee','score','complete']
+    REQUIRED_FIELDS = ['date','attendee','score','complete']
 
     def __str__(self):
-        return 'COURSE:%s  ATTENDEE:%s' % (self.course.id,self.attendee.id)
-
+        return 'DATE:%s  ATTENDEE:%s' % (self.date.id,self.attendee.id)
