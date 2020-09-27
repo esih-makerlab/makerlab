@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'courses.apps.CoursesConfig',
     'moncash.apps.MoncashConfig',
-    'membership.apps.MembershipConfig',
+    'member.apps.MemberConfig',
 
     'django_better_admin_arrayfield',
 ]
