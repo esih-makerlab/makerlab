@@ -28,10 +28,10 @@ body {
 
 .subheader {
   background-image: url('../img/esih1.jpg');
-  background-position: center;
+  background-position: top;
   background-size: cover;
   position: relative;
-  padding: 40px;
+  padding: 20px;
 }
 
 .overlay{

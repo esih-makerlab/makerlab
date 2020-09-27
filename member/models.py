@@ -15,8 +15,7 @@ class Profile(models.Model):
         User, 
         on_delete=models.CASCADE
     )
-
-    birthdate = models.DateField('Birthdate')
     
+    birthdate = models.DateField('Birthdate')
     biography = models.TextField('Biography', blank=True)
     
