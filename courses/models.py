@@ -26,6 +26,9 @@ class Courses(models.Model):
     def __str__(self):
         return 'TITLE:%s ID:%s' % (self.title,self.id)
 
+    def find_courses(self,keywords):
+        self.filter(title__in=keywords)
+
 class Date(models.Model):
 
     class Meta:
@@ -41,6 +44,8 @@ class Date(models.Model):
     def __str__(self):
         return 'COURSE:%s  DATE:%s' % (self.course,self.date)
 
+    def get_remain(self):
+        return self.nb_attendees - self.attendees.all().count()
 
 
 class Attendee(models.Model):
