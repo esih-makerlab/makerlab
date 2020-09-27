@@ -26,18 +26,14 @@
                             <p class="card-text">{{course.description}}</p>
                         </div>
                         <div class='card-body p-0 px-3'>
-                            <a class='btn btn-primary btn-block' href='{% url "proceed" %}'>{% trans "Enroll" %}</a>
+                            <a class='btn btn-primary btn-block' href='{% url "enroll" %}'>{% trans "Enroll for Monday 12 october" %}</a>
                             <a class='btn btn-outline-secondary btn-block' href='#'>{% trans "Learn more" %}</a>
                         </div>
                         <div class="card-body">
                             <div class='row text-muted'>
-                                <div class='col-6'>
+                                <div class='col-12'>
                                     <i class='fa fa-chair'></i>
-                                    {{course.remain}} {% trans "left" %}
-                                </div>
-                                <div class='col-6 text-right'>
-                                    <i class='fa fa-calendar-alt'></i>
-                                    {{course.date}}
+                                    10 {% trans "remaining" %}
                                 </div>
                             </div>
                         </div>
@@ -78,5 +74,3 @@
         </div>
     </div>
 {% endblock %}
-
-{
