@@ -39,3 +39,6 @@ def home(request):
             courses = paginator.page(paginator.num_pages)
 
     return render(request, 'courses/home.html',{'courses':courses})           
+
+def course_details(request):
+    return render(request, 'courses/detail.html')
