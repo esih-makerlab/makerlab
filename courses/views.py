@@ -9,7 +9,7 @@ def home(request):
         
     page = request.GET.get('page', 1)
         
-    paginator = Paginator(Courses.objects.all(), 3)
+    paginator = Paginator(Course.objects.all(), 3)
 
     try:
         courses = paginator.page(page)
