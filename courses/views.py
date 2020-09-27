@@ -2,14 +2,14 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 
-from .models import Courses
+from .models import Course
 
 
 def home(request):
         
     page = request.GET.get('page', 1)
         
-    paginator = Paginator(Courses.objects.all(), 1)
+    paginator = Paginator(Courses.objects.all(), 3)
 
     try:
         courses = paginator.page(page)

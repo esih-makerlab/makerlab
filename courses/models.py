@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django_better_admin_arrayfield.models.fields import ArrayField
 
-class Courses(models.Model):
+class Course(models.Model):
     class Currencies(models.TextChoices):
         HTG = 'HTG', _("HTG")
 
@@ -29,12 +29,12 @@ class Courses(models.Model):
     def find_courses(self,keywords):
         self.filter(title__in=keywords)
 
-class Date(models.Model):
+class CourseDate(models.Model):
 
     class Meta:
-        verbose_name_plural = "Dates"
+        verbose_name_plural = "Course Dates"
 
-    course = models.ForeignKey(verbose_name=_('course'),to='Courses',on_delete=models.CASCADE)
+    course = models.ForeignKey(verbose_name=_('course'),to='Course',on_delete=models.CASCADE)
     date = models.DateTimeField(_('date'),max_length=255,blank=False)
     nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
     attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('date','attendee'),related_name='attendees',blank=True)
@@ -53,7 +53,7 @@ class Attendee(models.Model):
     class Meta:
         verbose_name_plural = "Attendees"
 
-    date = models.ForeignKey(verbose_name=_('date'),to='Date', on_delete=models.CASCADE)
+    date = models.ForeignKey(verbose_name=_('date'),to='CourseDate', on_delete=models.CASCADE)
     attendee = models.ForeignKey(verbose_name=_('attendee'),to=get_user_model(), on_delete=models.CASCADE)
     complete = models.BooleanField(verbose_name=_('complete'),blank=False,default=False)
     score = models.DecimalField(_('score'),help_text=_('Ex: 18.5'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=0)

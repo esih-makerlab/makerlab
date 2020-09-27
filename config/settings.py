@@ -171,6 +171,8 @@ AUTHENTICATION_BACKENDS = [
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
+# Don't forget this little dude.
+SITE_ID = 1
 
 LOGIN_REDIRECT_URL = 'home'
 

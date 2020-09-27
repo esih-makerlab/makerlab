@@ -14,81 +14,42 @@
 {% block content %}
     {% include 'partials/_subheader.html' with subheader_title='Courses' %}
     <div class='container mt-4'>
-        <div class='row'>
-            <div class='col-md-8 col-12'>
-                <div class='row col-12 mt-3 mb-3'>
-                    {% if courses %}
-                        <div class='col-md-6 col-12'>
-                            {% for course in courses %}
-                            <div class="card shadow">
-                                <img src="{% static 'img/book.svg' %}" class="card-img-top p-2" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{course.title}}</h5>
-                                    <p class="card-text">{{course.description}}</p>
-                                </div>
-                                <div class='card-body p-0 px-3'>
-                                    <a class='btn btn-primary btn-block' href='{% url "proceed" %}'>{% trans "Enroll" %}</a>
-                                    <a class='btn btn-outline-secondary btn-block' href='#'>{% trans "Learn more" %}</a>
-                                </div>
-                                <div class="card-body">
-                                    <div class='row text-muted'>
-                                        <div class='col-6'>
-                                            <i class='fa fa-chair'></i>
-                                            {{course.remain}} {% trans "left" %}
-                                        </div>
-                                        <div class='col-6 text-right'>
-                                            <i class='fa fa-calendar-alt'></i>
-                                            {{course.date}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
+        <div class='row col-12 mt-3 mb-3'>
+            {% if courses %}
+                {% for course in courses %}
+                <div class='col-md-4 col-12'>
+                    
+                    <div class="card shadow">
+                        <img src="{% static 'img/book.svg' %}" class="card-img-top p-2" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{course.title}}</h5>
+                            <p class="card-text">{{course.description}}</p>
                         </div>
-                    {% else %}
-
-                    {% endif %}
-                </div>
-            </div>
-            <div class='col-md-4 col-12'>
-                <div class="card shadow">
-                    <div class="card-header">
-                        Filters
-                    </div>
-                    <div class="card-body">
-                        <form method="get" class='row justify-content-center align-items-center text-center'>
-                            <div class='col-12 mt-2'>
-                                <h6 class='font-weight-bold'>Date (From) </h6>
-                                <input type='date' name='date' class='form-control'>
-                            </div>
-                            <div class='col-12 mt-2'>
-                                <h6 class='font-weight-bold'>Price</h6>
-                                <div class="slidecontainer">
-                                    <input type="range" name='price' min="500" max="10000" value="50" class="slider" id="myRange">
+                        <div class='card-body p-0 px-3'>
+                            <a class='btn btn-primary btn-block' href='{% url "proceed" %}'>{% trans "Enroll" %}</a>
+                            <a class='btn btn-outline-secondary btn-block' href='#'>{% trans "Learn more" %}</a>
+                        </div>
+                        <div class="card-body">
+                            <div class='row text-muted'>
+                                <div class='col-6'>
+                                    <i class='fa fa-chair'></i>
+                                    {{course.remain}} {% trans "left" %}
                                 </div>
-                                <p><span id='demo'></span> HTG</p>
-                            </div>
-                            <div class='col-12 mt-2'>
-                                <h6 class='font-weight-bold'>Tags</h6>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Tags</label>
-                                    </div>
-                                    <select name='tag' class="custom-select" id="inputGroupSelect01">
-                                        <option value='' selected>none</option>
-                                        <option >c++</option>
-                                        <option >electronics</option>
-                                        <option >arduino</option>
-                                    </select>
+                                <div class='col-6 text-right'>
+                                    <i class='fa fa-calendar-alt'></i>
+                                    {{course.date}}
                                 </div>
                             </div>
-                            <div class="col-12 mt-2 mb-2">
-                                <input type="submit" class='btn btn-primary btn-block' href='#' value="{% trans "Start filtering" %}">
-                            </div>
-                        </form>
+                        </div>
                     </div>
+                    
                 </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                <div>
+                    <h3 class='text-muted'>Unfortunately, we don't have any classes scheduled. Come back soon ...</h3>
+                </div>
+            {% endif %}
         </div>
         <div class="col-12">
         {% if courses %}

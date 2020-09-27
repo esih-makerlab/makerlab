@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Courses,Attendee,Date
+from .models import Course,Attendee,CourseDate
 from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 
 # Register your models here.
-class CoursesAdmin(admin.ModelAdmin,DynamicArrayMixin):
+class CourseAdmin(admin.ModelAdmin,DynamicArrayMixin):
     list_display = ('id','title','teacher','price',)
     list_display_links = ('id',)
     list_filter = ('teacher__username',)
@@ -11,7 +11,7 @@ class CoursesAdmin(admin.ModelAdmin,DynamicArrayMixin):
     list_per_page = 25
     autocomplete_fields = ['teacher','requirements']
 
-class DateAdmin(admin.ModelAdmin):
+class CourseDateAdmin(admin.ModelAdmin):
     list_display = ('id','date','course','nb_attendees',)
     list_display_links = ('id',)
     list_filter = ('date','nb_attendees',)
@@ -28,5 +28,5 @@ class AttendeeAdmin(admin.ModelAdmin):
     autocomplete_fields = ['date','attendee']
 
 admin.site.register(Attendee, AttendeeAdmin)
-admin.site.register(Courses, CoursesAdmin)
-admin.site.register(Date, DateAdmin)
+admin.site.register(Course, CourseAdmin)
+admin.site.register(CourseDate, CourseDateAdmin)
