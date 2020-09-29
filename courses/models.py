@@ -5,16 +5,11 @@ from django.utils import timezone
 from django_better_admin_arrayfield.models.fields import ArrayField
 
 class Course(models.Model):
-    class Currencies(models.TextChoices):
-        HTG = 'HTG', _("HTG")
 
     class Meta:
         verbose_name_plural = "courses"
     
-    teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title = models.CharField(_('title'),help_text=_('Ex: c++ Introduction'), max_length=255,blank=False)
-    price = models.DecimalField(_('price'),help_text=_('Ex: 1000'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=1000)
-    currency = models.CharField(_('currency'),max_length=25,choices=Currencies.choices,default=Currencies.HTG,blank=False)
     links = ArrayField(verbose_name=_('please add link'),base_field=models.URLField(),blank=True,help_text=_('Ex: https://www.site.com/something.pdf'),null=True)
     note = models.TextField(_('note'),help_text=_('some additional note'),blank=True,null=True)
     description = models.TextField(_('description'),help_text=_('some description'),blank=False)
@@ -31,9 +26,15 @@ class Course(models.Model):
 
 class CourseDate(models.Model):
 
+    class Currencies(models.TextChoices):
+        HTG = 'HTG', _("HTG")
+
     class Meta:
         verbose_name_plural = "Course Dates"
 
+    teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    price = models.DecimalField(_('price'),help_text=_('Ex: 1000'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=1000)
+    currency = models.CharField(_('currency'),max_length=25,choices=Currencies.choices,default=Currencies.HTG,blank=False)
     course = models.ForeignKey(verbose_name=_('course'),to='Course',on_delete=models.CASCADE)
     date = models.DateTimeField(_('date'),max_length=255,blank=False)
     nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
