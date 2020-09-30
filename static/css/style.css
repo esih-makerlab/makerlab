@@ -65,8 +65,8 @@ body {
 
 body:after {
   content: "ESIH";
-  color: #fff;
-  background: #d63626;
+  color: #000;
+  background: #ffd700;
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
