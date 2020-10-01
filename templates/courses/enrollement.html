@@ -18,11 +18,24 @@
                 <ul class="list-unstyled multi-steps">
                 <li>course selection</li>
                 <li class="is-active">enrollement confirmation</li>
-                <li>payement</li>
+                <li>payement success</li>
             </ul>
         </div>
         <div class='row justify-content-center'>
-            <a href="{% url 'proceed' %}"><img src="{% static 'img/mcbuttond.png' %}" height=40></a>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3 class='card-title'>Introduction to Algorithms</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">November 17 2020 15:30 AM</li>
+                        <li class="list-group-item">37th enrolled</li>
+                        <li class="list-group-item">1000 HTG Fees</li>
+                    </ul>
+                    
+                     <div class='row justify-content-end'>
+                        <a href="{% url 'proceed' %}" ><img src="{% static 'img/mcbuttond.png' %}" height=40 class='mt-3 mr-3'></a>
+                     </div>
+                </div>
+            
         </div>
     </div>
 {% endblock %}
