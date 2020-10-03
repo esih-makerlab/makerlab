@@ -5,7 +5,8 @@ from django.conf import settings
 import moncashify
 
 def proceed(request):
-    order_id = 30
+    order_id = 82343
+
     amount = 1000 # HTG
 
     moncash = moncashify.API(settings.MONCASH['CLIENT_ID'], settings.MONCASH['SECRET_KEY'], True)

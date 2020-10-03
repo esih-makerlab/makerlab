@@ -1,0 +1,27 @@
+{% extends 'bases/index.html' %}
+{% load static %}
+{% load i18n %}
+{% block extra_head %}
+
+    <style>
+        body{
+            background-color: #f9f9f9;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div class='container mt-3'>
+        <div class='row'>
+            <ul>
+                <ul class="list-unstyled multi-steps">
+                <li>course selection</li>
+                <li>enrollement confirmation</li>
+                <li class="is-active">payement success</li>
+            </ul>
+        </div>
+        <div class='row justify-content-center'>
+        </div>
+    </div>
+{% endblock %}

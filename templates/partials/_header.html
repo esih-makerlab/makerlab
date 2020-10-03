@@ -1,7 +1,7 @@
 {% load static %}
 <!--Main Navigation-->
 <header>
-    <nav class="navbar shadow-sm navbar-expand-lg navbar-dark bg-dark py-3">
+    <nav class="navbar shadow navbar-expand-lg navbar-dark bg-dark py-3">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}"><strong>MakerLab</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,9 @@
                 </div>
                 {% else %}
                     <a class="btn btn-light ml-2" data-toggle="modal" data-target="#loginModal">login</a>
-                    <a href="#" class='btn btn-outline-light ml-2'>Signup</a>
+                    {% if not request.get_full_path == '/account/register/' %}
+                        <a href="{% url 'register' %}" class='btn btn-outline-light ml-2'>Signup</a>
+                    {% endif %}
                 {% endif %}
                 
             </div>

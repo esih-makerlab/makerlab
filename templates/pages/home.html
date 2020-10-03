@@ -9,7 +9,7 @@
 {% block content %}
     <div class="main_home">
         <div class='overlay'>
-            <div class="container mt-5">
+            <div class="container mt-4">
                 <div class='row justify-content-center text-white'>
                     <div class="col-12 col-md-10 col-lg-8">
                         <h1 class='font-weight-bold'>Explore</h1>
@@ -41,7 +41,39 @@
             </div>
         </div>
     </div>
-    
+    <div class='container mt-3 p-3'>
+        <div class='row justify-content-center'>
+            <div class='text-center'>
+                <h2 class='font-weigth-bold typed'>Attend at workshop on <span id='typed'></span></h2>
+                <h4 class='text-muted'>Join beautiful mind on beautiful topic</h4>
+                <a href="{% url 'courses_home' %}" class='btn btn-primary btn-lg'>learn more</a>
+            </div>
+        </div>
+    </div>
     
 {% endblock %}
 
+ {% block last_content %}
+     <div id='typed-strings'>
+        <p>microcontrollers</p>
+        <p>pcb design</p>
+        <p>programming</p>
+        <p>3D printing</p>
+        <p>latex</p>
+        <p>CAD<p>
+        <p>soldering<p>
+        <p>robotics<p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script>
+        var typed = new Typed('#typed', {
+            stringsElement: '#typed-strings',
+            backSpeed: 5,
+            typeSpeed: 30,
+            smartBackspace: true,
+            loop: true,
+            backDelay: 2000
+        });
+    </script>
+ 
+ {% endblock %}

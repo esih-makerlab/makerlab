@@ -4,7 +4,6 @@ from django.utils import timezone
 
 from .models import Course
 
-
 def home(request):
         
     page = request.GET.get('page', 1)
@@ -25,3 +24,6 @@ def course_details(request):
 
 def course_enrollement(request):
     return render(request, 'courses/enrollement.html')
+
+def course_payement(request):
+    return render(request, 'courses/payement.html')

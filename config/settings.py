@@ -52,12 +52,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'django_better_admin_arrayfield',
+    'crispy_forms',
+
     'pages.apps.PagesConfig',
     'courses.apps.CoursesConfig',
     'moncash.apps.MoncashConfig',
     'member.apps.MemberConfig',
-
-    'django_better_admin_arrayfield',
 ]
 
 MIDDLEWARE = [
@@ -181,3 +182,6 @@ MONCASH = {
     'CLIENT_ID' : env('MONCASH_CLIENT_ID'),
     'SECRET_KEY': env('MONCASH_SECRET_KEY'),
 }
+
+# http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
+CRISPY_TEMPLATE_PACK = "bootstrap4"
