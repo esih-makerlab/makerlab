@@ -1,0 +1,88 @@
+{% extends 'bases/index.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="row justify-content-center mt-2">
+    <div class="col-12 col-md-10 col-lg-8  text-white">
+        <form action="{% url 'search_results' %}" class="card  opacity-6 card-sm">
+            <div class="card-body row no-gutters align-items-center">
+                <div class="col-auto">
+                    <i class="fas fa-search h4 text-body"></i>
+                </div>
+                <!--end of col-->
+                <div class="col">
+                    <input  name="q" class="form-control form-control-lg form-control-borderless " type="search" placeholder="Search topics or keywords">
+                </div>
+                <!--end of col-->
+                <div class="col-auto">
+                    <button class="btn btn-lg btn-dark " type="submit" id='opacity-1'>Search</button>
+                </div>
+                <!--end of col-->
+            </div>
+        </form>
+    </div>
+    <!--end of col-->
+</div>
+<div class='container mt-4'>
+    <div class='row col-12 mt-3 mb-3'>
+        {% if object_list %}
+            {% for course in object_list %}
+            <div class='col-md-4 col-12'>
+                
+                <div class="card shadow">
+                    <img src="{% static 'img/placeholder.svg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{course.title}}</h5>
+                        <p class="card-text">{{course.description}}</p>
+                    </div>
+                    <div class='card-body p-0 px-3'>
+                        <a class='btn btn-primary btn-block' href='{% url "enroll" %}'>{% trans "Enroll for Monday 12 october" %}</a>
+                        <a class='btn btn-outline-secondary btn-block' href="{% url 'course_detail' %}">{% trans "List next course date" %}</a>
+                    </div>
+                    <div class="card-body">
+                        <div class='row text-muted'>
+                            <div class='col-12'>
+                                <i class='fa fa-chair'></i>
+                                10 {% trans "places remaining" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                <h3 class='text-muted'>Unfortunately, we don't have classes name {{ q }} ...</h3>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-12">
+    {% if object_list %}
+        {% if courses.has_other_pages %}
+            <ul class="pagination">
+                {% if courses.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ courses.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link">&laquo;</a></li>
+                {% endif %}
+                {% for i in courses.paginator.page_range %}
+                {% if courses.number == i %}
+                    <li class="page-item active"><a class="page-link" href="">{{ i }} <span class="sr-only">{% trans "(current)" %}</span></a></li>
+                {% else %}
+                    <li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if courses.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ courses.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -18,14 +18,15 @@
                 </div>
 	            <div class="row justify-content-center mt-2">
                         <div class="col-12 col-md-10 col-lg-8  text-white">
-                            <form class="card  opacity-6 card-sm">
+                            <form action="{% url 'search_results' %}" class="card  opacity-6 card-sm">
+                                {}
                                 <div class="card-body row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <i class="fas fa-search h4 text-body"></i>
                                     </div>
                                     <!--end of col-->
                                     <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless " type="search" placeholder="Search topics or keywords">
+                                        <input  name="q" class="form-control form-control-lg form-control-borderless " type="search" placeholder="Search topics or keywords">
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">

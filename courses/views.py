@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
-
+from django.db.models import Q
 from .models import Course
+from django.views.generic import TemplateView, ListView, FormView
+
+from .forms import SearchFrom
 
 def home(request):
         
@@ -17,6 +20,8 @@ def home(request):
     except EmptyPage:
         courses = paginator.page(paginator.num_pages)
     
+    form_class= SearchFrom
+
     return render(request, 'courses/home.html',{'courses':courses})           
 
 def course_details(request):
@@ -27,3 +32,15 @@ def course_enrollement(request):
 
 def course_payement(request):
     return render(request, 'courses/payement.html')
+
+
+class SearchResultsView(ListView):
+    model = Course
+    template_name = 'search_results.html'
+
+    def get_queryset(self): 
+        query = self.request.GET.get('q')
+        object_list = Course.objects.filter(
+            Q(title__icontains=query)
+        )
+        return object_list
