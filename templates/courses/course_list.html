@@ -13,10 +13,12 @@
                 </div>
                 <!--end of col-->
                 <div class="col">
-                    <input  name="q" class="form-control form-control-lg form-control-borderless " type="search" placeholder="Search topics or keywords">
+                    
+                    <input required name="q" class="form-control form-control-lg form-control-borderless " type="search" placeholder="Search topics or keywords">
                 </div>
                 <!--end of col-->
                 <div class="col-auto">
+                    
                     <button class="btn btn-lg btn-dark " type="submit" id='opacity-1'>Search</button>
                 </div>
                 <!--end of col-->
@@ -55,34 +57,9 @@
             {% endfor %}
         {% else %}
             <div>
-                <h3 class='text-muted'>Unfortunately, we don't have classes name {{ q }} ...</h3>
+                <h3 class='text-muted'>Unfortunately, we don't have classes name {{ object_list.query.q }} ...</h3>
             </div>
         {% endif %}
     </div>
-    <div class="col-12">
-    {% if object_list %}
-        {% if courses.has_other_pages %}
-            <ul class="pagination">
-                {% if courses.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page={{ courses.previous_page_number }}">&laquo;</a></li>
-                {% else %}
-                <li class="page-item disabled"><a class="page-link">&laquo;</a></li>
-                {% endif %}
-                {% for i in courses.paginator.page_range %}
-                {% if courses.number == i %}
-                    <li class="page-item active"><a class="page-link" href="">{{ i }} <span class="sr-only">{% trans "(current)" %}</span></a></li>
-                {% else %}
-                    <li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-                {% endfor %}
-                {% if courses.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ courses.next_page_number }}">&raquo;</a></li>
-                {% else %}
-                <li class="page-item disabled"><a class="page-link">&raquo;</a></li>
-                {% endif %}
-            </ul>
-        {% endif %}
-    {% endif %}
-    </div>
-</div>
+</div>  
 {% endblock %}

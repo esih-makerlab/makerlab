@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.db.models import Q
 from .models import Course
 from django.views.generic import TemplateView, ListView, FormView
-
+from django.contrib.postgres.search import SearchVector
 from .forms import SearchFrom
 
 def home(request):
@@ -35,12 +35,10 @@ def course_payement(request):
 
 
 class SearchResultsView(ListView):
-    model = Course
-    template_name = 'search_results.html'
-
+        
     def get_queryset(self): 
         query = self.request.GET.get('q')
-        object_list = Course.objects.filter(
-            Q(title__icontains=query)
-        )
-        return object_list
+        object_list = Course.objects.annotate(
+        search = SearchVector('title')).filter(search=query)        
+        return  object_list
+
