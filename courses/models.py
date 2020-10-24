@@ -21,8 +21,8 @@ class Course(models.Model):
     def __str__(self):
         return 'TITLE:%s ID:%s' % (self.title,self.id)
 
-    def find_courses(self,keywords):
-        self.filter(title__in=keywords)
+    def find(self,keywords):
+        return self.objects.filter(title__contains=keywords)
 
 class CourseDate(models.Model):
 
@@ -31,6 +31,7 @@ class CourseDate(models.Model):
 
     class Meta:
         verbose_name_plural = "Course Dates"
+        get_latest_by = 'date' #max_rated_entry = YourModel.objects.latest()
 
     teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     price = models.DecimalField(_('price'),help_text=_('Ex: 1000'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=1000)
@@ -45,8 +46,11 @@ class CourseDate(models.Model):
     def __str__(self):
         return 'COURSE:%s  DATE:%s' % (self.course,self.date)
 
-    def get_remain(self):
-        return self.nb_attendees - self.attendees.all().count()
+    def remain(self):
+        return self.objects.nb_attendees - self.objects.attendees.all().count()
+
+    def populars(self):
+        return self.objects.annotate(attendee_count=models.Count('attendees')).filter(attendee_count__gte=5) #base on people num
 
 
 class Attendee(models.Model):
