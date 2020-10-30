@@ -1,0 +1,38 @@
+{% extends 'bases/index.html'%}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <div class="container row col-12 pt-4">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-3 col-12   text-center "  >
+                    <img class="rounded-circle border " src="{% if user.photo %}/media/{{user.photo}}{% else %}{% static 'css_custom/img/img-profil-1.png' %}{% endif %}"  alt="Profil" style="width:150px;height:150px" >
+                </div>
+                <ul class="col-12 col-md-6 nav">
+                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                        <span class="h6">{% trans "Firstname:" %} </span> {{user.first_name}}
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                        <span class="h6">{% trans "Lastname:" %} </span> {{user.last_name}} 
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                        <span class="h6">{% trans "Email:" %} </span> {{user.email}}
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                        <span class="h6">{% trans "Phone:" %} </span> {{user.phone}}
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                        <span class="h6">{% trans "Country:" %} </span> {{user.country.name}}
+                    </li>
+                </ul>
+                <div class="col-12 col-md-3">
+                    <a class="btn btn-dark m-1 col-12" href="{% url 'edit_profile' %}" ><i class="fas fa-pencil-alt"></i>{% trans "Edit Profile" %} </a>
+                    <a class="btn btn-outline-dark m-1 col-12" href="{% url 'change_password' %}" ><i class="fas fa-key"></i>{% trans "Change Password" %} </a>
+                </div>
+                <style>
+                    @media (max-width: 768px){.sm-center{text-align: center;}}
+                </style>
+            </div>
+        </div>
+    </div>
+{% endblock %}

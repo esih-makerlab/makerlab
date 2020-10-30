@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'courses.apps.CoursesConfig',
     'moncash.apps.MoncashConfig',
-    'member.apps.MemberConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -161,11 +161,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = "/media/"
 
-
+AUTH_USER_MODEL = 'account.User'
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend'
+    'account.backends.EmailBackend',
 ]
+
+# django anymail
+ANYMAIL = {
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN")
+}
+
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
