@@ -27,9 +27,18 @@
     </div>
     <!--end of col-->
 </div>
+<ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'search_results' %}">Courses</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="">Teacher</a>
+    </li>
+    
+</ul>
 <div class='container mt-4'>
     <div class='row col-12 mt-3 mb-3'>
-        {% if object_list %}
+        {% if object_list  %}
             {% for course in object_list %}
             <div class='col-md-4 col-12'>
                 
@@ -57,9 +66,11 @@
             {% endfor %}
         {% else %}
             <div>
-                <h3 class='text-muted'>Unfortunately, we don't have classes name {{ object_list.query.q }} ...</h3>
+                <h3 class='text-muted'>no result found ...</h3>
             </div>
         {% endif %}
     </div>
 </div>  
+
+
 {% endblock %}

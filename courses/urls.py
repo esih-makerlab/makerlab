@@ -7,4 +7,5 @@ urlpatterns = [
     path('enroll', views.course_enrollement, name='enroll'),
     path('payement/', views.course_payement, name='payement'),
     path('search/', SearchResultsView.as_view(), name='search_results'),
+    
 ]
