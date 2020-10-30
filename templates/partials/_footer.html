@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!-- Footer -->
 <footer id="footer">
     <div class="footer-top">
@@ -41,10 +42,18 @@
           </div>
 
           <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+            <h4 class="mb-2">{% trans "Language" %} </h4>
+            <form action="{% url 'change_language' %}" method="post" class="pb-1">
+                {% csrf_token %}
+                <select name="language" class="form-control" onchange="this.form.submit()">   
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% for language in LANGUAGES %}       
+                    <option value="{{ language.0 }}" {% if language.0 == LANGUAGE_CODE %} selected{% endif %}>
+                        {{ language.0|language_name_local }} ({{ language.0 }})
+                    </option>
+                    {% endfor %}
+                </select>
             </form>
           </div>
 

@@ -9,7 +9,7 @@
                 <span class="form-group h3"  style="font-weight: 600;">{% trans "Edit Profile" %} </span>
             </div>
             <div class="col-12 text-center">
-                <img style="width:40vh;height:40vh; max-width:300px;max-height:300px; overflow:hidden;" class="rounded-circle border" id="preview" src="{% if user.photo %}/media/{{user.photo}}{% else %}{% static 'css_custom/img/img-profil-1.png' %}{% endif %}" >
+                <img style="width:40vh;height:40vh; max-width:300px;max-height:300px; overflow:hidden;" class="rounded-circle border" id="preview" src="{% if user.photo %}/media/{{user.photo}}{% else %}{% static "img/user.png" %}{% endif %}" >
                 <div class="text-center col-12 ">
                     <span class= "btn btn-outline-dark" style="position:absolute;top:-180px;left: 50%;transform: translate(-50%, 0);">
                         <i class="fas fa-pencil-alt"></i>
@@ -20,7 +20,7 @@
             <div class="col-12">
                 {% include 'partials/_alerts.html' %}
                 {% csrf_token %}
-                    <div class="row">
+                    <div class="row m-0">
                         <div class="col-md-6">
                             {{form.first_name|as_crispy_field}}
                         </div>
@@ -31,7 +31,7 @@
                     <div class="col-12">
                         {{form.email|as_crispy_field}}
                     </div>
-                    <div class="row">
+                    <div class="row m-0">
                         <div class="col-md-6">
                             {{form.country|as_crispy_field}}
                         </div>

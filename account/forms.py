@@ -236,7 +236,7 @@ class UpdateProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'photo' ,'first_name', 'last_name', 'username' ,'password', 'phone','country')
+        fields = ('email', 'photo' ,'first_name', 'last_name','password', 'phone','country')
 
     photo = forms.ImageField(
         label=_('Change Photo'),required=False,widget=forms.FileInput(attrs={'class':'d-none'})
