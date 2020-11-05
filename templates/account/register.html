@@ -1,34 +1,52 @@
-{% extends 'bases/index.html' %}
+{% extends 'bases/index.html'%}
 {% load static %}
 {% load i18n %}
-{% load crispy_forms_tags %}
-
-{% block extra_head %}
-
-    <style>
-        body{
-            background-color: #f9f9f9;
-        }
-    </style>
-
-{% endblock %}
-
-{% block title %}Create an account{% endblock %}
-
 {% block content %}
-    <div class='container mt-3'>
-        <div class='row justify-content-center'>
-            <div>
-                <p class='text-muted'>Join ESIH MakeLab</p>
-                <h1>Create an account</h1>
-                <form method="post">
-                    {{ user_form | crispy }}
-                    {% csrf_token %}
-                    <input type="submit" value="Create my account" class='btn btn-primary btn-block'>
-                </form>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+    {% if user.is_authenticated %}
+        {% include '../partials/_auth_ok.html' %}
+    {% else %}
+        
 
-{% block last_content %}{% endblock %}
+        {% load crispy_forms_tags %}
+        <div class="container row col-12 pt-4">
+            <div class="col-md-7 pt-4 text-center">
+                <img class="col-12" style="max-height:70vh;" src="{% static 'css_custom/img/undraw_connected_world_wuay.svg' %}" alt="">
+            </div>
+            <form  class="col-md-5  container mt-2 mb-4 p-0 " method="post">
+                <div class="col-12 mb-2 text-center  p-1">  
+                    <span class="form-group h3"  style="font-weight: 600;">{% trans "Register" %} </span>
+                </div>
+                <div class="col-12">
+                    {% include 'partials/_alerts.html' %}
+                    {% csrf_token %}
+                        <div class="row m-0">
+                            <div class="col-md-6">
+                                {{form.first_name|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6">
+                                {{form.last_name|as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            {{form.email|as_crispy_field}}
+                        </div>
+                        <div class="col-12">
+                            {{form.password1|as_crispy_field}}
+                        </div>
+                        <div class="col-12">
+                            {{form.password2|as_crispy_field}}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">{% trans "send" %} </button>
+                        </div><br>
+                        <div class="col-12">
+                            <div class="mb-2">
+                                {% trans "Already have an account?" %}  <a  href="{% url 'login' %}">{% trans "Log in" %}  </a>
+                            </div>
+                        </div>
+                </div>
+            </form>
+        </div>
+        
+    {% endif %}
+{% endblock %}

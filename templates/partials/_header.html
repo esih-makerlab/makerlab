@@ -24,19 +24,19 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <div class='dropdown d-flex'>
-                    <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src='{% static "img/user.png" %}' height=30 class='pl-5' />
+                    <a class="dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle" src='{% if user.photo %}/media/{{user.photo}}{% else %}{% static "img/user.png" %}{% endif %}' height=30 width=30 class='pl-5' />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item mb-2 text-muted" href="#"><strong>{{user.username}}</strong></a>
-                        <a class="dropdown-item" href="#">Dashboard</a>
-                        <a class="dropdown-item" href="#">Edit Profile</a>
-                        <a class="dropdown-item" href="#">Log Out</a>
+                        <a class="dropdown-item mb-2 text-muted" href="#"><strong>{{user.get_full_name}}</strong></a>
+                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                     </div>
                 </div>
                 {% else %}
-                    <a class="btn btn-light ml-2" data-toggle="modal" data-target="#loginModal">login</a>
                     {% if not request.get_full_path == '/account/register/' %}
+                        <a href="{% url 'login' %}" class="btn btn-light ml-2">login</a>
                         <a href="{% url 'register' %}" class='btn btn-outline-light ml-2'>Signup</a>
                     {% endif %}
                 {% endif %}

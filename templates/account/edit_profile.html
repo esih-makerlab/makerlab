@@ -1,0 +1,70 @@
+{% extends 'bases/index.html'%}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <div class="container row col-12 pt-4">
+        <form  class="col-md-5  container mt-2 mb-4 p-0 " method="post"  enctype="multipart/form-data" >
+            {% load crispy_forms_tags %}
+            <div class="col-12 mb-2 text-center  p-1">  
+                <span class="form-group h3"  style="font-weight: 600;">{% trans "Edit Profile" %} </span>
+            </div>
+            <div class="col-12 text-center">
+                <img style="width:40vh;height:40vh; max-width:300px;max-height:300px; overflow:hidden;" class="rounded-circle border" id="preview" src="{% if user.photo %}/media/{{user.photo}}{% else %}{% static "img/user.png" %}{% endif %}" >
+                <div class="text-center col-12 ">
+                    <span class= "btn btn-outline-dark" style="position:absolute;top:-180px;left: 50%;transform: translate(-50%, 0);">
+                        <i class="fas fa-pencil-alt"></i>
+                        {{form.photo|as_crispy_field}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-12">
+                {% include 'partials/_alerts.html' %}
+                {% csrf_token %}
+                    <div class="row m-0">
+                        <div class="col-md-6">
+                            {{form.first_name|as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{form.last_name|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        {{form.email|as_crispy_field}}
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-md-6">
+                            {{form.country|as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{form.phone|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        {{form.password|as_crispy_field}}
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">{% trans "send" %} </button>
+                    </div><br>
+            </div>
+            <script>
+
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                        $('#preview').attr('src', e.target.result);
+                        }
+                        
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#id_photo").change(function() {
+                    readURL(this);
+                });              
+
+            </script>
+        </form>
+    </div>
+{% endblock %}
