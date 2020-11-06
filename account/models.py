@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.db import models
@@ -8,7 +8,7 @@ from django_countries.fields import CountryField
 
 from .account_manager import UserManager
 
-class User(AbstractUser):
+class User(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(_('email address'),help_text='Ex:john@winterfell.got', max_length=255,blank=False, unique=True)
     first_name = models.CharField(_('first name'),help_text='Ex:john', max_length=150, blank=False)
     last_name = models.CharField(_('last name'),help_text='Ex:snow', max_length=150, blank=False)
