@@ -16,6 +16,7 @@ class User(AbstractUser):
     country = CountryField(_('select country'),blank=True,help_text=_('select country'),default='HT')
     photo = models.ImageField(upload_to='account_photos', blank=True, default=None)
     email_verified = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
