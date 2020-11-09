@@ -33,7 +33,7 @@ class CourseDate(models.Model):
         verbose_name_plural = "Course Dates"
         get_latest_by = 'date' #max_rated_entry = YourModel.objects.latest()
 
-    teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,related_name='teacher')
     price = models.DecimalField(_('price'),help_text=_('Ex: 1000'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=1000)
     currency = models.CharField(_('currency'),max_length=25,choices=Currencies.choices,default=Currencies.HTG,blank=False)
     course = models.ForeignKey(verbose_name=_('course'),to='Course',on_delete=models.CASCADE)
