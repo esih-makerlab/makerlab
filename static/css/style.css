@@ -63,20 +63,7 @@ body {
 /* BETA banner.
 --------------------------------------------------------------------------- */
 
-body:after {
-  content: "ESIH";
-  color: #000;
-  background: #ffd700;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0.2rem 1.9rem;
-  position: fixed;
-  z-index: 2;
-  top: 0.3rem;
-  left: -1.8rem;
-  transform: rotate(-45deg);
-}
+
 
 /* Horizontal line with words in the middle.
 https://stackoverflow.com/questions/5214127/css-technique-for-a-horizontal-line-with-words-in-the-middle/44647131#44647131
