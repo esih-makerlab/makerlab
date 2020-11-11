@@ -21,7 +21,7 @@ def home(request):
     
     return render(request, 'courses/home.html',{'courses':courses})           
 
-def course_details(request):
+def course_details(request,id):
     return render(request, 'courses/detail.html')
 
 def course_enrollement(request):

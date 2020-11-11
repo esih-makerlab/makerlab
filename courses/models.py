@@ -16,7 +16,7 @@ class Course(models.Model):
     tags = ArrayField(verbose_name=_('please add tag'),base_field=models.TextField(),blank=True,help_text=_('Ex: Arduino'),null=True)
     requirements = models.ManyToManyField(to='self',verbose_name='requirements',blank=True)
 
-    REQUIRED_FIELDS = ['title','price','currency','description','teacher','dates']
+    REQUIRED_FIELDS = ['title','description']
 
     def __str__(self):
         return 'TITLE:%s ID:%s' % (self.title,self.id)
@@ -63,7 +63,7 @@ class Attendee(models.Model):
     complete = models.BooleanField(verbose_name=_('complete'),blank=False,default=False)
     score = models.DecimalField(_('score'),help_text=_('Ex: 18.5'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=0)
 
-    REQUIRED_FIELDS = ['date','attendee','score','complete']
+    REQUIRED_FIELDS = ['date','attendee']
 
     def __str__(self):
         return 'DATE:%s  ATTENDEE:%s' % (self.date.id,self.attendee.id)

@@ -2,36 +2,86 @@
 {% load static %}
 {% load i18n %}
 {% block content %}
-    <div class="container row col-12 pt-4">
+    <div class="container row col-12 pt-4 m-auto">
         <div class="container">
             <div class="row">
                 <div class=" col-md-3 col-12   text-center "  >
                     <img class="rounded-circle border " src="{% if user.photo %}/media/{{user.photo}}{% else %}{% static "img/user.png" %}{% endif %}"  alt="Profil" style="width:150px;height:150px" >
                 </div>
-                <ul class="col-12 col-md-6 nav">
-                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                <ul class="col-12 col-md-5 nav m-auto">
+                    <li class=" col-12 col-md-9 col-sm-12  " >
                         <span class="h6">{% trans "Firstname:" %} </span> {{user.first_name}}
                     </li>
-                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                    <li class=" col-12 col-md-9 col-sm-12  " >
                         <span class="h6">{% trans "Lastname:" %} </span> {{user.last_name}} 
                     </li>
-                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                    <li class=" col-12 col-md-9 col-sm-12  " >
                         <span class="h6">{% trans "Email:" %} </span> {{user.email}}
                     </li>
-                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                    <li class=" col-12 col-md-9 col-sm-12  " >
                         <span class="h6">{% trans "Phone:" %} </span> {{user.phone}}
                     </li>
-                    <li class=" col-12 col-md-9 col-sm-12 sm-center " >
+                    <li class=" col-12 col-md-9 col-sm-12  " >
                         <span class="h6">{% trans "Country:" %} </span> {{user.country.name}}
                     </li>
                 </ul>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-4">
                     <a class="btn btn-dark m-1 col-12" href="{% url 'edit_profile' %}" ><i class="fas fa-pencil-alt"></i>{% trans "Edit Profile" %} </a>
                     <a class="btn btn-outline-dark m-1 col-12" href="{% url 'change_password' %}" ><i class="fas fa-key"></i>{% trans "Change Password" %} </a>
                 </div>
-                <style>
-                    @media (max-width: 768px){.sm-center{text-align: center;}}
-                </style>
+            </div>
+            <div class='container mt-4 '>
+                <h3 class="card-header">My enrolled courses</h3>
+                <div class='row col-12 mt-3 mb-3'>
+                    {% if courseDates %}
+                        {% for courseDate in courseDates %}
+                        <div class='col-md-4 col-12 mb-3'>
+                            
+                            <div class="card shadow">
+                                <img src="{% static 'img/placeholder.svg' %}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{courseDate.course.title}}</h5>
+                                    <p class="card-text">{{courseDate.course.description}}</p>
+                                </div>
+                                <div class='card-body p-0 pb-4 px-3'>
+                                    <p class='card-text'>{% trans "Enrolled for : " %}{{courseDate.date}}</p>
+                                    <a class='btn btn-outline-secondary btn-block' href="{% url 'course_detail' courseDate.course.id %}">{% trans "view more" %}</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div>
+                            <h3 class='text-muted'>Unfortunately, we don't have any classes scheduled for you.</h3>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-12">
+                {% if courseDates %}
+                    {% if courseDates.has_other_pages %}
+                        <ul class="pagination mb-3">
+                            {% if courseDates.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ courseDates.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><a class="page-link">&laquo;</a></li>
+                            {% endif %}
+                            {% for i in courseDates.paginator.page_range %}
+                            {% if courseDates.number == i %}
+                                <li class="page-item active"><a class="page-link" href="">{{ i }} <span class="sr-only">{% trans "(current)" %}</span></a></li>
+                            {% else %}
+                                <li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if courseDates.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ courseDates.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><a class="page-link">&raquo;</a></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+                </div>
             </div>
         </div>
     </div>
