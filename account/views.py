@@ -4,6 +4,9 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model, authenticate, login, logout,REDIRECT_FIELD_NAME
 from .models import User
 
+from courses.models import CourseDate
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from django.contrib.auth.decorators import login_required
 
 from django.utils.encoding import force_text
@@ -262,4 +265,15 @@ def edit_profile(request):
 
 @login_required(login_url='/account/login')
 def profile(request):
-    return render(request,'account/profile.html')
+    page = request.GET.get('page', 1)
+        
+    paginator = Paginator(CourseDate.objects.filter(attendees=request.user), 3)
+
+    try:
+        courseDates = paginator.page(page)
+    except PageNotAnInteger:
+        courseDates = paginator.page(1)
+    except EmptyPage:
+        courseDates = paginator.page(paginator.num_pages)
+    
+    return render(request,'account/profile.html',{'courseDates':courseDates})
