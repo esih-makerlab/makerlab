@@ -3,7 +3,7 @@
 <header>
     <nav class="navbar shadow navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/newlogo.png' %}" width="200px"></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/Makerlab.png' %}" width="200px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -15,9 +15,7 @@
                     <li class="nav-item {% if request.get_full_path == '/courses/' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'courses_home' %}">Next courses</a>
                     </li>
-                    <li class="nav-item {% if request.get_full_path == '/projects/' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'projects' %}">Projects</a>
-                    </li>
+                    
                     <li class="nav-item {% if request.get_full_path == '/about/' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
