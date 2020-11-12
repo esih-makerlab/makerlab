@@ -22,17 +22,6 @@
                 </div>
                 <!--end of col-->
             </div>
-            <hr class="p-0 m-0">
-            <div class="col text-body p-2 pl-3 pr-3">
-                <div class="form-check form-check-inline">
-                    <input onchange='this.form.submit();' {% if filter == 'course' %}checked{% endif %}  class="form-check-input" type="radio" name="filter" id="inlineRadio1" value="course">
-                    <label class="form-check-label" for="inlineRadio1">course</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input onchange='this.form.submit();' {% if filter == 'teacher' %}checked{% endif %}   class="form-check-input" type="radio" name="filter" id="inlineRadio2" value="teacher">
-                    <label class="form-check-label" for="inlineRadio2">teacher</label>
-                </div>
-            </div>
         </form>
     </div>
     <!--end of col-->
@@ -51,7 +40,7 @@
                     </div>
                     <div class='card-body p-0 px-3'>
                         <a class='btn btn-primary btn-block' href='{% url "enroll" %}'>{% trans "Enroll for Monday 12 october" %}</a>
-                        <a class='btn btn-outline-secondary btn-block' href="{% url 'course_detail' %}">{% trans "List next course date" %}</a>
+                        <a class='btn btn-outline-secondary btn-block' href="{% url 'course_detail' course.id %}">{% trans "List next course date" %}</a>
                     </div>
                     <div class="card-body">
                         <div class='row text-muted'>
@@ -65,8 +54,6 @@
                 
             </div>
             {% endfor %}
-        {% elif teachers %}
-            
         {% else %}
             <div>
                 <h3 class='text-muted'>no result found ...</h3>

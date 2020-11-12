@@ -33,17 +33,6 @@ def course_payement(request):
 def search_results(request):
     q = request.GET.get('q','')
 
-    filter_search = request.GET.get('filter')
+    courses =  Course.objects.annotate(search = SearchVector('title','description')).filter(search__icontains=q)[:25]
 
-    if not filter_search:
-        filter_search = 'course'
-
-    courses = None
-    teachers = None
-
-    if filter_search == 'teacher':
-        teachers =  get_user_model().objects.annotate(search = SearchVector('first_name','last_name')).filter(search__icontains=q,is_teacher=True)
-    else:
-        courses =  Course.objects.annotate(search = SearchVector('title','description')).filter(search__icontains=q)
-
-    return render(request, 'courses/search_results.html',{'courses':courses,'teachers':teachers,'filter':filter_search,'q':q})
+    return render(request, 'courses/search_results.html',{'courses':courses,'q':q})
