@@ -36,7 +36,7 @@ class CourseDate(models.Model):
     teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,related_name='teacher')
     price = models.DecimalField(_('price'),help_text=_('Ex: 1000'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=1000)
     currency = models.CharField(_('currency'),max_length=25,choices=Currencies.choices,default=Currencies.HTG,blank=False)
-    course = models.ForeignKey(verbose_name=_('course'),to='Course',on_delete=models.CASCADE)
+    course = models.ForeignKey(verbose_name=_('course'),to='Course',on_delete=models.CASCADE,related_name='courseDates')
     date = models.DateTimeField(_('date'),max_length=255,blank=False)
     nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
     attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('date','attendee'),related_name='attendees',blank=True)

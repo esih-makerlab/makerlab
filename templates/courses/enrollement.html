@@ -24,16 +24,16 @@
         <div class='row justify-content-center'>
             <div class='card'>
                 <div class='card-body'>
-                    <h3 class='card-title'>Introduction to Algorithms</h3>
+                    <h3 class='card-title'>{{courseDate.course.title}}</h3>
                     <ul class="list-group">
-                        <li class="list-group-item">November 17 2020 15:30 AM</li>
-                        <li class="list-group-item">Tutor Meritus Freedy</li>
-                        <li class="list-group-item">1000 HTG Enrollement Fee</li>
+                        <li class="list-group-item">{{courseDate.date}}</li>
+                        <li class="list-group-item">Tutor {{courseDate.teacher.get_full_name}}</li>
+                        <li class="list-group-item">{{courseDate.price}} {{courseDate.currency}} Enrollement Fee</li>
                     </ul>
                     
-                     <div class='row justify-content-center'>
+                    <div class='row justify-content-center'>
                         <a href="{% url 'proceed' %}" ><img src="{% static 'img/mcbuttond.png' %}" height=44 class='mt-3'></a>
-                     </div>
+                    </div>
                 </div>
             
         </div>

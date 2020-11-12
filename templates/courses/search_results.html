@@ -39,8 +39,17 @@
                         <p class="card-text">{{course.description}}</p>
                     </div>
                     <div class='card-body p-0 px-3'>
-                        <a class='btn btn-primary btn-block' href='{% url "enroll" %}'>{% trans "Enroll for Monday 12 october" %}</a>
-                        <a class='btn btn-outline-secondary btn-block' href="{% url 'course_detail' course.id %}">{% trans "List next course date" %}</a>
+                        <button class="btn btn-dark mb-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            View Dates
+                        </button>
+                        <div class="collapse mb-2" id="collapseExample">
+                            <div class="card card-body">
+                                {% for courseDate in course.courseDates.all %}
+                                    <a class='btn btn-primary btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll for " %}{{courseDate.date}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <a class='btn btn-outline-secondary btn-block' href="{% url 'course_detail' course.id %}">{% trans "course info" %}</a>
                     </div>
                     <div class="card-body">
                         <div class='row text-muted'>
