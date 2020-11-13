@@ -46,11 +46,11 @@ class CourseDate(models.Model):
     def __str__(self):
         return 'COURSE:%s  DATE:%s' % (self.course,self.date)
 
-    def remain(self):
-        return self.objects.nb_attendees - self.objects.attendees.all().count()
+    def remainPlaces(self):
+        return self.nb_attendees - self.attendees.all().count()
 
     def populars(self):
-        return self.objects.annotate(attendee_count=models.Count('attendees')).filter(attendee_count__gte=5) #base on people num
+        return self.annotate(attendee_count=models.Count('attendees')).filter(attendee_count__gte=5) #base on people num
 
 
 class Attendee(models.Model):

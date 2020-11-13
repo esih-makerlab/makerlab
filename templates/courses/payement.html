@@ -22,6 +22,16 @@
             </ul>
         </div>
         <div class='row justify-content-center'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3 class='card-title'>{{courseDate.course.title}}</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">{{courseDate.date}}</li>
+                        <li class="list-group-item">Tutor {{courseDate.teacher.get_full_name}}</li>
+                        <li class="list-group-item">{{courseDate.price}} {{courseDate.currency}} Enrollement Fee</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -19,7 +19,7 @@ def CourseProceed(request,id):
 
     courseTransaction = CourseTransaction.objects.create(courseDate=courseDate,payor=request.user)
 
-    payment = moncash.payment(order_id=courseTransaction.id, amount=courseDate.price)
+    payment = moncash.payment(order_id=courseTransaction.id, amount=int(courseDate.price))
 
     url = payment.redirect_url 
 
