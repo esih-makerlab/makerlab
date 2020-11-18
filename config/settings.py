@@ -55,10 +55,10 @@ INSTALLED_APPS = [
     'django_better_admin_arrayfield',
     'crispy_forms',
 
-    'pages.apps.PagesConfig',
-    'courses.apps.CoursesConfig',
-    'moncash.apps.MoncashConfig',
-    'account.apps.AccountConfig',
+    'makerlab.pages',
+    'makerlab.courses',
+    'makerlab.moncash',
+    'makerlab.account',
 ]
 
 MIDDLEWARE = [

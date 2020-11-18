@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model, authenticate, login, logout,REDIRECT_FIELD_NAME
 from .models import User
 
-from courses.models import CourseDate
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.contrib.auth.decorators import login_required
@@ -24,6 +24,7 @@ from django.contrib import messages
 
 from django.forms.models import model_to_dict
 
+from makerlab.courses.models import CourseDate
 
 @login_required(login_url='/account/login')
 def verify_email_request(request):

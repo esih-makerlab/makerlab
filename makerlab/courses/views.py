@@ -9,11 +9,14 @@ from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
 
-from moncash.models import CourseTransaction
+
 
 import moncashify
 
+from makerlab.moncash.models import CourseTransaction
+
 from .models import Course,CourseDate,Attendee
+
 
 def home(request):
         

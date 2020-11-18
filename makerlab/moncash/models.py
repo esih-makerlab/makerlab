@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model 
 from django.utils.timezone import now
-from courses.models import CourseDate 
+from makerlab.courses.models import CourseDate 
 
 from django.utils.translation import gettext_lazy as _
 

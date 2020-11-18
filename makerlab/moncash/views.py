@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 
 from django.conf import settings 
 from .models import CourseTransaction
-from courses.models import CourseDate
+
+from makerlab.courses.models import CourseDate
 
 from django.contrib.auth.decorators import login_required
 
