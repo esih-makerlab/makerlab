@@ -250,7 +250,7 @@ MEDIA_URL = "/media/"
 
 AUTH_USER_MODEL = 'account.User'
 AUTHENTICATION_BACKENDS = [
-    'account.backends.EmailBackend',
+    'makerlab.account.backends.EmailBackend',
 ]
 
 # django anymail
