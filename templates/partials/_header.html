@@ -13,7 +13,7 @@
                         <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item {% if request.get_full_path == '/courses/' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'courses_home' %}">Workshops</a>
+                        <a class="nav-link" href="{% url 'courses_home' %}">Courses</a>
                     </li>
                     
                     <li class="nav-item {% if request.get_full_path == '/about/' %}active{% endif %}">
@@ -22,10 +22,10 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <div class='dropdown d-flex'>
-                    <a class="dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
                         <img class="rounded-circle" src='{% if user.photo %}/media/{{user.photo}}{% else %}{% static "img/user.png" %}{% endif %}' height=30 width=30 class='pl-5' />
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu tr-x-0-5" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item mb-2 text-muted" href="#"><strong>{{user.get_full_name}}</strong></a>
                         <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
                         <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>

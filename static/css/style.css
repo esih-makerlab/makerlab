@@ -26,7 +26,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5); /*dim the background*/
+  background-color: rgba(0,0,0,0.45); /*dim the background*/
 }
 
 /* Searchbar 
@@ -51,9 +51,17 @@ body {
 .bg-main{
   background-color: #24292e;
 }
+.btn-main:hover{
+  background-color: #2e343a;
+  color: #eee;
+}
 .btn-main{
   background-color: #24292e;
   color: #eee;
+}
+
+.translation-50{
+  transform: translateX(-50px);
 }
 
 /* Horizontal line with words in the middle.
