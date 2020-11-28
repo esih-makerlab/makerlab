@@ -26,7 +26,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.45); /*dim the background*/
+  background-color: rgba(0,0,0,0.66); /*dim the background*/
 }
 
 /* Searchbar 
@@ -315,4 +315,14 @@ Usage:
   text-align: center;
   font-size: 13px;
   color: #fff;
+}
+
+/* About page.
+--------------------------------------------------------------------------- */
+.about_banner{
+  background-image: url('../img/banner_img.jpg');
+  background-position: center;
+  background-size: cover;
+  min-height: 250px;
+  position: relative;
 }
