@@ -3,18 +3,50 @@
 {% load i18n %}
 {% block content %}
 <div class="about_banner">
-    <div class="overlay">
+    <div class="overlay p-5">
         <div class="container">
             <div class="text-white text-center">
-                <h1 class="mt-5 font-weight-bold">ESIH Makerlab</h1>
+                <h1 class="font-weight-bold">ESIH Makerlab</h1>
                 <h3>The best place to do it yourself or with others</h3>
             </div>
         </div>
     </div>
 </div>
 <div>
+    <div class="container p-5">
+        <div class="text-center">
+            <h3 class="font-weight-bold">What is a makerlab ?</h3>
+            <p>The MakerSpaces serve as a meeting point where communities 
+                of Makers (creators) connect to work on real and personally
+                meaningful projects, advised by helpful experienced mentors, 
+                making use of new technologies and traditional tools. They can 
+                be found in different shapes and sizes, but all of them are 
+                characterized by what they allow us to do.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="bg-secondary p-5">
     <div class="container">
-        test
+        <div class="row justify-content-center">
+            <h3 class="text-white font-weight-bold">Our main focus</h3>
+        </div>
+        <div class="d-flex flex-row justify-content-around">
+            <div class="row mt-5">
+                <div class="col-md-3">
+                    <img src="{% static 'img/3d.svg' %}" alt="" height="100px">
+                </div>
+                <div class="col-md-3">
+                    <img src="{% static 'img/3d.svg' %}" alt="" height="100px">
+                </div>
+                <div class="col-md-3">
+                    <img src="{% static 'img/3d.svg' %}" alt="" height="100px">
+                </div>
+                <div class="col-md-3">
+                    <img src="{% static 'img/3d.svg' %}" alt="" height="100px">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}
