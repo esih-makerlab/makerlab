@@ -1,6 +1,6 @@
 Django==3.1
-psycopg2-binary
-psycopg2
+psycopg2-binary==2.8.6
+psycopg2==2.7.5
 moncashify==0.1.0
 django-environ==0.4.5
 django-better-admin-arrayfield==1.3.0
