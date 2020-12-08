@@ -44,9 +44,13 @@
                         </button>
                         <div class="collapse mb-2" id="collapseExample">
                             <div class="card card-body">
-                                {% for courseDate in course.courseDates.all %}
-                                    <a class='btn btn-primary btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll for " %}{{courseDate.date}}</a>
-                                {% endfor %}
+                                {% if course.courseDates.count > 0 %}
+                                    {% for courseDate in course.courseDates.all %}
+                                        <a class='btn btn-primary btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll for " %}{{courseDate.date}}</a>
+                                    {% endfor %}
+                                {% else %}
+                                    <h3>No Dates For Now...</h3>
+                                {% endif %}
                             </div>
                         </div>
                         <a class='btn btn-outline-secondary btn-block' href="{% url 'course_detail' course.id %}">{% trans "course info" %}</a>

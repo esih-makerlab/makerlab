@@ -34,7 +34,12 @@ def home(request):
     return render(request, 'courses/home.html',{'courses':courses})           
 
 def course_details(request,id):
-    return render(request, 'courses/detail.html')
+    try:
+        course = Course.objects.get(pk=id)
+    except Course.DoesNotExist:
+        raise Http404("Not found.")
+
+    return render(request, 'courses/detail.html',{'course':course})
 
 @login_required(login_url='/account/login')
 def course_enrollement(request,id):

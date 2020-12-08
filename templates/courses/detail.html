@@ -1,6 +1,6 @@
 {% extends 'bases/index.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block extra_head %}
 
     <style>
@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'partials/_subheader.html' with subheader_title='introduction to algorithm' %}
+    {% include 'partials/_subheader.html' with subheader_title=course.title %}
     <div class='container mt-3'>
         <div class='row justify-content-center'>
             <div class='col-md-10 col-12'>
@@ -23,27 +23,19 @@
                         </div>
                         <div class='col-md-6 col-12'>
                           <div class='card-body'>
-                            <h5 class="card-title">Introduction to Algorithm</h5>
+                            <h5 class="card-title">{{course.title}}</h5>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                {{course.description}}
                             </p>
-                            <a href="{% url 'enroll' %}" class='btn btn-primary btn-lg btn-block mt-5'>Enroll for Monday 12 October</a>
+                            {% if course.courseDates.count > 0 %}
+                                {% for courseDate in course.courseDates.all %}
+                                    <a class='btn btn-primary btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll for " %}{{courseDate.date}}</a>
+                                {% endfor %}
+                            {% else %}
+                                <h3>No Dates For Now...</h3>
+                            {% endif %}
                           </div>
                         </div>        
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class='row justify-content-center mt-3'>
-            <div class='col-md-10 col-12'>
-                <div class='card shadow-sm'>
-                    <div class='row'>
-                        <div class='card-body p-4'>
-                            
-                        </div>       
                     </div>
                     
                 </div>
