@@ -1,0 +1,61 @@
+body.login {
+    background: #ffffff !important;
+}
+
+.login #container {
+    background: #fff;
+    box-shadow:2px 13px 10px 2px #24292e;
+    border:none !important;
+}
+
+input[type="submit"]:hover, button:hover {
+    color: #fff;
+    background-color: #24292e;
+    border-color: #be4b34;
+}
+  
+input[type="submit"]:focus, button:focus {
+    box-shadow: 0 0 0 0.2rem #be4b34;
+}
+
+#header{
+    background: #24292e;
+    color: #fff
+}
+
+#branding h1{
+    color: #000;
+}
+
+.breadcrumbs {
+    background: #be4b34 !important;
+    padding: 10px 40px;
+    border: none;
+    font-size: 14px;
+    color: #000000 !important;
+    text-align: left;
+}
+
+.breadcrumbs a {
+    color: rgb(6, 57, 122) !important;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #be4b34;
+    color: #000000;
+}
+
+#header a:link, #header a:visited {
+    color: rgb(6, 57, 122) !important;
+}
+
+h1 {
+    color: #000000 !important;
+}
+
+.object-tools a.viewsitelink, .object-tools a.golink, .object-tools a.addlink {
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    padding-right: 26px;
+    background-color: rgb(5, 90, 201) !important ;
+}
