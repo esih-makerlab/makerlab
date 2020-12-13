@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master # Changing the branch here would also work
+      - heroku # Changing the branch here would also work
 
 jobs:
   build:
