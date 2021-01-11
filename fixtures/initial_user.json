@@ -1,0 +1,21 @@
+[{
+    "model": "account.user",
+    "pk": 1, 
+    "fields": {
+        "password": "pbkdf2_sha256$180000$VpoRUizUfoKz$T2crcZ3WC1K4zWinACBd7vHeCqbjmST4PysfeEp9U1k=", 
+        "last_login": "2020-09-03T00:41:24.555Z", 
+        "email": "admin@makerlab.com", 
+        "first_name": "makerlab", 
+        "last_name": "admin", 
+        "phone": "+50948020151", 
+        "country": "HT", 
+        "photo": "", 
+        "email_verified": true, 
+        "is_staff": true, 
+        "is_active": true, 
+        "is_superuser": true, 
+        "date_joined": "2020-09-03T00:39:52.677Z", 
+        "groups": [], 
+        "user_permissions": []
+    }
+}]

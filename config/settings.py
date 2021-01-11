@@ -98,6 +98,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env("POSTGRESQL_ADDON_DB"),
+        'USER': env("POSTGRESQL_ADDON_USER"),
+        'PASSWORD': env("POSTGRESQL_ADDON_PASSWORD"),
+        'HOST': env("POSTGRESQL_ADDON_HOST"),
+        'PORT': env("POSTGRESQL_ADDON_PORT"),
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
