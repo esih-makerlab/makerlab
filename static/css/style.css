@@ -26,7 +26,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.63); /*dim the background*/
+  background-color: rgba(35,35,39,0.7); /*dim the background*/
 }
 
 /* Searchbar 

@@ -25,6 +25,7 @@ try:
 except:
     PRODUCTION = None
 
+
 if not PRODUCTION:
     # reading .env file
     environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
@@ -110,7 +111,6 @@ DATABASES = {
         'PORT': env("POSTGRESQL_ADDON_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -237,10 +237,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "staticfiles")
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -254,14 +254,9 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # django anymail
-ANYMAIL = {
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN")
-}
+
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-
-DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
@@ -270,11 +265,6 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = 'home'
 
-
-MONCASH = {
-    'CLIENT_ID' : env('MONCASH_CLIENT_ID'),
-    'SECRET_KEY': env('MONCASH_SECRET_KEY'),
-}
 
 # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = "bootstrap4"
