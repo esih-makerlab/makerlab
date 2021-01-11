@@ -4,10 +4,10 @@ from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin,DynamicArrayMixin):
-    list_display = ('id','title','note','description')
+    list_display = ('id','title','note','photo',)
     list_display_links = ('id',)
     list_filter = ('requirements',)
-    search_fields = ('title','description',)
+    search_fields = ('title','description','note')
     list_per_page = 25
     autocomplete_fields = ['requirements']
 

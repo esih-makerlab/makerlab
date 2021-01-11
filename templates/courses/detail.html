@@ -19,13 +19,20 @@
                 <div class='card shadow-sm'>
                     <div class='row'>
                         <div class='col-md-6 col-12'>
-                            <img src="{% static 'img/placeholder.svg' %}" class="card-img-top " alt="...">
+                            <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top " alt="...">
                         </div>
                         <div class='col-md-6 col-12'>
                           <div class='card-body'>
-                            <h5 class="card-title">{{course.title}}</h5>
+                            <h3 class="card-title">{{course.title}}</h3>
+                            <h5>Description</h5>
+                            <hr>
                             <p>
                                 {{course.description}}
+                            </p>
+                            <h5>Notes</h5>
+                            <hr>
+                            <p>
+                                {{course.note}}
                             </p>
                             {% if course.courseDates.count > 0 %}
                                 {% for courseDate in course.courseDates.all %}
