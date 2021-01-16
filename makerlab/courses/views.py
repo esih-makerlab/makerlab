@@ -23,7 +23,8 @@ def home(request):
     page = request.GET.get('page', 1)
         
     paginator = Paginator(Course.objects.all().order_by("title"), 3)
-
+    courses = None
+    
     try:
         courses = paginator.page(page)
     except PageNotAnInteger:
