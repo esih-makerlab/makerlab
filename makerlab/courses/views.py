@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 from django.contrib.postgres.search import SearchVector
 from django.contrib.auth import get_user_model
-from django.http import Http404
+from django.http import Http404,HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
@@ -50,8 +50,17 @@ def course_enrollement(request,id):
     except CourseDate.DoesNotExist:
         raise Http404("Not found.")
 
-    if courseDate.remainPlaces() <= 0:
+    try:
+        attendee = Attendee.objects.get(date=courseDate,attendee=request.user)
+    except Attendee.DoesNotExist:
+        pass
+    
+    if attendee:
+        return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'enrolled':True,'soldOut':False})
+
+    if courseDate.remainPlaces <= 0:
         return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':True})
+
 
     return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':False})
 

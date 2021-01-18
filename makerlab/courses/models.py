@@ -47,6 +47,7 @@ class CourseDate(models.Model):
     def __str__(self):
         return 'COURSE:%s  DATE:%s' % (self.course,self.date)
 
+    @property
     def remainPlaces(self):
         return self.nb_attendees - self.attendees.all().count()
 

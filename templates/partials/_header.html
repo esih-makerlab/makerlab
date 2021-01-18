@@ -1,9 +1,9 @@
 {% load static %}
 <!--Main Navigation-->
 <header>
-    <nav class="navbar shadow navbar-expand-lg navbar-dark bg-main">
+    <nav class="navbar shadow navbar-expand-lg navbar-dark bg-main p-0">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/Makerlab.png' %}" width="200px"></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo_esih.png' %}" width="60px"><img src="{% static 'img/Makerlab.png' %}" width="180px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,8 +26,7 @@
                         <img class="rounded-circle" src='{% if user.photo %}/media/{{user.photo}}{% else %}{% static "img/user.png" %}{% endif %}' height=30 width=30 class='pl-5' />
                     </a>
                     <div class="dropdown-menu tr-x-0-5" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item mb-2 text-muted" href="#"><strong>{{user.get_full_name}}</strong></a>
-                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                        <a class="dropdown-item mb-2 text-muted" href="{% url 'profile' %}"><strong>{{user.get_full_name}}</strong></a>
                         <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                     </div>

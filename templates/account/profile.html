@@ -24,6 +24,11 @@
                     <li class=" col-12 col-md-9 col-sm-12  " >
                         <span class="h6">{% trans "Country:" %} </span> {{user.country.name}}
                     </li>
+                    {% if user.is_teacher %}
+                        <li class=" col-12 col-md-9 col-sm-12  " >
+                            <span class="h6">{% trans "Teacher:" %} </span>  {% trans "oui" %}
+                        </li>
+                    {% endif %}
                 </ul>
                 <div class="col-12 col-md-4">
                     <a class="btn btn-dark m-1 col-12" href="{% url 'edit_profile' %}" ><i class="fas fa-pencil-alt"></i>{% trans "Edit Profile" %} </a>
@@ -41,7 +46,7 @@
                                 <img src="{% if courseDate.course.photo %}/media/{{courseDate.course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">{{courseDate.course.title}}</h5>
-                                    <p class="card-text">{{courseDate.course.description}}</p>
+                                    <p class="card-text">{{courseDate.course.description|truncatewords:20}}</p>
                                 </div>
                                 <div class='card-body p-0 pb-4 px-3'>
                                     <p class='card-text'>{% trans "Enrolled for : " %}{{courseDate.date}}</p>
