@@ -53,7 +53,7 @@ def course_enrollement(request,id):
     try:
         attendee = Attendee.objects.get(date=courseDate,attendee=request.user)
     except Attendee.DoesNotExist:
-        pass
+        attendee = None
     
     if attendee:
         return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'enrolled':True,'soldOut':False})

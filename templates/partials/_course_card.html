@@ -2,7 +2,7 @@
 {% load i18n %}
 
 <div class='col-md-4 col-12 pt-2'>               
-    <div class="card shadow">
+    <div class="card shadow pb-2">
         <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{course.title}}</h5>
@@ -39,11 +39,13 @@
                 </div>
             </div>
         </div>
-        <div class="p-3 col-12">
-            <strong>{% trans "Tags" %}:</strong>
-            {% for tag in course.tags %}
-                <span class="badge bg-secondary text-white" >{{tag}}</span>
-            {% endfor %}
-        </div>
+        {% if course.tags %}
+            <div class="p-3 col-12">
+                <strong>{% trans "Tags" %}:</strong>
+                {% for tag in course.tags %}
+                    <span class="badge bg-secondary text-white" >{{tag}}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 </div>
