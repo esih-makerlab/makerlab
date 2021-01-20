@@ -4,6 +4,7 @@ from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin,DynamicArrayMixin):
+    fieldsets = ((None,{'fields':('title','description','note','links','tags','photo','requirements',)}),)
     list_display = ('id','title','note','photo',)
     list_display_links = ('id',)
     list_filter = ('requirements',)

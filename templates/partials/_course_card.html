@@ -1,0 +1,49 @@
+{% load static %}
+{% load i18n %}
+
+<div class='col-md-4 col-12 pt-2'>               
+    <div class="card shadow">
+        <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{course.title}}</h5>
+            <p class="card-text">{{course.description|truncatewords:20}}</p>
+        </div>
+        <div class='card-body p-0 px-3'>
+            <div class="col-12 row m-auto">
+                <button class="btn btn-dark m-auto mb-2 col-5" type="button" data-toggle="collapse" data-target="#collapse-{{course.id}}" aria-expanded="false" aria-controls="collapse-{{course.id}}">
+                    View Dates
+                </button>
+                <a class='btn btn-outline-secondary btn-block col-5 m-auto' href="{% url 'course_detail' course.id %}">{% trans "course info" %}</a>
+            </div>
+            <div class="collapse mt-2 mb-2" id="collapse-{{course.id}}">
+                <div class="card card-body">
+                    {% if courseDates.count > 0 %}
+                        {% for courseDate in courseDates.all %}
+                            <div class='row text-muted p-1 list-group-item mb-1'>
+                                <h5>{{courseDate.date}}</h5>
+                                <div class='col-12 p-0 mb-1'>
+                                    <i class='fa fa-chair'></i>
+                                    {{courseDate.remainPlaces}} {% trans "places remaining" %}
+                                </div>
+                                <div class='col-12 p-0 mb-1'>
+                                    <i class='fa fa-money-bill-wave'></i>
+                                    {{courseDate.price}} {{courseDate.currency}}
+                                </div>
+                                <p><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</p>
+                                <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll" %}</a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h3>No Dates For Now...</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="p-3 col-12">
+            <strong>{% trans "Tags" %}:</strong>
+            {% for tag in course.tags %}
+                <span class="badge bg-secondary text-white" >{{tag}}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>

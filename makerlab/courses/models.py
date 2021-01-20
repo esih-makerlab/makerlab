@@ -14,11 +14,11 @@ class Course(models.Model):
     note = models.TextField(_('note'),help_text=_('some additional note'),blank=True,null=True)
     description = models.TextField(_('description'),help_text=_('some description'),blank=False)
     tags = ArrayField(verbose_name=_('please add tag'),base_field=models.TextField(),blank=True,help_text=_('Ex: Arduino'),null=True)
-    requirements = models.ManyToManyField(to='self',verbose_name='requirements',blank=True)
+    requirements = models.ManyToManyField(to='self',symmetrical=False,verbose_name='requirements',blank=True)
     photo = models.ImageField(upload_to='courses_photos', blank=True, default=None)
 
     REQUIRED_FIELDS = ['title','description']
-
+    
     def __str__(self):
         return 'TITLE:%s ID:%s' % (self.title,self.id)
 

@@ -15,34 +15,93 @@
     {% include 'partials/_subheader.html' with subheader_title=course.title %}
     <div class='container mt-3'>
         <div class='row justify-content-center'>
-            <div class='col-md-10 col-12'>
+            <div class='col-md-10 col-12 mb-4'>
                 <div class='card shadow-sm'>
-                    <div class='row'>
-                        <div class='col-md-6 col-12'>
+                    <div class='col-12 p-0'>
+                        <div class='col-md-12 col-12 p-0'>
                             <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top " alt="...">
                         </div>
-                        <div class='col-md-6 col-12'>
-                          <div class='card-body'>
-                            <h3 class="card-title">{{course.title}}</h3>
-                            <h5>Description</h5>
-                            <hr>
-                            <p>
-                                {{course.description}}
-                            </p>
-                            <h5>Notes</h5>
-                            <hr>
-                            <p>
-                                {{course.note}}
-                            </p>
-                            {% if course.courseDates.count > 0 %}
-                                {% for courseDate in course.courseDates.all %}
-                                    <a class='btn btn-primary btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll for " %}{{courseDate.date}}</a>
-                                {% endfor %}
-                            {% else %}
-                                <h3>No Dates For Now...</h3>
-                            {% endif %}
-                          </div>
-                        </div>        
+                        <div class="row col-12 m-0">
+                            <div class="col-12 col-md-5 pb-4">
+                                <div class="card mt-4">
+                                    <div class="card-header bg-dark text-white">
+                                        <h5>{% trans "Dates" %}</h5>
+                                    </div>
+                                    <div class="card-body" style="max-height:500px;overflow-y:scroll">
+                                        {% if course.courseDates.count > 0 %}
+                                            {% for courseDate in course.courseDates.all %}
+                                                <div class='row text-muted'>
+                                                    <h5>{{courseDate.date}}</h5>
+                                                    <div class='col-12 p-0 mb-1'>
+                                                        <i class='fa fa-chair'></i>
+                                                        {{courseDate.remainPlaces}} {% trans "places remaining" %}
+                                                    </div>
+                                                    <div class='col-12 p-0 mb-1'>
+                                                        <i class='fa fa-money-bill-wave'></i>
+                                                        {{courseDate.price}} {{courseDate.currency}}
+                                                    </div>
+                                                    <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll" %}</a>
+                                                </div>
+                                                <hr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <h3>No Dates For Now...</h3>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if requirement.tags %}
+                                    <div class="p-3 col-12">
+                                        <strong>{% trans "Tags" %}:</strong>
+                                        {% for tag in course.tags %}
+                                            <span class="badge bg-secondary text-white" >{{tag}}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="card mt-4">
+                                    <div class="card-header bg-dark text-white">
+                                        <h5>{% trans "Requirements" %}</h5>
+                                    </div>
+                                    <div class="card-body" style="max-height:500px;overflow-y:scroll">
+                                        {% if course.requirements.count > 0 %}
+                                            <div class="list-group col-12">
+                                                {% for requirement in course.requirements.all %}
+                                                    <a href="{% url 'course_detail' requirement.id %}" class="list-group-item list-group-item-action">
+                                                        <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1">{{requirement.title}}</h5>
+                                                        </div>
+                                                        <div class="p-1 col-12">
+                                                            {% if requirement.tags %}
+                                                                <strong>{% trans "Tags" %}:</strong>
+                                                                {% for tag in requirement.tags %}
+                                                                    <span class="badge bg-secondary text-white" >{{tag}}</span>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        </div>
+                                                    </a>
+                                                {% endfor %}     
+                                            </div>
+                                        {% else %}
+                                            <h3>{% trans "No Requirements" %}</h3>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-md-7 col-12'>
+                                <div class='card-body'>
+                                    <h3 class="card-title">{{course.title}}</h3>
+                                    <h5>Description</h5>
+                                    <hr>
+                                    <p>
+                                        {{course.description}}
+                                    </p>
+                                    <h5>Notes</h5>
+                                    <hr>
+                                    <p>
+                                        {{course.note}}
+                                    </p>
+                                </div>
+                            </div> 
+                        </div>       
                     </div>
                     
                 </div>
