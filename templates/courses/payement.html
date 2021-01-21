@@ -14,11 +14,11 @@
 {% block content %}
     <div class='container mt-3'>
         <div class='row'>
-            <ul>
-                <ul class="list-unstyled multi-steps">
-                <li>course selection</li>
-                <li>enrollement confirmation</li>
-                <li class="is-active">payement success</li>
+            <ul class="list-unstyled multi-steps list-group">
+                <li class="list-group-item">course selection</li>
+                <li class="list-group-item"> <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a></li>
+                <li class="list-group-item">enrollement confirmation</li>
+                <li class="list-group-item is-active">payement success</li>
             </ul>
         </div>
         <div class='row justify-content-center'>

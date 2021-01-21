@@ -47,7 +47,7 @@
                                 <div class="card-body p-2">
                                     <h5 class="card-title">{{courseDate.course.title}}</h5>
                                     <p class="card-text">{{courseDate.course.description|truncatewords:20}}</p>
-
+                                    <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
                                     <div class="col-12 row m-auto">
                                         <button class="btn btn-dark m-auto mb-2 col-5" type="button" data-toggle="collapse" data-target="#collapse-{{course.id}}" aria-expanded="false" aria-controls="collapse-{{course.id}}">
                                             View Links

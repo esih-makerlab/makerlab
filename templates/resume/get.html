@@ -32,23 +32,35 @@
                 </ul>
             </div>
             <div class='container mt-4 '>
+                {% if resume.tags %}
+                    <div class="p-3 col-12">
+                        <strong>{% trans "Tags" %}:</strong>
+                        {% for tag in resume.tags %}
+                            <span class="badge bg-secondary text-white" >{{tag}}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 <h3 class="card-header">{% trans "Resume" %}</h3>
-                <p></p>
+                <p class="p-3" >{{resume.resume}}</p>
                 <h3 class="card-header">{% trans "Skills" %}</h3>
-                <p></p>
+                <p class="p-3" >{{resume.skill_summary}}</p>
                 <h3 class="card-header">{% trans "Experiences" %}</h3>
-                <p></p>
+                <p class="p-3" >{{resume.experience_summary}}</p>
                 <h3 class="card-header">{% trans "Projects" %}</h3>
-                <p></p>
+                <p class="p-3" >{{resume.project_summary}}</p>
                 <h3 class="card-header">{% trans "Training" %}</h3>
-                <p></p>
+                <p class="p-3" >{{resume.training_summary}}</p>
                 <h3 class="card-header">{% trans "Hobbies" %}</h3>
-                <p></p>
+                <p class="p-3" >{{resume.hobbies}}</p>
                 <h3 class="card-header">{% trans "Linked Accounts" %}</h3>
-                <div>
-                
+                <div class="p-3 col-12">
+                    <a class="badge bg-light text-body" href="{{stackoverflow}}"><i class="fa fa-stack-overflow" aria-hidden="true"></i> stackoverflow</a>
+                    <a class="badge bg-light text-body" href="{{Linkedin}}"><i class="fa fa-linkedin" aria-hidden="true"></i> linkedin</a>
+                    <a class="badge bg-light text-body" href="{{github}}"><i class="fa fa-github" aria-hidden="true"></i> github</a>
+                    <a class="badge bg-light text-body" href="{{twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i> twitter</a>
+                    <a class="badge bg-light text-body" href="{{facebook}}"><i class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
+                    <a class="badge bg-light text-body" href="{{instagram}}"><i class="fa fa-instagram" aria-hidden="true"></i> instagram</a>
                 </div>
-
             </div>
         </div>
     </div>
