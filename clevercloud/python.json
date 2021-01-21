@@ -1,6 +1,6 @@
 {
     "build": {
-        "cache_dependancies": false
+        "cache_dependancies": true
     },
     "deploy": {
         "module": "config.wsgi:application",
