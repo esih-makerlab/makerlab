@@ -1,0 +1,55 @@
+{% extends 'bases/index.html'%}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <div class="container row col-12 pt-4 m-auto">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-5 col-12   text-center "  >
+                    <img class="rounded-circle border " src="{% if resume.user.photo %}/media/{{resume.user.photo}}{% else %}{% static "img/user.png" %}{% endif %}"  alt="Profil" style="width:150px;height:150px" >
+                </div>
+                <ul class="col-12 col-md-7 nav m-auto">
+                    <li class=" col-12 col-md-9 col-sm-12  " >
+                        <span class="h6">{% trans "Firstname:" %} </span> {{resume.user.first_name}}
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12  " >
+                        <span class="h6">{% trans "Lastname:" %} </span> {{resume.user.last_name}} 
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12  " >
+                        <span class="h6">{% trans "Email:" %} </span> {{resume.user.email}}
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12  " >
+                        <span class="h6">{% trans "Phone:" %} </span> {{resume.user.phone}}
+                    </li>
+                    <li class=" col-12 col-md-9 col-sm-12  " >
+                        <span class="h6">{% trans "Country:" %} </span> {{resume.user.country.name}}
+                    </li>
+                    {% if resume.user.is_teacher %}
+                        <li class=" col-12 col-md-9 col-sm-12  " >
+                            <span class="h6">{% trans "Teacher:" %} </span>  {% trans "oui" %}
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class='container mt-4 '>
+                <h3 class="card-header">{% trans "Resume" %}</h3>
+                <p></p>
+                <h3 class="card-header">{% trans "Skills" %}</h3>
+                <p></p>
+                <h3 class="card-header">{% trans "Experiences" %}</h3>
+                <p></p>
+                <h3 class="card-header">{% trans "Projects" %}</h3>
+                <p></p>
+                <h3 class="card-header">{% trans "Training" %}</h3>
+                <p></p>
+                <h3 class="card-header">{% trans "Hobbies" %}</h3>
+                <p></p>
+                <h3 class="card-header">{% trans "Linked Accounts" %}</h3>
+                <div>
+                
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -15,5 +15,6 @@ urlpatterns = i18n_patterns(
     path('account/', include('makerlab.account.urls')),
     path('moncash/', include('makerlab.moncash.urls')),
     path('courses/', include('makerlab.courses.urls')),
+    path('resume/', include('makerlab.resume.urls')),
     prefix_default_language=True,
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

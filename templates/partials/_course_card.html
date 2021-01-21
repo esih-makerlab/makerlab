@@ -29,7 +29,7 @@
                                     <i class='fa fa-money-bill-wave'></i>
                                     {{courseDate.price}} {{courseDate.currency}}
                                 </div>
-                                <p><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</p>
+                                <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
                                 <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll" %}</a>
                             </div>
                         {% endfor %}
