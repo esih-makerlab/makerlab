@@ -2,7 +2,7 @@
 <!--Main Navigation-->
 <header>
     <nav class="navbar shadow navbar-expand-lg navbar-dark bg-main p-0">
-        <div class="container">
+        <div class="container p-1">
             <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo_esih.png' %}" width="60px"><img src="{% static 'img/Makerlab.png' %}" width="180px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
                 </div>
                 {% else %}
                     {% if not request.get_full_path == '/account/register/' %}
-                        <a href="{% url 'login' %}" class="btn btn-light ml-2">login</a>
+                        <a href="{% url 'login' %}" class="btn btn-light">login</a>
                         <a href="{% url 'register' %}" class='btn btn-outline-light ml-2'>Signup</a>
                     {% endif %}
                 {% endif %}
