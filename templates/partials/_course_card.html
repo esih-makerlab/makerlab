@@ -17,8 +17,8 @@
             </div>
             <div class="collapse mt-2 mb-2" id="collapse-{{course.id}}">
                 <div class="card card-body">
-                    {% if courseDates.count > 0 %}
-                        {% for courseDate in courseDates.all %}
+                    {% if courseDates.all_from_now.count > 0 %}
+                        {% for courseDate in courseDates.all_from_now %}
                             <div class='row text-muted p-1 list-group-item mb-1'>
                                 <h5>{{courseDate.date}}</h5>
                                 <div class='col-12 p-0 mb-1'>

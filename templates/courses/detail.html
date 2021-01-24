@@ -28,8 +28,8 @@
                                         <h5>{% trans "Dates" %}</h5>
                                     </div>
                                     <div class="card-body" style="max-height:500px;overflow-y:scroll">
-                                        {% if courseDates.count > 0 %}
-                                            {% for courseDate in courseDates.all %}
+                                        {% if course.courseDates.all_from_now.count > 0 %}
+                                            {% for courseDate in course.courseDates.all_from_now.all %}
                                                 <div class='row text-muted p-1 list-group-item mb-1'>
                                                     <h5>{{courseDate.date}}</h5>
                                                     <div class='col-12 p-0 mb-1'>

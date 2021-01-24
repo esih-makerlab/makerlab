@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django_better_admin_arrayfield.models.fields import ArrayField
 
+from .courses_manager import CourseDateManager
+
 class Course(models.Model):
 
     class Meta:
@@ -43,6 +45,8 @@ class CourseDate(models.Model):
     attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('date','attendee'),related_name='attendees',blank=True)
     
     REQUIRED_FIELDS = ['course','nb_attendees','date','attendees']
+
+    objects = CourseDateManager()
 
     def __str__(self):
         return 'COURSE:%s  DATE:%s' % (self.course,self.date)
