@@ -3,7 +3,7 @@
 <header>
     <nav class="navbar shadow navbar-expand-lg navbar-dark bg-main p-0">
         <div class="container p-1">
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo_esih.png' %}" width="60px"><img src="{% static 'img/Makerlab.png' %}" width="180px"></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/Makerlab.png' %}" height="52px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,6 +27,9 @@
                     </a>
                     <div class="dropdown-menu tr-x-0-5" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item mb-2 text-muted" href="{% url 'profile' %}"><strong>{{user.get_full_name}}</strong></a>
+                        {% if user.is_staff %}
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+                        {% endif %}
                         <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                     </div>
