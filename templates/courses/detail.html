@@ -25,7 +25,7 @@
                             <div class="col-12 col-md-5 pb-4">
                                 <div class="card mt-4">
                                     <div class="card-header bg-dark text-white">
-                                        <h5>{% trans "Dates" %}</h5>
+                                        <h5>{% trans "Date" %}</h5>
                                     </div>
                                     <div class="card-body" style="max-height:500px;overflow-y:scroll">
                                         {% if course.courseDates.all_from_now.count > 0 %}
@@ -34,24 +34,24 @@
                                                     <h5>{{courseDate.date}}</h5>
                                                     <div class='col-12 p-0 mb-1'>
                                                         <i class='fa fa-chair'></i>
-                                                        {{courseDate.remainPlaces}} {% trans "places remaining" %}
+                                                        {{courseDate.remainPlaces}} {% trans "Cours restant" %}
                                                     </div>
                                                     <div class='col-12 p-0 mb-1'>
                                                         <i class='fa fa-money-bill-wave'></i>
                                                         {{courseDate.price}} {{courseDate.currency}}
                                                     </div>
-                                                    <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
-                                                    <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll" %}</a>
+                                                    <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Professeur: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
+                                                    <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Inscription" %}</a>
                                                 </div>
                                             {% endfor %}
                                         {% else %}
-                                            <h3>No Dates For Now...</h3>
+                                            <h3>{% trans 'Pas de Date disponible' %}</h3>
                                         {% endif %}
                                     </div>
                                 </div>
                                 {% if requirement.tags %}
                                     <div class="p-3 col-12">
-                                        <strong>{% trans "Tags" %}:</strong>
+                                        <strong>{% trans "Étiquettes" %}:</strong>
                                         {% for tag in course.tags %}
                                             <span class="badge bg-secondary text-white" >{{tag}}</span>
                                         {% endfor %}
@@ -59,7 +59,7 @@
                                 {% endif %}
                                 <div class="card mt-4">
                                     <div class="card-header bg-dark text-white">
-                                        <h5>{% trans "Requirements" %}</h5>
+                                        <h5>{% trans "Prérequis" %}</h5>
                                     </div>
                                     <div class="card-body" style="max-height:500px;overflow-y:scroll">
                                         {% if course.requirements.count > 0 %}
@@ -71,7 +71,7 @@
                                                         </div>
                                                         <div class="p-1 col-12">
                                                             {% if requirement.tags %}
-                                                                <strong>{% trans "Tags" %}:</strong>
+                                                                <strong>{% trans "Étiquettes" %}:</strong>
                                                                 {% for tag in requirement.tags %}
                                                                     <span class="badge bg-secondary text-white" >{{tag}}</span>
                                                                 {% endfor %}
@@ -81,7 +81,7 @@
                                                 {% endfor %}     
                                             </div>
                                         {% else %}
-                                            <h3>{% trans "No Requirements" %}</h3>
+                                            <h3>{% trans "Pas de Prérequis" %}</h3>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -89,12 +89,12 @@
                             <div class='col-md-7 col-12'>
                                 <div class='card-body'>
                                     <h3 class="card-title">{{course.title}}</h3>
-                                    <h5>Description</h5>
+                                    <h5>{% trans 'Description'%}</h5>
                                     <hr>
                                     <p>
                                         {{course.description}}
                                     </p>
-                                    <h5>Notes</h5>
+                                    <h5>{% trans 'Notes' %}</h5>
                                     <hr>
                                     <p>
                                         {{course.note}}

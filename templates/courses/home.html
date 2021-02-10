@@ -27,7 +27,7 @@
                     <!--end of col-->
                     <div class="col-auto">
                         
-                        <button class="btn btn-md btn-dark " type="submit" id='opacity-1'>Search</button>
+                        <button class="btn btn-md btn-dark " type="submit" id='opacity-1'>{% trans 'recherche' %}</button>
                     </div>
                     <!--end of col-->
                 </div>
@@ -43,7 +43,7 @@
             {% endfor %}
         {% else %}
             <div>
-                <h3 class='text-muted'>no result found ...</h3>
+                <h3 class='text-muted'>{% trans 'pas de resultat ...' %}</h3>
             </div>
         {% endif %}
     </div>
