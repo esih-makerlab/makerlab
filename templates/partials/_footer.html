@@ -8,14 +8,14 @@
 
           <div class="col-lg-3 col-md-6 footer-info">
             <h3>ESIH MakerLab</h3>
-            <h5>The home of creativity</h5>
+            <h5>{% trans 'Lieu de créativité' %}</h5>
             <p>
-            Plateforme numérique permettant de gérer le laboratoire de prototypage rapide (Cours, Membership, Équipements ...)
+            {% trans 'Plateforme numérique permettant de gérer le laboratoire de prototypage rapide (Cours, Membership, Équipements ...)' %}
             </p>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>{% trans 'liens utiles' %}s</h4>
             <ul>
               <li><a href="{% url 'home' %}">{% trans 'Acceuil' %}</a></li>
               <li><a href="{% url 'about' %}">{% trans 'À propos' %}</a></li>
@@ -28,9 +28,9 @@
             <h4>{% trans 'Contactez-nous' %}</h4>
             <p>
               2ème Ruelle Nazon<br>
-              Port-au-Prince ,Haiti <br>
-              <strong>Phone:</strong> +509 48 43 83 40<br>
-              {% comment %} <strong>Email:</strong> madsen@madsendynamics.com<br> {% endcomment %}
+              Port-au-Prince ,Haïti <br>
+              <strong>Téléphone:</strong> +509 48 43 83 40<br>
+              {% comment %} <strong>Email:</strong> <br> {% endcomment %}
             </p>
 
             <div class="social-links">
@@ -64,7 +64,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Makerlab</span></strong>. 2021
+        &copy; {% trans 'TOUS DROITS RÉSERVÉS©'%} <strong><span>ESIH Makerlab</span></strong>. 2021
       </div>
     </div>
   </footer><!-- End Footer -->
