@@ -11,9 +11,9 @@
         <div class='card-body p-0 px-3'>
             <div class="col-12 row m-auto">
                 <button class="btn btn-dark m-auto mb-2 col-5" type="button" data-toggle="collapse" data-target="#collapse-{{course.id}}" aria-expanded="false" aria-controls="collapse-{{course.id}}">
-                    View Dates
+                   {% trans 'voir les dates'%}
                 </button>
-                <a class='btn btn-outline-secondary btn-block col-5 m-auto' href="{% url 'course_detail' course.id %}">{% trans "course info" %}</a>
+                <a class='btn btn-outline-secondary btn-block col-5 m-auto' href="{% url 'course_detail' course.id %}">{% trans "Voir plus" %}</a>
             </div>
             <div class="collapse mt-2 mb-2" id="collapse-{{course.id}}">
                 <div class="card card-body">
@@ -23,25 +23,25 @@
                                 <h5>{{courseDate.date}}</h5>
                                 <div class='col-12 p-0 mb-1'>
                                     <i class='fa fa-chair'></i>
-                                    {{courseDate.remainPlaces}} {% trans "places remaining" %}
+                                    {{courseDate.remainPlaces}} {% trans "places restantes" %}
                                 </div>
                                 <div class='col-12 p-0 mb-1'>
                                     <i class='fa fa-money-bill-wave'></i>
                                     {{courseDate.price}} {{courseDate.currency}}
                                 </div>
-                                <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
-                                <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Enroll" %}</a>
+                                <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Professeur: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
+                                <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Inscription" %}</a>
                             </div>
                         {% endfor %}
                     {% else %}
-                        <h3>No Dates For Now...</h3>
+                        <h3>{% trans "Pas de Dates pour l'instant" %}</h3>
                     {% endif %}
                 </div>
             </div>
         </div>
         {% if course.tags %}
             <div class="p-3 col-12">
-                <strong>{% trans "Tags" %}:</strong>
+                <strong>{% trans "Étiquettes" %}:</strong>
                 {% for tag in course.tags %}
                     <span class="badge bg-secondary text-white" >{{tag}}</span>
                 {% endfor %}

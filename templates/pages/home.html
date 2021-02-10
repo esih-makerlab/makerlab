@@ -11,8 +11,8 @@
             <div class="container mt-4">
                 <div class='row justify-content-center text-white'>
                     <div class="col-12 col-md-10 col-lg-8">
-                        <h1 class='font-weight-bold'>Explore</h1>
-                        <h2>explore projects, space and courses</h2>
+                        <h1 class='font-weight-bold'>{% trans 'Explorer' %}</h1>
+                        <h2>{% trans 'explorer des projets et des cours' %}</h2>
                     </div>
                 </div>
 	            <div class="row justify-content-center mt-2">
@@ -28,7 +28,7 @@
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">
-                                        <button class="btn btn-md btn-main " type="submit" id='opacity-1'>Search</button>
+                                        <button class="btn btn-md btn-main " type="submit" id='opacity-1'>{% trans 'Recherche' %}</button>
                                     </div>
                                     <!--end of col-->
                                 </div>
@@ -43,9 +43,9 @@
     <div class='container p-5'>
         <div class='row justify-content-center'>
             <div class='text-center'>
-                <h2 class='font-weigth-bold typed'>Attend at workshop on <span id='typed'></span></h2>
-                <h4 class='text-muted'>Join beautiful mind on beautiful topic</h4>
-                <a href="{% url 'courses_home' %}" class='btn btn-dark btn-lg'>join us</a>
+                <h2 class='font-weigth-bold typed'>{% trans 'Assistez à un atelier sur' %} <span id='typed'></span></h2>
+                <h4 class='text-muted'>{% trans 'Rejoignez de grands esprits sur de beaux sujets' %}</h4>
+                <a href="{% url 'courses_home' %}" class='btn btn-dark btn-lg'>{% trans 'Rejoignez-nous' %}</a>
             </div>
         </div>
     </div>

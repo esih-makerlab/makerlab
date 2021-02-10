@@ -6,7 +6,7 @@
         <form  class="col-md-5  container mt-2 mb-4 p-0 " method="post"  enctype="multipart/form-data" >
             {% load crispy_forms_tags %}
             <div class="col-12 mb-2 text-center  p-1">  
-                <span class="form-group h3"  style="font-weight: 600;">{% trans "Edit Profile" %} </span>
+                <span class="form-group h3"  style="font-weight: 600;">{% trans "Editer le profil" %} </span>
             </div>
             <div class="col-12 text-center">
                 <img style="width:40vh;height:40vh; max-width:300px;max-height:300px; overflow:hidden;" class="rounded-circle border" id="preview" src="{% if user.photo %}/media/{{user.photo}}{% else %}{% static "img/user.png" %}{% endif %}" >
@@ -43,7 +43,7 @@
                         {{form.password|as_crispy_field}}
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">{% trans "send" %} </button>
+                        <button type="submit" class="btn btn-primary">{% trans "envoyer" %} </button>
                     </div><br>
             </div>
             <script>
