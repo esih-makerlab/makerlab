@@ -21,10 +21,10 @@ class AddUserForm(forms.ModelForm):
             value.help_text = None
     
     password1 = forms.CharField(
-        label=_('Password'), widget=forms.PasswordInput,help_text=_('must be 8 length min')
+        label=_('Mot de passe'), widget=forms.PasswordInput,help_text=_('must be 8 length min')
     )
     password2 = forms.CharField(
-        label=_('Confirm password'), widget=forms.PasswordInput,help_text=_('must be same as password')
+        label=_('Confirmez le mot de passe'), widget=forms.PasswordInput,help_text=_('must be same as password')
     )
 
     class Meta:
@@ -76,13 +76,13 @@ class ChangePasswordForm(forms.ModelForm):
             value.help_text = None
     
     old_password = forms.CharField(
-        label=_('Old Password'), widget=forms.PasswordInput,help_text=_('your old password')
+        label=_('Ancien mot de passe'), widget=forms.PasswordInput,help_text=_('your old password')
     )
     password1 = forms.CharField(
-        label=_('New Password'), widget=forms.PasswordInput,help_text=_('must be 8 length min')
+        label=_('Nouveau mot de passe'), widget=forms.PasswordInput,help_text=_('must be 8 length min')
     )
     password2 = forms.CharField(
-        label=_('Confirm password'), widget=forms.PasswordInput,help_text=_('must be same as password')
+        label=_('Confirmez le  mot de passe'), widget=forms.PasswordInput,help_text=_('must be same as password')
     )
 
     class Meta:
@@ -125,10 +125,10 @@ class ResetPasswordForm(forms.ModelForm):
             value.help_text = None
     
     password1 = forms.CharField(
-        label=_('New Password'), widget=forms.PasswordInput,help_text=_('must be 8 length min')
+        label=_('Nouveau mot de passe'), widget=forms.PasswordInput,help_text=_('must be 8 length min')
     )
     password2 = forms.CharField(
-        label=_('Confirm password'), widget=forms.PasswordInput,help_text=_('must be same as password')
+        label=_('Confirmez le mot de passe'), widget=forms.PasswordInput,help_text=_('must be same as password')
     )
 
     class Meta:
@@ -167,10 +167,10 @@ class LoginForm(forms.Form):
             value.help_text = None
     
     email = forms.EmailField(
-        label=_('Email'), widget=forms.EmailInput,help_text=_('your email Ex:john@winterfell.got')
+        label=_('Email'), widget=forms.EmailInput,help_text=_('Votre email Ex:john@winterfell.got')
     )
     password = forms.CharField(
-        label=_('Password'), widget=forms.PasswordInput,help_text=_('your password')
+        label=_('Mot de passe'), widget=forms.PasswordInput,help_text=_('Votre mot de passe')
     )
 
     def clean(self):
@@ -239,11 +239,11 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ('email', 'photo' ,'first_name', 'last_name','password', 'phone','country')
 
     photo = forms.ImageField(
-        label=_('Change Photo'),required=False,widget=forms.FileInput(attrs={'class':'d-none'})
+        label=_('Changer votre photo'),required=False,widget=forms.FileInput(attrs={'class':'d-none'})
     )
 
     password = forms.CharField(
-        label=_('Password'), widget=forms.PasswordInput,help_text=_('Please enter your password to save')
+        label=_('Mot de passe'), widget=forms.PasswordInput,help_text=_('Please enter your password to save')
     )
 
     def clean(self):
