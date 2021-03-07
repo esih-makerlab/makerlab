@@ -94,6 +94,9 @@ def course_payement(request):
 def search_results(request):
     q = request.GET.get('q','')
 
-    courses =  Course.objects.annotate(search = SearchVector('title','description')).filter(search__icontains=q)[:25]
-
+    courses =  Course.objects.annotate(search = SearchVector('title','description'))
+    if courses ==  q :
+        courses =courses.filter(title__contains=q)[:25]
+    else:
+        courses =courses.filter(title__icontains=q)[:25]
     return render(request, 'courses/search_results.html',{'courses':courses,'q':q})

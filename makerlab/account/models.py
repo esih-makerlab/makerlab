@@ -9,11 +9,11 @@ from django_countries.fields import CountryField
 from .account_manager import UserManager
 
 class User(AbstractBaseUser,PermissionsMixin):
-    email = models.EmailField(_('email address'),help_text='Ex:john@winterfell.got', max_length=255,blank=False, unique=True)
-    first_name = models.CharField(_('first name'),help_text='Ex:john', max_length=150, blank=False)
-    last_name = models.CharField(_('last name'),help_text='Ex:snow', max_length=150, blank=False)
-    phone =  PhoneNumberField(_('phone number'),help_text='Ex:+509XXXXXXXX',blank=True,max_length=15)
-    country = CountryField(_('select country'),blank=True,help_text=_('select country'),default='HT')
+    email = models.EmailField(_('Email '),help_text='Ex:john@winterfell.got', max_length=255,blank=False, unique=True)
+    first_name = models.CharField(_('Prénom'),help_text='Ex:john', max_length=150, blank=False)
+    last_name = models.CharField(_('Nom'),help_text='Ex:snow', max_length=150, blank=False)
+    phone =  PhoneNumberField(_('Téléphone'),help_text='Ex:+509XXXXXXXX',blank=True,max_length=15)
+    country = CountryField(_('Pays'),blank=True,help_text=_('Selectionner votre pays'),default='HT')
     photo = models.ImageField(upload_to='account_photos', blank=True, default=None)
     email_verified = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)

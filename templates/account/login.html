@@ -19,13 +19,13 @@
                     {% csrf_token %}
                     {{form|crispy}}
                     <div class="mb-2">
-                        <a  href="{% url 'reset_password_request' %}">{% trans "Forget password" %}  </a>
+                        <a  href="{% url 'reset_password_request' %}">{% trans "Mot de passe oublié" %}  </a>
                     </div>
-                    <button type="submit" class="btn btn-primary">{% trans "send" %} </button>
+                    <button type="submit" class="btn btn-primary">{% trans "envoyer" %} </button>
                 </div><br>
                 <div class="col-12">
                     <div class="mb-2">
-                      {% trans "Don't have an account?" %}  <a  href="{% url 'register' %}"> {% trans " Sign up " %}</a>
+                      {% trans "Vous n'avez pas de compte?" %}  <a  href="{% url 'register' %}"> {% trans " Sign up " %}</a>
                     </div>
                 </div>
             </form>
