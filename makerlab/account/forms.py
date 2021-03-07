@@ -48,7 +48,7 @@ class AddUserForm(forms.ModelForm):
             self._errors['first_name'] = self.error_class([ 
                 _('Minimum 3 characters required')])
         if len(password1) < 8: 
-            self._errors['password'] = self.error_class([ 
+            self._errors['password1'] = self.error_class([ 
                 _('Minimum 8 characters required')])
         if len(last_name) < 3: 
             self._errors['last_name'] = self.error_class([ 
