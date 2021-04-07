@@ -55,10 +55,12 @@ INSTALLED_APPS = [
 
     'django_better_admin_arrayfield',
     'crispy_forms',
+    'django_simple_coupons',
 
     'makerlab.pages',
     'makerlab.courses',
     'makerlab.moncash',
+    'makerlab.coupon',
     'makerlab.account',
     'makerlab.resume',
 ]
@@ -273,3 +275,5 @@ MONCASH = {
     'CLIENT_ID' : env('MONCASH_CLIENT_ID'),
     'SECRET_KEY' : env('MONCASH_SECRET_KEY')
 }
+
+DSC_COUPON_CODE_LENGTH = 16

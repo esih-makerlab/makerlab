@@ -24,8 +24,8 @@
         <div class='row justify-content-center'>
             <div class='card'>
                 <div class='card-body'>
-                    <h3 class='card-title'>{{courseDate.course.title}}</h3>
-                    <ul class="list-group">
+                        <ul class="list-group">
+                        <li class="list-group-item"><h3 class='card-title'>{{courseDate.course.title}}</h3></li>
                         <li class="list-group-item">{{courseDate.date}}</li>
                         <li class="list-group-item"> <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a></li>
                         <li class="list-group-item">{{courseDate.price}} {{courseDate.currency}} {% trans "Frais d'inscription" %}</li>
@@ -35,9 +35,21 @@
                             <h2> {% trans 'Vous êtes deja inscrit' %} </h2>
                         {% else %}
                             {% if soldOut %}
-                                <h2> it's sold out{% trans '' %} </h2>
+                                <h2> {% trans "it's sold out" %} </h2>
                             {% else %}
-                                <a href="{% url 'courseProceed' courseDate.id %}" ><img src="{% static 'img/mcbuttond.png' %}" height=44 class='mt-3'></a>
+                                <div class="card col-10 p-2  m-4">
+                                    <h3>{% trans "Pay with moncash" %}</h3>
+                                    <a  href="{% url 'courseProceed' courseDate.id %}" ><img src="{% static 'img/mcbuttond.png' %}" height=44 ></a><br>
+                                </div>
+                                <form class="card col-10 p-2 m-4" method="post" action="{% url 'coupon_payement' %}">
+                                {% csrf_token %}
+                                    <h3>{% trans "Pay with coupon" %}</h3>
+                                    <input type="hidden" class="form-control" value={{courseDate.id}} name="courseDate_id" id="courseDate_id" placeholder="courseDate id">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="code">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">{% trans "Payer" %}</button>
+                                </form>
                             {% endif %}
                         {% endif %}
                     </div>

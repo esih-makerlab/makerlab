@@ -14,6 +14,7 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('account/', include('makerlab.account.urls')),
     path('moncash/', include('makerlab.moncash.urls')),
+    path('coupon/', include('makerlab.coupon.urls')),
     path('courses/', include('makerlab.courses.urls')),
     path('resume/', include('makerlab.resume.urls')),
     prefix_default_language=True,
