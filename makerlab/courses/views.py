@@ -7,14 +7,6 @@ from django.http import Http404,HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
-from django.conf import settings
-
-
-
-import moncashify
-
-from makerlab.moncash.models import CourseTransaction
-
 from .models import Course,CourseDate,Attendee
 
 
@@ -62,34 +54,7 @@ def course_enrollement(request,id):
         return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':True})
 
 
-    return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':False})
-
-@login_required(login_url='/account/login')
-def course_payement(request):
-    transactionId = request.GET.get('transactionId',None)
-
-    if transactionId:
-        moncash = moncashify.API(settings.MONCASH['CLIENT_ID'], settings.MONCASH['SECRET_KEY'], True)
-        transaction = moncash.transaction_details_by_transaction_id(transaction_id=transactionId)
-        
-        if transaction:
-            try:
-                courseTransaction = CourseTransaction.objects.get(pk=transaction["payment"]["reference"])
-            except CourseDate.DoesNotExist:
-                raise Http404("Not found.")
-
-            courseTransaction.status = CourseTransaction.Status.COMPLETE
-            courseTransaction.save()
-
-            attendee = Attendee.objects.create(date=courseTransaction.courseDate,attendee=request.user)
-
-            return render(request, 'courses/payement.html',{'success':True,'attendee':attendee})
-        else:
-            return render(request, 'courses/payement.html',{'success':False})
-    else:
-        return render(request, 'courses/payement.html',{'success':False})
-    
-    
+    return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':False})     
 
 def search_results(request):
     q = request.GET.get('q','')
