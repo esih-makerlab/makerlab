@@ -36,10 +36,11 @@
             </div>
         {% else %}
             <div class='row justify-content-center'>
-                <div class='card'>
+                <div class='card m-4'>
                     <div class='card-body'>
                         <h3 class='card-title'>{% trans "Echec paiement" %}</h3>
-                        {% include 'partials/_alerts.html' %}
+                        {% include 'partials/_alerts.html' with messages=messages no_fade=True %}
+                        <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Retour" %}</a>
                     </div>
                 </div>
             </div>

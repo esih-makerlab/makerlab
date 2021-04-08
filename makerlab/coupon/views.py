@@ -11,6 +11,8 @@ from django.utils.translation import gettext_lazy as _
 
 from django.contrib import messages
 
+from django.http import Http404,HttpResponse
+
 from django_simple_coupons.validations import validate_coupon
 
 from django_simple_coupons.models import Coupon
@@ -42,16 +44,16 @@ def course_payement(request):
 
                 attendee = Attendee.objects.create(date=couponTransaction.courseDate,attendee=request.user)
 
-                return render(request, 'courses/payement.html',{'success':True,'attendee':attendee})
+                return render(request, 'courses/payement.html',{'success':True,'attendee':attendee,'courseDate':courseDate})
             else:
 
                 messages.error(request,_("valeur coupon insuffisante"))
 
-                return render(request, 'courses/payement.html',{'success':False})
+                return render(request, 'courses/payement.html',{'success':False,'courseDate':courseDate})
         else:
 
             messages.error(request,validate['message'])
 
-            return render(request, 'courses/payement.html',{'success':False})
+            return render(request, 'courses/payement.html',{'success':False,'courseDate':courseDate})
     else:
         return redirect('/home')

@@ -7,6 +7,10 @@ from ..resume.models import Resume
 
 class ResumeInline(admin.StackedInline):
     model=Resume
+    min_num=1
+    max_num=1
+    extra=1
+    
 class UserAdmin(BaseUserAdmin):
     form = UpdateUserAdminForm
     add_form = AddUserForm

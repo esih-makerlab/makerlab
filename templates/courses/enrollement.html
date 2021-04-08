@@ -44,10 +44,11 @@
                                 <div class="card col-10 p-2  m-4">
                                     <h3>{% trans "Pay with SogePay" %}</h3>
                                     <ul class="list-group m-2">
-                                        <li class="list-group-item">1- {% trans "clicker sur SogePay" %}</li>
-                                        <li class="list-group-item">2- {% trans "faire le paiement" %}</li>
-                                        <li class="list-group-item">3- {% trans "noter le numero de transaction" %}</li>
-                                        <li class="list-group-item">4- {% trans "attendre quelques heures(3h a 24h) et utiliser comme coupon code" %}</li>
+                                        <li class="list-group-item">1- {% trans "Clicker sur SogePay" %}</li>
+                                        <li class="list-group-item">2- {% trans "Chercher ESIH" %}</li>
+                                        <li class="list-group-item">3- {% trans "Faire le paiement" %}</li>
+                                        <li class="list-group-item">4- {% trans "Noter le numero de transaction" %}</li>
+                                        <li class="list-group-item">5- {% trans "Attendre quelques heures (3h a 24h) et utiliser comme coupon code" %}</li>
                                     </ul>
                                     <a href="https://sogepay.sogebank.com/" ><img src="https://sogepay.sogebank.com/pay/images/sogepay.png" height=44 ></a><br>
                                 </div>
@@ -58,7 +59,9 @@
                                     <div class="form-group">
                                       <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="code">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">{% trans "Payer" %}</button>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">{% trans "Payer" %}</button>
+                                    </div>
                                 </form>
                             {% endif %}
                         {% endif %}

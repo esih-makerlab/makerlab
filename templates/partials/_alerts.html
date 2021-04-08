@@ -29,9 +29,12 @@
             {% endif %}
         </div>
     {% endfor %}
-    <script type="text/javascript">
-        $(".alert-dismissible").fadeTo(2000,500).slideUp(5000,function(){
-            $(".alert-dismissible").alert('close');
-        });
-    </script>
+    {% if no_fade %}
+    {% else %}
+        <script type="text/javascript">
+            $(".alert-dismissible").fadeTo(2000,500).slideUp(5000,function(){
+                $(".alert-dismissible").alert('close');
+            });
+        </script>
+    {% endif %}
 {% endif %}
