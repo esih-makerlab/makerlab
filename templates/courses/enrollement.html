@@ -37,12 +37,12 @@
                             {% if soldOut %}
                                 <h2> {% trans "it's sold out" %} </h2>
                             {% else %}
-                                <div class="card col-10 p-2  m-4">
-                                    <h3>{% trans "Pay with Moncash" %}</h3>
+                                {% comment %} <div class="card col-10 p-2  m-4">
+                                    <h3>{% trans "Payer avec Moncash" %}</h3>
                                     <a  href="{% url 'courseProceed' courseDate.id %}" ><img src="{% static 'img/mcbuttond.png' %}" height=44 ></a><br>
-                                </div>
+                                </div> {% endcomment %}
                                 <div class="card col-10 p-2  m-4">
-                                    <h3>{% trans "Pay with SogePay" %}</h3>
+                                    <h3>{% trans "Payer avec SogePay" %}</h3>
                                     <ul class="list-group m-2">
                                         <li class="list-group-item">1- {% trans "Clicker sur SogePay" %}</li>
                                         <li class="list-group-item">2- {% trans "Chercher ESIH" %}</li>
@@ -54,7 +54,7 @@
                                 </div>
                                 <form class="card col-10 p-2 m-4" method="post" action="{% url 'coupon_payement' %}">
                                 {% csrf_token %}
-                                    <h3>{% trans "Pay with Coupon" %}</h3>
+                                    <h3>{% trans "Payer avec Coupon" %}</h3>
                                     <input type="hidden" class="form-control" value={{courseDate.id}} name="courseDate_id" id="courseDate_id" placeholder="courseDate id">
                                     <div class="form-group">
                                       <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="code">
