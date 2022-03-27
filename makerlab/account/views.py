@@ -255,7 +255,7 @@ def edit_profile(request):
     
         if form.is_valid():
             login(request,form.save(commit=True))
-            return redirect('/account/profil')
+            return redirect('/account/profile')
         else:
             return render(request,'account/edit_profile.html',{'form':form})
     else:
