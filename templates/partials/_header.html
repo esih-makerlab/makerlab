@@ -16,11 +16,21 @@
                     </li>
                     <li class="nav-item {% if request.get_full_path == '/courses/' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'courses_home' %}">{% trans 'Cours' %}</a>
-                    </li>
-                    
+                    </li>  
                     <li class="nav-item {% if request.get_full_path == '/about/' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'about' %}">{% trans 'À propos' %}</a>
                     </li>
+
+                    <li class="nav-item {% if request.get_full_path == '/team/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'about' %}">{% trans 'Equipe' %}</a>
+                    </li>
+                    <li class="nav-item {% if request.get_full_path == '/partners/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'about' %}">{% trans 'Partenaires' %}</a>
+                    </li>
+                    <li class="nav-item {% if request.get_full_path == '/contact/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'about' %}">{% trans 'Contactez-nous' %}</a>
+                    </li>
+                    
                 </ul>
                 {% if user.is_authenticated %}
                 <div class='dropdown d-flex'>
