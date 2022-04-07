@@ -3,9 +3,9 @@
 
 <!--Main Navigation-->
 <header>
-    <nav class="navbar shadow navbar-expand-lg navbar-dark bg-main p-0">
+    <nav class="navbar shadow navbar-expand-lg navbar-light bg-main p-0">
         <div class="container p-1">
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/Makerlab.png' %}" height="52px"></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo.jpg' %}" height="52px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,7 +30,7 @@
                     <li class="nav-item {% if request.get_full_path == '/contact/' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'about' %}">{% trans 'Contactez-nous' %}</a>
                     </li>
-                    
+
                 </ul>
                 {% if user.is_authenticated %}
                 <div class='dropdown d-flex'>
@@ -48,8 +48,8 @@
                 </div>
                 {% else %}
                     {% if not request.get_full_path == '/account/register/' %}
-                        <a href="{% url 'login' %}" class="btn btn-light">login</a>
-                        <a href="{% url 'register' %}" class='btn btn-outline-light ml-2'>Signup</a>
+                        <a href="{% url 'login' %}" class="btn btn-dark">login</a>
+                        <a href="{% url 'register' %}" class='btn btn-outline-dark ml-3'>Signup</a>
                     {% endif %}
                 {% endif %}
                 
