@@ -22,7 +22,6 @@ sudo apt-get install postgresql postgresql-12-postgis-3 postgresql-contrib
 function _psql {
     sudo -u postgres psql -c "$1"
 }
-
 # Grab database info from .env file
 if [ -f .env ]; then
     source .env 
