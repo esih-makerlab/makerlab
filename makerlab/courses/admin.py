@@ -1,33 +1,51 @@
 from django.contrib import admin
-from .models import Course,Attendee,CourseDate
+from .models import Course,WhatYoullLearn,CourseSection,Attendee,CourseDate
 from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin,DynamicArrayMixin):
-    fieldsets = ((None,{'fields':('title','description','note','links','tags','photo','requirements',)}),)
-    list_display = ('id','title','note','photo',)
+    fieldsets = ((None,{'fields':('title','description','note','links','tags','photo','requirements','certification','duration')}),)
+    list_display = ('id','title','note','photo','certification', 'duration')
     list_display_links = ('id',)
     list_filter = ('requirements',)
     search_fields = ('title','description','note')
     list_per_page = 25
     autocomplete_fields = ['requirements']
 
-class CourseDateAdmin(admin.ModelAdmin):
-    list_display = ('id','date','course','teacher','price','nb_attendees',)
+class WhatYoullLearnAdmin(admin.ModelAdmin):
+    list_display = ('id','title')
     list_display_links = ('id',)
-    list_filter = ('date','nb_attendees','teacher__email',)
+    list_filter = ('title',)
+    search_fields = ('title',)
+    list_per_page = 25
+    autocomplete_fields = ['course',]
+
+class CourseSectionAdmin(admin.ModelAdmin):
+    list_display = ('id','title')
+    list_display_links = ('id',)
+    list_filter = ('title',)
+    search_fields = ('title',)
+    list_per_page = 25
+    autocomplete_fields = ['course',]
+
+class CourseDateAdmin(admin.ModelAdmin):
+    list_display = ('id','start_date','end_date','course','teacher','price','nb_attendees',)
+    list_display_links = ('id',)
+    list_filter = ('start_date','nb_attendees','teacher__email',)
     search_fields = ('nb_attendees','date',)
     list_per_page = 25
     autocomplete_fields = ['teacher','course','attendees']
 
 class AttendeeAdmin(admin.ModelAdmin):
-    list_display = ('id','date','attendee','score','complete',)
+    list_display = ('id','start_date','attendee','score','complete',)
     list_display_links = ('id',)
     list_filter = ('score','complete')
     search_fields = ('attendee__email','date__course__title',)
     list_per_page = 25
-    autocomplete_fields = ['date','attendee']
+    autocomplete_fields = ['start_date','attendee']
 
 admin.site.register(Attendee, AttendeeAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseDate, CourseDateAdmin)
+admin.site.register(WhatYoullLearn, WhatYoullLearnAdmin)
+admin.site.register(CourseSection, CourseSectionAdmin)

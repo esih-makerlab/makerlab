@@ -20,7 +20,7 @@
                     {% if courseDates.all_from_now.count > 0 %}
                         {% for courseDate in courseDates.all_from_now %}
                             <div class='row text-muted p-1 list-group-item mb-1'>
-                                <h5>{{courseDate.date}}</h5>
+                                <h5>{{courseDate.start_date}}</h5>
                                 <div class='col-12 p-0 mb-1'>
                                     <i class='fa fa-chair'></i>
                                     {{courseDate.remainPlaces}} {% trans "places restantes" %}

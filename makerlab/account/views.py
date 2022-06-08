@@ -268,7 +268,7 @@ def edit_profile(request):
 def profile(request):
     page = request.GET.get('page', 1)
         
-    paginator = Paginator(CourseDate.objects.filter(attendees=request.user).order_by('date'), 3)
+    paginator = Paginator(CourseDate.objects.filter(attendees=request.user).order_by('start_date'), 3)
 
     try:
         courseDates = paginator.page(page)

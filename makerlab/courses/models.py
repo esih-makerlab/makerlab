@@ -18,6 +18,8 @@ class Course(models.Model):
     tags = ArrayField(verbose_name=_('please add tag'),base_field=models.TextField(),blank=True,help_text=_('Ex: Arduino'),null=True)
     requirements = models.ManyToManyField(to='self',symmetrical=False,verbose_name='requirements',blank=True)
     photo = models.ImageField(upload_to='courses_photos', blank=True, default=None)
+    duration = models.IntegerField(_('duration in hours'),help_text=_('duration in hours'), blank=True, null=True)
+    certification = models.BooleanField(_('certification'), default=False)
 
     REQUIRED_FIELDS = ['title','description']
     
@@ -26,6 +28,32 @@ class Course(models.Model):
 
     def find(self,keywords):
         return self.objects.filter(title__contains=keywords)
+    
+    def get_next_course_date(self):
+        """
+        return the next course date
+        """
+        related_courseDates = self.courseDates.order_by('start_date')
+
+        i=0
+        next_course_date = related_courseDates[i]
+
+        while next_course_date.remainPlaces <= 0:
+            next_course_date = related_courseDates[i+1]
+
+        return next_course_date
+
+
+
+
+class WhatYoullLearn(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='whatyoulls')
+    title = models.CharField(_('title'),help_text=_('Ex: Structure de donnée Java'), max_length=255,blank=False)
+
+class CourseSection(models.Model):
+    title = models.CharField(_('title'),help_text=_('Ex: Introduction'), max_length=255,blank=False)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='section')
+    content = models.TextField(_('content'),help_text=_('content'),blank=False,null='True')
 
 class CourseDate(models.Model):
 
@@ -34,22 +62,23 @@ class CourseDate(models.Model):
 
     class Meta:
         verbose_name_plural = "Course Dates"
-        get_latest_by = 'date' #max_rated_entry = YourModel.objects.latest()
+        get_latest_by = 'end_date' #max_rated_entry = YourModel.objects.latest()
 
     teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,related_name='teacher')
     price = models.DecimalField(_('price'),help_text=_('Ex: 1000'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=1000)
     currency = models.CharField(_('currency'),max_length=25,choices=Currencies.choices,default=Currencies.HTG,blank=False)
     course = models.ForeignKey(verbose_name=_('course'),to='Course',on_delete=models.CASCADE,related_name='courseDates')
-    date = models.DateTimeField(_('date'),max_length=255,blank=False)
+    start_date = models.DateTimeField(_('start date'),max_length=255,blank=False,null=True)
+    end_date = models.DateTimeField(_('end date'),max_length=255,blank=False, null=True)
     nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
-    attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('date','attendee'),related_name='attendees',blank=True)
+    attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('start_date','attendee'),related_name='attendees',blank=True)
     
     REQUIRED_FIELDS = ['course','nb_attendees','date','attendees']
 
     objects = CourseDateManager()
 
     def __str__(self):
-        return 'COURSE:%s  DATE:%s' % (self.course,self.date)
+        return 'COURSE:%s  DATE:%s' % (self.course,self.start_date)
 
     @property
     def remainPlaces(self):
@@ -64,7 +93,7 @@ class Attendee(models.Model):
     class Meta:
         verbose_name_plural = "Attendees"
 
-    date = models.ForeignKey(verbose_name=_('date'),to='CourseDate', on_delete=models.CASCADE)
+    start_date = models.ForeignKey(verbose_name=_('start date'),to='CourseDate', on_delete=models.CASCADE, null=True, blank=True)
     attendee = models.ForeignKey(verbose_name=_('attendee'),to=get_user_model(), on_delete=models.CASCADE)
     complete = models.BooleanField(verbose_name=_('complete'),blank=False,default=False)
     score = models.DecimalField(_('score'),help_text=_('Ex: 18.5'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=0)
