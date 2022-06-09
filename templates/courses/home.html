@@ -12,40 +12,40 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'partials/_subheader.html' with subheader_title='Courses' %}
-    <div class="row justify-content-center mt-2 m-0">
-        <div class="col-12 col-md-10 col-lg-8  text-white">
-            <form action="{% url 'search_results' %}" class="card  opacity-6 card-sm shadow">
-                <div class="p-2 pr-3 pl-3 row no-gutters align-items-center">
-                    <div class="col-auto">
-                        <i class="fas pt-1 h4 fa-search text-body"></i>
+    {% include 'partials/_subheader.html' with subheader_title='nos cours' %}
+    <div class="container">
+        <div class="row justify-content-center mt-2 m-0">
+            <div class="col-12 text-white">
+                <form action="{% url 'search_results' %}" class="card  opacity-6 card-sm shadow">
+                    <div class="p-2 pr-3 pl-3 row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas pt-1 h4 fa-search text-body"></i>
+                        </div>
+                        <!--end of col-->
+                        <div class="col">
+                            <input required name="q" value="{{q}}" class="form-control form-control-md form-control-borderless " type="search" placeholder="Search topics or keywords" autocomplete="off">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            
+                            <button class="btn btn-md btn-dark " type="submit" id='opacity-1'>{% trans 'recherche' %}</button>
+                        </div>
+                        <!--end of col-->
                     </div>
-                    <!--end of col-->
-                    <div class="col">
-                        <input required name="q" value="{{q}}" class="form-control form-control-md form-control-borderless " type="search" placeholder="Search topics or keywords" autocomplete="off">
-                    </div>
-                    <!--end of col-->
-                    <div class="col-auto">
-                        
-                        <button class="btn btn-md btn-dark " type="submit" id='opacity-1'>{% trans 'recherche' %}</button>
-                    </div>
-                    <!--end of col-->
-                </div>
-            </form>
-        </div>
-        <!--end of col-->
-    </div>
-    <div class='container mt-4'>
-    <div class='row col-12 m-0 mt-3 mb-3'>
-        {% if courses  %}
-            {% for course in courses %}
-                {% include 'partials/_course_card.html' with course=course courseDates=course.courseDates %}
-            {% endfor %}
-        {% else %}
-            <div>
-                <h3 class='text-muted'>{% trans 'pas de resultat ...' %}</h3>
+                </form>
             </div>
-        {% endif %}
+            <!--end of col-->
+        </div>
+        <div class='row col-12 m-0 mt-3 mb-3'>
+            {% if courses  %}
+                {% for course in courses %}
+                    {% include 'partials/_course_card.html' with course=course courseDates=course.courseDates %}
+                {% endfor %}
+            {% else %}
+                <div>
+                    <h3 class='text-muted'>{% trans 'pas de resultat ...' %}</h3>
+                </div>
+            {% endif %}
+        </div>
     </div>
-</div>  
 {% endblock %}
