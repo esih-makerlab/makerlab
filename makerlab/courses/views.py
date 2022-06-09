@@ -43,7 +43,7 @@ def course_enrollement(request,id):
         raise Http404("Not found.")
 
     try:
-        attendee = Attendee.objects.get(date=courseDate,attendee=request.user)
+        attendee = Attendee.objects.get(start_date=courseDate,attendee=request.user)
     except Attendee.DoesNotExist:
         attendee = None
     

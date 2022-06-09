@@ -5,43 +5,24 @@
     <div class="card shadow pb-2">
         <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{course.title}}</h5>
-            <p class="card-text">{{course.description|truncatewords:20}}</p>
-        </div>
-        <div class='card-body p-0 px-3'>
-            <div class="col-12 row m-auto">
-                <button class="btn btn-dark m-auto mb-2 col-5" type="button" data-toggle="collapse" data-target="#collapse-{{course.id}}" aria-expanded="false" aria-controls="collapse-{{course.id}}">
-                   {% trans 'voir les dates'%}
-                </button>
-                <a class='btn btn-outline-secondary btn-block col-5 m-auto' href="{% url 'course_detail' course.id %}">{% trans "Voir plus" %}</a>
+            <span class="text-muted">COURS</span>
+            <h3 class="card-title">{{course.title}}</h3>
+            <p class="card-text">{{course.description|truncatewords:20|date:'D, d N H:i:s e'}}</p>
+            <div class="font-weight-bold">
+                {% language 'fr' %}
+                    {{course.get_next_course_date.start_date|date:'D, d N '}}
+                {% endlanguage %}
+                
             </div>
-            <div class="collapse mt-2 mb-2" id="collapse-{{course.id}}">
-                <div class="card card-body">
-                    {% if courseDates.all_from_now.count > 0 %}
-                        {% for courseDate in courseDates.all_from_now %}
-                            <div class='row text-muted p-1 list-group-item mb-1'>
-                                <h5>{{courseDate.start_date}}</h5>
-                                <div class='col-12 p-0 mb-1'>
-                                    <i class='fa fa-chair'></i>
-                                    {{courseDate.remainPlaces}} {% trans "places restantes" %}
-                                </div>
-                                <div class='col-12 p-0 mb-1'>
-                                    <i class='fa fa-money-bill-wave'></i>
-                                    {{courseDate.price}} {{courseDate.currency}}
-                                </div>
-                                <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Professeur: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
-                                <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Inscription" %}</a>
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <h3>{% trans "Pas de Dates pour l'instant" %}</h3>
-                    {% endif %}
-                </div>
+            <div class="text-muted mb-3 mt-2">{{course.get_next_course_date.remainPlaces}} {% trans 'places restantes' %}</div>
+            <div class="d-flex flex-row justify-content-between">
+                <a href="{% url 'course_detail' course.id %}" class="btn btn-outline-secondary">s'informer</a>
+                <a href="{% url 'enroll' course.get_next_course_date.id %}" class="btn btn-secondary">s'inscrire</a>
             </div>
         </div>
         {% if course.tags %}
             <div class="p-3 col-12">
-                <strong>{% trans "Étiquettes" %}:</strong>
+                <strong>{% trans "tags" %}:</strong>
                 {% for tag in course.tags %}
                     <span class="badge bg-secondary text-white" >{{tag}}</span>
                 {% endfor %}
