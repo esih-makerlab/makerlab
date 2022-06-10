@@ -7,6 +7,8 @@ from django.http import Http404,HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
+from decimal import Decimal
+
 from .models import Course,CourseDate,Attendee
 
 
@@ -46,15 +48,19 @@ def course_enrollement(request,id):
         attendee = Attendee.objects.get(start_date=courseDate,attendee=request.user)
     except Attendee.DoesNotExist:
         attendee = None
+
+    moncash2pay = round(float(courseDate.price)/0.98)
+    moncash_fee = round(moncash2pay*0.02)+10
+    total2pay = float(courseDate.price)+moncash_fee
     
     if attendee:
-        return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'enrolled':True,'soldOut':False})
+        return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'enrolled':True,'soldOut':False, 'total2pay':total2pay, 'moncash_fee':moncash_fee})
 
     if courseDate.remainPlaces <= 0:
-        return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':True})
+        return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':True, 'total2pay':total2pay, 'moncash_fee':moncash_fee})
 
 
-    return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':False})     
+    return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':False, 'total2pay':total2pay, 'moncash_fee':moncash_fee})     
 
 def search_results(request):
     q = request.GET.get('q','')

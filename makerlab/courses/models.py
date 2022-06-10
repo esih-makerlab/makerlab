@@ -40,6 +40,7 @@ class Course(models.Model):
 
         while next_course_date.remainPlaces <= 0:
             next_course_date = related_courseDates[i+1]
+            i=i+1
 
         return next_course_date
 
@@ -101,4 +102,4 @@ class Attendee(models.Model):
     REQUIRED_FIELDS = ['date','attendee']
 
     def __str__(self):
-        return 'DATE:%s  ATTENDEE:%s' % (self.date.id,self.attendee.id)
+        return 'DATE:%s  ATTENDEE:%s' % (self.start_date.id,self.attendee.id)

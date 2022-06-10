@@ -42,7 +42,7 @@ def course_payement(request):
                 
                 couponTransaction = CouponTransaction.objects.create(courseDate=courseDate,payor=request.user,status=CouponTransaction.Status.COMPLETE)
 
-                attendee = Attendee.objects.create(date=couponTransaction.courseDate,attendee=request.user)
+                attendee = Attendee.objects.create(start_date=couponTransaction.courseDate,attendee=request.user)
 
                 return render(request, 'courses/payement.html',{'success':True,'attendee':attendee,'courseDate':courseDate})
             else:

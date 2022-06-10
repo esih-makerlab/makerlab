@@ -12,59 +12,61 @@
 {% endblock %}
 
 {% block content %}
-    <div class='container mt-3'>
-        <div class='row'>
-            <ul>
-                <ul class="list-unstyled multi-steps">
-                <li>{% trans 'Selection de cours' %}</li>
-                <li class="is-active">{% trans 'Inscription confirmée' %}</li>
-                <li>{% trans 'paiement avec succès' %}</li>
-            </ul>
-        </div>
+    <div class='container my-4'>
         <div class='row justify-content-center'>
-            <div class='card'>
-                <div class='card-body'>
-                    <ul class="list-group">
-                        <li class="list-group-item"><h3 class='card-title'>{{courseDate.course.title}}</h3></li>
-                        <li class="list-group-item">{{courseDate.date}}</li>
-                        <li class="list-group-item"> <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a></li>
-                        <li class="list-group-item">{{courseDate.price}} {{courseDate.currency}} {% trans "Frais d'inscription" %}</li>
-                    </ul>
-                    <div class='row justify-content-center'>
-                        {% if enrolled %}
-                            <h2> {% trans 'Vous êtes deja inscrit' %} </h2>
-                        {% else %}
-                            {% if soldOut %}
-                                <h2> {% trans "it's sold out" %} </h2>
+            <div class="col-12">
+                <ul class="list-unstyled multi-steps">
+                    <li>{% trans 'Selection de la formation' %}</li>
+                    <li class="is-active">{% trans 'Paiement' %}</li>
+                    <li>{% trans 'Confirmation' %}</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-10 col-sm-12">
+                <div class='card mt-3'>
+                    <div class='card-body'>
+                        <div class='row justify-content-center'>
+                            {% if enrolled %}
+                                <h2> {% trans 'Vous êtes deja inscrit' %} </h2>
                             {% else %}
-                                {% comment %} <div class="card col-10 p-2  m-4">
-                                    <h3>{% trans "Payer avec Moncash" %}</h3>
-                                    <a  href="{% url 'courseProceed' courseDate.id %}" ><img src="{% static 'img/mcbuttond.png' %}" height=44 ></a><br>
-                                </div> {% endcomment %}
-                                <div class="card col-10 p-2  m-4">
-                                    <h3>{% trans "Payer avec SogePay" %}</h3>
-                                    <ul class="list-group m-2">
-                                        <li class="list-group-item">1- {% trans "Clicker sur SogePay" %}</li>
-                                        <li class="list-group-item">2- {% trans "Chercher ESIH" %}</li>
-                                        <li class="list-group-item">3- {% trans "Faire le paiement" %}</li>
-                                        <li class="list-group-item">4- {% trans "Noter le numero de transaction" %}</li>
-                                        <li class="list-group-item">5- {% trans "Attendre quelques heures (3h a 24h) et utiliser comme coupon code" %}</li>
-                                    </ul>
-                                    <a href="https://sogepay.sogebank.com/" ><img src="https://sogepay.sogebank.com/pay/images/sogepay.png" height=44 ></a><br>
-                                </div>
-                                <form class="card col-10 p-2 m-4" method="post" action="{% url 'coupon_payement' %}">
-                                {% csrf_token %}
-                                    <h3>{% trans "Payer avec Coupon" %}</h3>
-                                    <input type="hidden" class="form-control" value={{courseDate.id}} name="courseDate_id" id="courseDate_id" placeholder="courseDate id">
-                                    <div class="form-group">
-                                      <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="code">
+                                {% if soldOut %}
+                                    <h2> {% trans "it's sold out" %} </h2>
+                                {% else %}
+                                    <div class="card col-10 p-2">
+                                        <h3 class="card-title">Formation {{courseDate.course.title}}</h3> 
+                                        <div>
+                                            {% language 'fr' %}
+                                                Débute le {{courseDate.start_date|date:'D, d N Y'}} à Ecole Supérieure Infotronique
+                                            {% endlanguage %}  
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">{% trans "Payer" %}</button>
-                                    </div>
-                                </form>
+                                    <div class="card col-10 p-2  m-4">
+                                        <h5>{% trans "Payer avec Moncash" %}</h5>
+                                        <div>
+                                            Subtotal: {{courseDate.price}} HTG
+                                        </div>
+                                        <div>
+                                            Moncash Fee: {{moncash_fee}} HTG
+                                        </div>
+                                        <div>
+                                            Total: {{total2pay}} HTG
+                                        </div>
+                                        <a  href="{% url 'courseProceed' courseDate.id %}" class="btn btn-danger shadow-sm mt-3" >Payez avec Digicel Moncash</a><br>
+                                    </div> 
+                                    <h5 class="col-10 text-muted text-center">OU</h5>
+                                    <form class="card col-10 p-2 m-4" method="post" action="{% url 'coupon_payement' %}">
+                                        {% csrf_token %}
+                                        <h5>{% trans "Payer avec Coupon" %}</h5>
+                                        <input type="hidden" class="form-control" value={{courseDate.id}} name="courseDate_id" id="courseDate_id" placeholder="courseDate id">
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="code">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">{% trans "Payer" %}</button>
+                                        </div>
+                                    </form>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
