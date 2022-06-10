@@ -9,6 +9,8 @@ from django.conf.urls.i18n import i18n_patterns
 
 from django.conf.urls.static import static
 
+from makerlab.moncash import views as moncash_views
+
 urlpatterns = i18n_patterns(
     path('', include('makerlab.pages.urls')),
     path('admin/', admin.site.urls),
@@ -17,5 +19,6 @@ urlpatterns = i18n_patterns(
     path('coupon/', include('makerlab.coupon.urls')),
     path('courses/', include('makerlab.courses.urls')),
     path('resume/', include('makerlab.resume.urls')),
+    path('payement-error/', moncash_views.course_payement, name="payement"),
     prefix_default_language=True,
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

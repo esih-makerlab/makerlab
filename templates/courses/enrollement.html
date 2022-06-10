@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class='container my-4'>
+    <div class='container-fluid my-3'>
         <div class='row justify-content-center'>
             <div class="col-12">
                 <ul class="list-unstyled multi-steps">
@@ -21,8 +21,8 @@
                     <li>{% trans 'Confirmation' %}</li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-10 col-sm-12">
-                <div class='card mt-3'>
+            <div class="col-lg-3 col-md-10 col-sm-12">
+                <div class='card mt-3 rounded'>
                     <div class='card-body'>
                         <div class='row justify-content-center'>
                             {% if enrolled %}
@@ -31,7 +31,7 @@
                                 {% if soldOut %}
                                     <h2> {% trans "it's sold out" %} </h2>
                                 {% else %}
-                                    <div class="card col-10 p-2">
+                                    <div class="card col-10 p-3 my-2">
                                         <h3 class="card-title">Formation {{courseDate.course.title}}</h3> 
                                         <div>
                                             {% language 'fr' %}
@@ -39,7 +39,7 @@
                                             {% endlanguage %}  
                                         </div>
                                     </div>
-                                    <div class="card col-10 p-2  m-4">
+                                    <div class="card col-10 p-3 my-2">
                                         <h5>{% trans "Payer avec Moncash" %}</h5>
                                         <div>
                                             Subtotal: {{courseDate.price}} HTG
@@ -50,10 +50,10 @@
                                         <div>
                                             Total: {{total2pay}} HTG
                                         </div>
-                                        <a  href="{% url 'courseProceed' courseDate.id %}" class="btn btn-danger shadow-sm mt-3" >Payez avec Digicel Moncash</a><br>
+                                        <a  href="{% url 'courseProceed' courseDate.id %}" target="_blank" class="btn btn-danger shadow-sm mt-3" >Payer avec Digicel Moncash</a><br>
                                     </div> 
                                     <h5 class="col-10 text-muted text-center">OU</h5>
-                                    <form class="card col-10 p-2 m-4" method="post" action="{% url 'coupon_payement' %}">
+                                    <form class="card col-10 p-3 my-2" method="post" action="{% url 'coupon_payement' %}">
                                         {% csrf_token %}
                                         <h5>{% trans "Payer avec Coupon" %}</h5>
                                         <input type="hidden" class="form-control" value={{courseDate.id}} name="courseDate_id" id="courseDate_id" placeholder="courseDate id">
@@ -61,7 +61,7 @@
                                           <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="code">
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">{% trans "Payer" %}</button>
+                                            <button type="submit" class="btn btn-secondary">{% trans "Payer" %}</button>
                                         </div>
                                     </form>
                                 {% endif %}
