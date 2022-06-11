@@ -18,18 +18,19 @@ from django_simple_coupons.validations import validate_coupon
 from django_simple_coupons.models import Coupon
 
 
-@login_required(login_url='/account/login')
 def course_payement(request):
     if request.method == 'POST':
         coupon_code=request.POST['coupon_code']
-        courseDate_id=request.POST['courseDate_id']
+        attendee_id=request.POST['attendee_id']
         
         try:
-            courseDate = CourseDate.objects.get(pk=courseDate_id)
-        except CourseDate.DoesNotExist:
+            attendee = Attendee.objects.get(pk=attendee_id)
+        except:
             raise Http404("Not found course date.")
 
-        validate = validate_coupon(coupon_code=coupon_code, user=request.user)
+        courseDate = attendee.courseDate
+
+        validate = validate_coupon(coupon_code=coupon_code, user=attendee)
         
         if validate['valid']:
 
@@ -38,11 +39,12 @@ def course_payement(request):
             new_price = coupon.get_discounted_value(courseDate.price)
 
             if new_price == 0:
-                coupon.use_coupon(user=request.user)
+                coupon.use_coupon(user=attendee)
                 
-                couponTransaction = CouponTransaction.objects.create(courseDate=courseDate,payor=request.user,status=CouponTransaction.Status.COMPLETE)
+                couponTransaction = CouponTransaction.objects.create(courseDate=courseDate,payor=attendee,status=CouponTransaction.Status.COMPLETE)
 
-                attendee = Attendee.objects.create(start_date=couponTransaction.courseDate,attendee=request.user)
+                attendee.paid = True
+                attendee.save()
 
                 return render(request, 'courses/payement.html',{'success':True,'attendee':attendee,'courseDate':courseDate})
             else:

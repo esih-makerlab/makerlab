@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model 
 from django.utils.timezone import now
-from makerlab.courses.models import Attendee, CourseDate 
+from makerlab.courses.models import Attendee
 
 from django.utils.translation import gettext_lazy as _
 
@@ -15,7 +15,7 @@ class CourseTransaction(models.Model):
 
     payor = models.ForeignKey(
         Attendee,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
         blank=True
     )
