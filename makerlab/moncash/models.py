@@ -15,7 +15,8 @@ class CourseTransaction(models.Model):
 
     payor = models.ForeignKey(
         Attendee,
-        on_delete=models.CASCADE
+        on_delete=models.SET_NULL,
+        null=True
     )
     status = models.CharField(_('status'),max_length=25,choices=Status.choices,default=Status.PENDING,blank=False)
     created = models.DateTimeField(default=now)
