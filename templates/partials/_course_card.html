@@ -17,7 +17,7 @@
             <div class="text-muted mb-3 mt-2">{{course.get_next_course_date.remainPlaces}} {% trans 'places restantes' %}</div>
             <div class="d-flex flex-row justify-content-between">
                 <a href="{% url 'course_detail' course.id %}" class="btn btn-outline-secondary shadow-sm">s'informer</a>
-                <a href="{% url 'enroll' course.get_next_course_date.id %}" class="btn btn-primary shadow-sm">s'inscrire</a>
+                <a href="{% url 'get_attendee' course.get_next_course_date.id %}" class="btn btn-primary shadow-sm">s'inscrire</a>
             </div>
         </div>
         {% if course.tags %}
