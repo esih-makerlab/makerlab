@@ -72,7 +72,7 @@ class CourseDate(models.Model):
     start_date = models.DateTimeField(_('start date'),max_length=255,blank=False,null=True)
     end_date = models.DateTimeField(_('end date'),max_length=255,blank=False, null=True)
     nb_attendees = models.IntegerField(_('number of attendees'),help_text=_('Ex: 50'),blank=False)
-    attendees = models.ManyToManyField(to=get_user_model(),through='Attendee',through_fields=('start_date','attendee'),related_name='attendees',blank=True)
+    
     
     REQUIRED_FIELDS = ['course','nb_attendees','date','attendees']
 
@@ -95,9 +95,13 @@ class Attendee(models.Model):
         verbose_name_plural = "Attendees"
 
     start_date = models.ForeignKey(verbose_name=_('start date'),to='CourseDate', on_delete=models.CASCADE, null=True, blank=True)
-    attendee = models.ForeignKey(verbose_name=_('attendee'),to=get_user_model(), on_delete=models.CASCADE)
     complete = models.BooleanField(verbose_name=_('complete'),blank=False,default=False)
     score = models.DecimalField(_('score'),help_text=_('Ex: 18.5'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=0)
+    first_name = models.CharField(max_length=255)
+    last_name =models.CharField(max_length=255)
+    email = models.EmailField()
+    telephone = models.CharField(max_length=8)
+    address = models.CharField(max_length=255)
 
     REQUIRED_FIELDS = ['date','attendee']
 
