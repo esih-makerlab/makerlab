@@ -23,7 +23,7 @@
                                 <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top " alt="...">
                             </div>
                             <div class="col-8 border p-3">
-                                <h1 class="card-title">Java</h1>
+                                <h1 class="card-title">{{course.title}}</h1>
                                 <p>{{course.description}}</p>
                                 <p class="text-muted">Prérequis:</p>
                                 <div class="d-flex justify-content-between mt-3">
