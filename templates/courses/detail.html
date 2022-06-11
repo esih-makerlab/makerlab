@@ -13,97 +13,84 @@
 
 {% block content %}
     {% include 'partials/_subheader.html' with subheader_title=course.title %}
-    <div class='container mt-3'>
-        <div class='row justify-content-center'>
-            <div class='col-md-10 col-12 mb-4'>
-                <div class='card shadow-sm'>
-                    <div class='col-12 p-0'>
-                        <div class='col-md-12 col-12 p-0'>
-                            <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top " alt="...">
-                        </div>
-                        <div class="row col-12 m-0">
-                            <div class="col-12 col-md-5 pb-4">
-                                <div class="card mt-4">
-                                    <div class="card-header bg-dark text-white">
-                                        <h5>{% trans "Date" %}</h5>
-                                    </div>
-                                    <div class="card-body" style="max-height:500px;overflow-y:scroll">
-                                        {% if course.courseDates.all_from_now.count > 0 %}
-                                            {% for courseDate in course.courseDates.all_from_now.all %}
-                                                <div class='row text-muted p-1 list-group-item mb-1'>
-                                                    <h5>{{courseDate.date}}</h5>
-                                                    <div class='col-12 p-0 mb-1'>
-                                                        <i class='fa fa-chair'></i>
-                                                        {{courseDate.remainPlaces}} {% trans "Cours restant" %}
-                                                    </div>
-                                                    <div class='col-12 p-0 mb-1'>
-                                                        <i class='fa fa-money-bill-wave'></i>
-                                                        {{courseDate.price}} {{courseDate.currency}}
-                                                    </div>
-                                                    <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Professeur: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
-                                                    <a class='btn btn-primary col-md-6 m-auto btn-block' href="{% url 'enroll' courseDate.id %}">{% trans "Inscription" %}</a>
-                                                </div>
-                                            {% endfor %}
-                                        {% else %}
-                                            <h3>{% trans 'Pas de Date disponible' %}</h3>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                {% if requirement.tags %}
-                                    <div class="p-3 col-12">
-                                        <strong>{% trans "Étiquettes" %}:</strong>
-                                        {% for tag in course.tags %}
-                                            <span class="badge bg-secondary text-white" >{{tag}}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                                <div class="card mt-4">
-                                    <div class="card-header bg-dark text-white">
-                                        <h5>{% trans "Prérequis" %}</h5>
-                                    </div>
-                                    <div class="card-body" style="max-height:500px;overflow-y:scroll">
-                                        {% if course.requirements.count > 0 %}
-                                            <div class="list-group col-12">
-                                                {% for requirement in course.requirements.all %}
-                                                    <a href="{% url 'course_detail' requirement.id %}" class="list-group-item list-group-item-action">
-                                                        <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">{{requirement.title}}</h5>
-                                                        </div>
-                                                        <div class="p-1 col-12">
-                                                            {% if requirement.tags %}
-                                                                <strong>{% trans "Étiquettes" %}:</strong>
-                                                                {% for tag in requirement.tags %}
-                                                                    <span class="badge bg-secondary text-white" >{{tag}}</span>
-                                                                {% endfor %}
-                                                            {% endif %}
-                                                        </div>
-                                                    </a>
-                                                {% endfor %}     
-                                            </div>
-                                        {% else %}
-                                            <h3>{% trans "Pas de Prérequis" %}</h3>
-                                        {% endif %}
-                                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-3 shadow-sm">
+                    <div class="card-body m-0 p-0">
+                        <div class="row m-0 p-0">
+                            <div class="col-4 border p-0">
+                                <img src="{% if course.photo %}/media/{{course.photo}}{% else %}{% static 'img/placeholder.svg' %}{% endif %}" class="card-img-top " alt="...">
+                            </div>
+                            <div class="col-8 border p-3">
+                                <h1 class="card-title">Java</h1>
+                                <p>{{course.description}}</p>
+                                <p class="text-muted">Prérequis:</p>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <div><i class="fa fa-clock pr-2"></i>{{course.duration}} heures</div>
+                                    <div><i class="fa fa-map-marker-alt pr-2"></i>École Supérieure d'Infotronique</div>
+                                    <div><i class="fa fa-map-marker-alt pr-2"></i>Certificat inclus</div>
                                 </div>
                             </div>
-                            <div class='col-md-7 col-12'>
-                                <div class='card-body'>
-                                    <h3 class="card-title">{{course.title}}</h3>
-                                    <h5>{% trans 'Description'%}</h5>
-                                    <hr>
-                                    <p>
-                                        {{course.description}}
-                                    </p>
-                                    <h5>{% trans 'Notes' %}</h5>
-                                    <hr>
-                                    <p>
-                                        {{course.note}}
-                                    </p>
-                                </div>
-                            </div> 
-                        </div>       
+                        </div>
                     </div>
-                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Ce que vous allez apprendre</h5>
+                        {% for whatyll in whatylls %}
+                        <div class="my-2"><i class="fa fa-check"></i> {{whatyll.title}}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h4 class="mt-3">Contenus du cours</h4>
+                <p class="text-muted mb-1">{{courseSections.count}} chapitres</p>
+                <div class="accordion my-3" id="accordionExample">
+                {% for courseSection in courseSections %}
+                    <div class="card">
+                      <div class="card-header" id="heading-{{courseSection.id}}">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{courseSection.id}}" aria-expanded="true" aria-controls="collapse-{{courseSection.id}}">
+                            {{courseSection.title}}
+                          </button>
+                        </h2>
+                      </div>
+                  
+                      <div id="collapse-{{courseSection.id}}" class="collapse show" aria-labelledby="heading-{{courseSection.id}}" data-parent="#accordionExample">
+                        <div class="card-body">
+                         {{courseSection.content}}
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}   
+                </div>
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Remarques</h5>
+                        <p>{{course.note}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Périodes disponibles</h4>
+                        {% for courseDate in courseDates %}
+                            {% language 'fr' %}
+                                <div class="my-3">
+                                    <div class="my-1 font-weight-bold"><i class="fa fa-calendar-alt mr-2"></i> Du {{courseDate.start_date|date:'d N'}} au {{courseDate.end_date|date:'d N'}}</div>
+                                    <div class="my-1"><i class="fa fa-clock mr-2"></i> De {{courseDate.start_date|date:'H'}} hr à {{courseDate.end_date|date:'H'}} hr</div>
+                                    <div class="my-1"><i class="fa fa-money-bill mr-2"></i> Tarifs: {{courseDate.price}} HTG</div>
+                                    <div class="my-1"><i class="fa fa-chair mr-2"></i>{{courseDate.remainPlaces}} places restantes</div>
+                                    <a href="{% url 'enroll' courseDate.id %}" class="btn btn-primary">s'inscrire</a>
+                                </div>
+                            {% endlanguage %}  
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

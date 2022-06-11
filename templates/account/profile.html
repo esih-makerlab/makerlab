@@ -47,25 +47,10 @@
                                 <div class="card-body p-2">
                                     <h5 class="card-title">{{courseDate.course.title}}</h5>
                                     <p class="card-text">{{courseDate.course.description|truncatewords:20}}</p>
-                                    <a class="" href="{% url 'resume_get' courseDate.teacher.pk %}"><strong>{% trans "Tutor: " %}</strong>{{courseDate.teacher.get_full_name}}</a>
-                                    <div class="col-12 row m-auto">
-                                        <button class="btn btn-dark m-auto mb-2 col-5" type="button" data-toggle="collapse" data-target="#collapse-{{course.id}}" aria-expanded="false" aria-controls="collapse-{{course.id}}">
-                                            View Links
-                                        </button>
-                                        <a class='btn btn-outline-secondary btn-block col-5 m-auto' href="{% url 'course_detail' courseDate.course.id %}">{% trans "course info" %}</a>
-                                    </div>
-                                    <div class="collapse mt-2 mb-2" id="collapse-{{course.id}}">
-                                        {% if courseDate.course.links %}
-                                            <ol>
-                                                {% for link in courseDate.course.links %}
-                                                    <li> <a href="{{link}}">{{link|truncatechars:30}}</a> </li>
-                                                {% endfor %}
-                                            </ol>
-                                        {% endif %}
-                                    </div>
+                                    <a class='btn btn-outline-secondary btn-block m-auto' href="{% url 'course_detail' courseDate.course.id %}">{% trans "details du cours" %}</a>
                                 </div>
                                 <div class='card-body p-0 pb-4 px-3'>
-                                    <p class='card-text'>{% trans "Enrolled for : " %}{{courseDate.date}}</p>
+                                    <p class='card-text'>{% trans "Débute le : " %}{{courseDate.start_date}}</p>
                                 </div>
                             </div>
                             

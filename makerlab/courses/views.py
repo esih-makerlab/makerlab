@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from decimal import Decimal
 
-from .models import Course,CourseDate,Attendee
+from .models import Course,CourseDate,CourseSection,Attendee,WhatYoullLearn
 
 
 def home(request):
@@ -34,7 +34,16 @@ def course_details(request,id):
     except Course.DoesNotExist:
         raise Http404("Not found.")
 
-    return render(request, 'courses/detail.html',{'course':course})
+    # get whatylls for this course
+    whatylls = WhatYoullLearn.objects.filter(course=course)
+
+    # get courseDates 
+    courseDates = CourseDate.objects.filter(course=course).order_by('start_date')
+
+    # get courseSections
+    courseSections = CourseSection.objects.filter(course=course)
+
+    return render(request, 'courses/detail.html',{'course':course, 'whatylls':whatylls, 'courseDates':courseDates, 'courseSections':courseSections})
 
 @login_required(login_url='/account/login')
 def course_enrollement(request,id):
