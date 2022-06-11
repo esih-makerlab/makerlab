@@ -94,7 +94,7 @@ class Attendee(models.Model):
     class Meta:
         verbose_name_plural = "Attendees"
 
-    start_date = models.ForeignKey(verbose_name=_('start date'),to='CourseDate', on_delete=models.SET_NULL, null=True, blank=True)
+    start_date = models.ForeignKey(verbose_name=_('start date'),to='CourseDate', on_delete=models.CASCADE, null=True, blank=True)
     attendee = models.ForeignKey(verbose_name=_('attendee'),to=get_user_model(), on_delete=models.CASCADE)
     complete = models.BooleanField(verbose_name=_('complete'),blank=False,default=False)
     score = models.DecimalField(_('score'),help_text=_('Ex: 18.5'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=0)
