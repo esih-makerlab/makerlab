@@ -60,8 +60,7 @@ def get_attendee(request, id):
             try:
                 courseDate = CourseDate.objects.get(pk=id)
             except:
-                courseDate = None
-                #raise Http404("Not found.")
+                raise Http404("Not found.")
         
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -75,9 +74,12 @@ def get_attendee(request, id):
                 attendee = None 
             
             if attendee:
-                # redirect the user to payment complete
-                return redirect('enroll', id)
-            
+                if attendee.paid:
+                    # problem
+                    return redirect('home')
+                #redirect the user to payment moncash
+                return redirect('enroll', attendee.id)
+                
             attendee = Attendee.objects.create(first_name=first_name, last_name=last_name, email=email, telephone=telephone, address=address, courseDate=courseDate)
 
             #redirect the user to payment moncash
@@ -86,30 +88,32 @@ def get_attendee(request, id):
     return render(request, 'courses/attendee.html', {'form':form, 'courseDate':courseDate})
 
 
-@login_required(login_url='/account/login')
+
 def course_enrollement(request,id):
 
-    
     try:
-        # start_date means here should be named courseDate in the models instead of start_date
         attendee = Attendee.objects.get(pk=id)
-    except Attendee.DoesNotExist:
-        attendee = None
+    except:
+        raise Http404('Not found error')
     
     courseDate = attendee.courseDate
 
     moncash2pay = round(float(courseDate.price)/0.98)
     moncash_fee = round(moncash2pay*0.02)+10
     total2pay = float(courseDate.price)+moncash_fee
-    
-    if attendee:
-        return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'enrolled':True,'soldOut':False, 'total2pay':total2pay, 'moncash_fee':moncash_fee})
+
+    soldOut = False 
+    paid = False 
+
+    if attendee.paid:
+        paid = True
 
     if courseDate.remainPlaces <= 0:
-        return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':True, 'total2pay':total2pay, 'moncash_fee':moncash_fee})
+        soldOut=True
 
+    return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'enrolled':paid,'soldOut':soldOut, 'total2pay':total2pay, 'moncash_fee':moncash_fee, 'attendee':attendee})
 
-    return render(request, 'courses/enrollement.html',{'courseDate':courseDate,'soldOut':False, 'total2pay':total2pay, 'moncash_fee':moncash_fee})     
+    
 
 def search_results(request):
     q = request.GET.get('q','')

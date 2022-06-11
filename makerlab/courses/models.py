@@ -88,13 +88,13 @@ class CourseDate(models.Model):
     def populars(self):
         return self.annotate(attendee_count=models.Count('attendees')).filter(attendee_count__gte=5) #base on people num
 
-
+    
 class Attendee(models.Model):
 
     class Meta:
         verbose_name_plural = "Attendees"
 
-    courseDate = models.ForeignKey(verbose_name=_('course date'),to='CourseDate', on_delete=models.CASCADE)
+    courseDate = models.ForeignKey(verbose_name=_('course date'),to='CourseDate', on_delete=models.CASCADE, related_name='attendees')
     complete = models.BooleanField(verbose_name=_('complete'),blank=False,default=False)
     score = models.DecimalField(_('score'),help_text=_('Ex: 18.5'),max_length=255,max_digits=11,decimal_places=2,blank=False,default=0)
     first_name = models.CharField(max_length=255)
@@ -102,8 +102,13 @@ class Attendee(models.Model):
     email = models.EmailField()
     telephone = models.CharField(max_length=8)
     address = models.CharField(max_length=255)
+    paid = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ['date','attendee']
 
     def __str__(self):
-        return 'DATE:%s  ATTENDEE:%s' % (self.start_date.id,self.attendee.id)
+        return 'DATE:%s  ATTENDEE:%s' % (self.courseDate.id,self.first_name)
+
+
+
+

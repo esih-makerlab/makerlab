@@ -51,13 +51,13 @@
                                         <div>
                                             Total: {{total2pay}} HTG
                                         </div>
-                                        <a  href="{% url 'courseProceed' courseDate.id %}" target="_blank" class="btn btn-danger shadow-sm mt-3" >Payer avec Digicel Moncash</a><br>
+                                        <a  href="{% url 'courseProceed' attendee.id %}" target="_blank" class="btn btn-danger shadow-sm mt-3" >Payer avec Digicel Moncash</a><br>
                                     </div> 
                                     <h5 class="col-10 text-muted text-center">OU</h5>
                                     <form class="card col-10 p-3 my-2" method="post" action="{% url 'coupon_payement' %}">
                                         {% csrf_token %}
                                         <h5>{% trans "Payer avec Coupon" %}</h5>
-                                        <input type="hidden" class="form-control" value={{courseDate.id}} name="courseDate_id" id="courseDate_id" placeholder="courseDate id">
+                                        <input type="hidden" class="form-control" value={{attendee.id}} name="attendee_id" id="courseDate_id" placeholder="courseDate id">
                                         <div class="form-group">
                                           <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="code">
                                         </div>
