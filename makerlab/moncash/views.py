@@ -19,7 +19,7 @@ import moncash
 gateway = moncash.Moncash(
         client_id=settings.MONCASH['CLIENT_ID'],
         client_secret=settings.MONCASH['SECRET_KEY'],
-        environment=moncash.environment.Sandbox
+        environment=moncash.environment.Production
     )
 
 
