@@ -37,12 +37,12 @@ class CourseDateAdmin(admin.ModelAdmin):
     autocomplete_fields = ['teacher','course']
 
 class AttendeeAdmin(admin.ModelAdmin):
-    list_display = ('id','start_date','first_name','last_name','telephone','email','address','score','complete')
+    list_display = ('id','courseDate','first_name','last_name','telephone','email','address','score','complete')
     list_display_links = ('id',)
     list_filter = ('score','complete','last_name','telephone','email')
     search_fields = ('attendee__email','date__course__title','first_name','last_name','telephone','email')
     list_per_page = 25
-    autocomplete_fields = ['start_date',]
+    autocomplete_fields = ['courseDate',]
 
 admin.site.register(Attendee, AttendeeAdmin)
 admin.site.register(Course, CourseAdmin)
