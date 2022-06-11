@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model 
 from django.utils.timezone import now
-from makerlab.courses.models import Attendee
+from makerlab.courses.models import Attendee, CourseDate 
 
 from django.utils.translation import gettext_lazy as _
 
@@ -16,7 +16,8 @@ class CourseTransaction(models.Model):
     payor = models.ForeignKey(
         Attendee,
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        blank=True
     )
     status = models.CharField(_('status'),max_length=25,choices=Status.choices,default=Status.PENDING,blank=False)
     created = models.DateTimeField(default=now)
