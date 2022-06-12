@@ -44,7 +44,7 @@ def CourseProceed(request,id):
         courseTransaction = CourseTransaction.objects.create(payor=attendee)
         
         try:
-            get_paid_url = gateway.payment.create(amount=total2pay, reference=courseTransaction.id)
+            get_paid_url = gateway.payment.create(amount=total2pay, reference=str(courseTransaction.token))
         except moncash.exceptions.MoncashError:
             raise HttpResponse(_("Erreur Moncash, reesseyer"))
 
@@ -53,7 +53,7 @@ def CourseProceed(request,id):
     if courseTransaction.status == 'PENDING':
 
         try:
-            get_paid_url = gateway.payment.create(amount=total2pay, reference=courseTransaction.id)
+            get_paid_url = gateway.payment.create(amount=total2pay, reference=str(courseTransaction.token))
         except moncash.exceptions.MoncashError:
             raise HttpResponse(_("Erreur Moncash, reesseyer"))
 
@@ -63,7 +63,7 @@ def CourseProceed(request,id):
         if not attendee.paid:
             courseTransaction.status == 'PENDING'
             try:
-                get_paid_url = gateway.payment.create(amount=total2pay, reference=courseTransaction.id)
+                get_paid_url = gateway.payment.create(amount=total2pay, reference=str(courseTransaction.token))
             except moncash.exceptions.MoncashError:
                 raise HttpResponse(_("Erreur Moncash, reesseyer"))
             return redirect(get_paid_url)
@@ -81,7 +81,7 @@ def course_payement(request):
         
         if transaction:
             try:
-                courseTransaction = CourseTransaction.objects.get(pk=transaction["reference"])
+                courseTransaction = CourseTransaction.objects.get(token=transaction["reference"])
             except CourseTransaction.DoesNotExist:
                 raise Http404("Not found.")
 
@@ -89,8 +89,10 @@ def course_payement(request):
             courseTransaction.save()
 
             attendee = courseTransaction.payor
+            attendee.paid = True 
+            attendee.save()
 
-            return render(request, 'courses/payement.html',{'success':True,'attendee':attendee,'courseDate':courseTransaction.courseDate})
+            return render(request, 'courses/payement.html',{'success':True,'attendee':attendee,'courseDate':attendee.courseDate})
         else:
             messages.error(request,_("Erreur Moncash, reesseyer"))
 

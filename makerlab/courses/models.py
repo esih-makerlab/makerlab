@@ -83,7 +83,7 @@ class CourseDate(models.Model):
 
     @property
     def remainPlaces(self):
-        return self.nb_attendees - self.attendees.all().count()
+        return self.nb_attendees - self.attendees.filter(paid=True).all().count()
 
     def populars(self):
         return self.annotate(attendee_count=models.Count('attendees')).filter(attendee_count__gte=5) #base on people num

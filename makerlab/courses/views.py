@@ -18,7 +18,7 @@ def home(request):
         
     page = request.GET.get('page', 1)
         
-    paginator = Paginator(Course.objects.all().order_by("title"), 3)
+    paginator = Paginator(Course.objects.all().order_by("id"), 4)
     courses = None
     
     try:
@@ -74,9 +74,6 @@ def get_attendee(request, id):
                 attendee = None 
             
             if attendee:
-                if attendee.paid:
-                    # problem
-                    return redirect('home')
                 #redirect the user to payment moncash
                 return redirect('enroll', attendee.id)
                 

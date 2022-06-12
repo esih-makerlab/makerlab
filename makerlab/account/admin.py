@@ -3,13 +3,13 @@ from .forms import AddUserForm, UpdateUserAdminForm,Group,GroupAdminForm
 from django.contrib import admin
 from .models import User
 
-from ..resume.models import Resume
+# from ..resume.models import Resume
 
-class ResumeInline(admin.StackedInline):
-    model=Resume
-    min_num=1
-    max_num=1
-    extra=1
+# class ResumeInline(admin.StackedInline):
+#     model=Resume
+#     min_num=1
+#     max_num=1
+#     extra=1
     
 class UserAdmin(BaseUserAdmin):
     form = UpdateUserAdminForm
@@ -37,7 +37,7 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email', 'first_name', 'last_name', 'phone',)
     ordering = ('first_name', 'last_name')
 
-    inlines = [ResumeInline]
+    #inlines = [ResumeInline]
 
 # Unregister the original Group admin.
 admin.site.unregister(Group)

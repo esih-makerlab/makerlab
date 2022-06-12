@@ -38,7 +38,7 @@
                 {% else %}
                     {% if not request.get_full_path == '/account/register/' %}
                         <a href="{% url 'login' %}" class="btn btn-dark">login</a>
-                        <a href="{% url 'register' %}" class='btn btn-outline-dark ml-3'>Signup</a>
+                        <!-- <a href="{% url 'register' %}" class='btn btn-outline-dark ml-3' disabled>Signup</a> -->
                     {% endif %}
                 {% endif %}
                 
