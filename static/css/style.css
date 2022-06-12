@@ -1,6 +1,6 @@
-/* BETA banner.
+/* /* BETA banner.
 --------------------------------------------------------------------------- */
-body:after {
+/* body:after {
   content: "BETA";
   color: #fff;
   background: #d63626;
@@ -13,7 +13,7 @@ body:after {
   top: 0.3rem;
   left: -1.8rem;
   transform: rotate(-45deg);
-}
+} */ 
 
 /* Layout.
 --------------------------------------------------------------------------- */
