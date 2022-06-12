@@ -86,7 +86,7 @@
                                     <div class="my-1"><i class="fa fa-clock mr-2"></i> De {{courseDate.start_date|date:'H'}} hr à {{courseDate.end_date|date:'H'}} hr</div>
                                     <div class="my-1"><i class="fa fa-money-bill mr-2"></i> Tarifs: {{courseDate.price}} HTG</div>
                                     <div class="my-1"><i class="fa fa-chair mr-2"></i>{{courseDate.remainPlaces}} places restantes</div>
-                                    <a href="{% url 'enroll' courseDate.id %}" class="btn btn-primary">s'inscrire</a>
+                                    <a href="{% url 'get_attendee' courseDate.id %}" class="btn btn-primary">s'inscrire</a>
                                 </div>
                             {% endlanguage %}  
                         {% endfor %}

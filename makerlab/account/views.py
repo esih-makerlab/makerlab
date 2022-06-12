@@ -268,13 +268,13 @@ def edit_profile(request):
 def profile(request):
     page = request.GET.get('page', 1)
         
-    paginator = Paginator(CourseDate.objects.filter(attendees=request.user).order_by('start_date'), 3)
-
-    try:
-        courseDates = paginator.page(page)
-    except PageNotAnInteger:
-        courseDates = paginator.page(1)
-    except EmptyPage:
-        courseDates = paginator.page(paginator.num_pages)
+    #paginator = Paginator(CourseDate.objects.filter(attendees=request.user).order_by('start_date'), 3)
+    courseDates=None
+    # try:
+    #     courseDates = paginator.page(page)
+    # except PageNotAnInteger:
+    #     courseDates = paginator.page(1)
+    # except EmptyPage:
+    #     courseDates = paginator.page(paginator.num_pages)
     
     return render(request,'account/profile.html',{'courseDates':courseDates})

@@ -16,8 +16,8 @@
         <div class='row justify-content-center'>
             <div class="col-12">
                 <ul class="list-unstyled multi-steps">
-                    <li {% if soldOut %}class="is-active"{% endif %}>{% trans 'Selection de la formation' %}</li>
-                    <li>{% trans 'Renseignements personnels' %}</li>
+                    <li {% if soldOut %}class="is-active"{% endif %}>{% trans 'Selection formation' %}</li>
+                    <li>{% trans 'Infos personnels' %}</li>
                     <li {% if not enrolled and not soldOut %}class="is-active"{% endif %}>{% trans 'Paiement' %}</li>
                     <li {% if enrolled or soldOut %}class='is-active'{% endif %}>{% trans 'Confirmation' %}</li>
                 </ul>

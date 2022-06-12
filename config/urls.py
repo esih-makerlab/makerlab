@@ -18,7 +18,7 @@ urlpatterns = i18n_patterns(
     path('moncash/', include('makerlab.moncash.urls')),
     path('coupon/', include('makerlab.coupon.urls')),
     path('courses/', include('makerlab.courses.urls')),
-    path('resume/', include('makerlab.resume.urls')),
+    # path('resume/', include('makerlab.resume.urls')),
     path('payement-error/', moncash_views.course_payement, name="payement"),
     prefix_default_language=True,
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

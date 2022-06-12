@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'makerlab.moncash',
     'makerlab.coupon',
     'makerlab.account',
-    'makerlab.resume',
+    # 'makerlab.resume',
 ]
 
 MIDDLEWARE = [
