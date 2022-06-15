@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.conf import settings
 from django.utils import translation
@@ -13,7 +13,16 @@ def home(request):
     return render(request, 'pages/home.html')
 
 def about(request):
-    return render(request, 'pages/about.html') 
+    return render(request, 'pages/about.html')
+
+def error403(request):
+    return render(request, 'pages/403.html') 
+
+def error404(request):
+    return render(request, 'pages/404.html')
+
+def error500(request):
+    return render(request, 'pages/500.html') 
 
 
 
