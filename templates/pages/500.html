@@ -1240,10 +1240,10 @@
             <h1>Ooops !!!</h1>
             <h3 style="font-weight: normal;">Il y a eu un problème, nous nous excusons et sommes en train de le résoudre. Veuillez réessayer plus tard.</h3>
             <p>Retourner a la <a href="" class="text-info">page d'Acceuil</a> ou essayer une recherche.</p>
-            <form class="form-inline">
+            <form class="form-inline" action="{% url 'search_results' %}" method="get">
                 <div class="form-group mr-3 mb-2">
                     <label for="search" class="sr-only">Rechercher</label>
-                    <input type="text" class="form-control" placeholder="Search topics or keywords">
+                    <input type="text" class="form-control" placeholder="Search topics or keywords" name="q">
                 </div>
                 <button type="submit" class="btn btn-dark mb-2">Rechercher</button>
             </form>

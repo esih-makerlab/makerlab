@@ -468,10 +468,10 @@
             <h1>Vous n'êtes pas autorisé à voir ceci !!!</h1>
             <h3 style="font-weight: normal;">La page à laquelle vous essayez d'accéder a un accès restreint. Si vous pensez que c'est une erreur, contactez votre administrateur..</h3>
             <p>Retourner a la <a href="" class="text-info">page d'Acceuil</a> ou essayer une recherche.</p>
-            <form class="form-inline">
+            <form class="form-inline" action="{% url 'search_results' %}" method="get">
                 <div class="form-group mr-3 mb-2">
                     <label for="search" class="sr-only">Rechercher</label>
-                    <input type="text" class="form-control" placeholder="Search topics or keywords">
+                    <input type="text" class="form-control" placeholder="Search topics or keywords" name="q">
                 </div>
                 <button type="submit" class="btn btn-dark mb-2">Rechercher</button>
             </form>
