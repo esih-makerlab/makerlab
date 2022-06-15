@@ -14,7 +14,6 @@ idna==2.10
 moncash==1.0.3
 phonenumbers==8.12.7
 pillow==9.1.1
-psycopg2==2.9.3
 pytz==2020.5
 requests==2.25.1
 six==1.15.0
