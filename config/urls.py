@@ -29,12 +29,6 @@ urlpatterns = i18n_patterns(
     prefix_default_language=True,
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
-# # Overloading of default django error view
-# # Set settings.DEBUG = False to test
-# # Add ( , exception) parameter to error_views.error403 and error_views.error404 to activate
-# # PS : ERROR_VIEW_PATH does not work when active
-
-# handler403 = 'makerlab.pages.views.error403'
-# handler404 = 'makerlab.pages.views.error404'
-# handler500 = 'makerlab.pages.views.error500'
+handler403 = 'makerlab.pages.views.error403'
+handler404 = 'makerlab.pages.views.error404'
+handler500 = 'makerlab.pages.views.error500'

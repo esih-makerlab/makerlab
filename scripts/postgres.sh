@@ -16,12 +16,19 @@ fi
 
 source .env
 
-################ ~ SETTING UP POSTGRESQL 
-sudo apt-get install postgresql postgresql-12-postgis-3 postgresql-contrib
+# Update the package list and upgrade any already-installed packages
+print_info "- Updating package list;"
+sudo apt update -y
+
+################ ~ SETTING UP POSTGRESQL
+print_info "- Setting up postgresql;"
+sudo apt install -y libpq-dev python3-dev build-essential
+sudo apt install -y postgresql postgresql-14-postgis-3 postgresql-contrib postgresql-client postgresql-server-dev-all
 
 function _psql {
-    sudo -u postgres psql -c "$1"
+    sudo -u postgres -i psql -c "$1"
 }
+
 # Grab database info from .env file
 if [ -f .env ]; then
     source .env 
@@ -32,28 +39,35 @@ fi
 
 # Creating database if not already exists
 # https://stackoverflow.com/questions/14549270/check-if-database-exists-in-postgresql-using-shell
-if psql -lqt | cut -d \| -f 1 | grep -qw $DB_MK_NAME; then
+if sudo -u postgres -i psql -lqt | cut -d \| -f 1 | grep -qw  $POSTGRESQL_ADDON_DB; then
     # database exists
     # $? is 0
-    print_info "DELETING OLD $DB_MK_NAME DB"
-    _psql "DROP DATABASE $DB_MK_NAME;"
+    print_info "DELETING OLD $POSTGRESQL_ADDON_DB DB"
+    _psql "DROP DATABASE $POSTGRESQL_ADDON_DB;"
 fi
 
-print_info "CREATING A NEW $DB_MK_NAME DB"
-
-_psql "CREATE DATABASE $DB_MK_NAME;"
+print_info "CREATING A NEW $POSTGRESQL_ADDON_DB DB"
+_psql "CREATE DATABASE $POSTGRESQL_ADDON_DB;"
 
 # https://stackoverflow.com/questions/8546759/how-to-check-if-a-postgres-user-exists
-if psql -t -c '\du' | cut -d \| -f 1 | grep -qw $DB_MK_USER; then
+if sudo -u postgres -i psql -t -c '\du' | cut -d \| -f 1 | grep -qw $POSTGRESQL_ADDON_USER; then
     # user exists
     # $? is 0
-    _psql "DROP USER $DB_MK_USER;"
+    print_info "DELETING OLD $POSTGRESQL_ADDON_USER USER"
+    _psql "DROP USER $POSTGRESQL_ADDON_USER;"
 fi
 
-_psql "CREATE USER $DB_MK_USER WITH ENCRYPTED PASSWORD '$DB_MK_PASSWORD';"
-_psql "GRANT ALL PRIVILEGES ON DATABASE $DB_MK_NAME TO $DB_MK_USER;"
-_psql "\connect $DB_MK_NAME;"
-_psql "ALTER USER $DB_MK_USER WITH SUPERUSER;" 
+_psql "CREATE USER $POSTGRESQL_ADDON_USER WITH ENCRYPTED PASSWORD '$POSTGRESQL_ADDON_PASSWORD';"
+_psql "GRANT ALL PRIVILEGES ON DATABASE $POSTGRESQL_ADDON_DB TO $POSTGRESQL_ADDON_USER;"
+_psql "\connect $POSTGRESQL_ADDON_DB;"
+_psql "ALTER USER $POSTGRESQL_ADDON_USER WITH SUPERUSER;" 
 
 
-print_info "INSTALLATION RÉUSSIE"
+if sudo -u postgres -i psql -lqt | cut -d \| -f 1 | grep -qw $POSTGRESQL_ADDON_DB; \
+    sudo -u postgres -i psql -t -c '\du' | cut -d \| -f 1 | grep -qw $POSTGRESQL_ADDON_USER; then
+    # database exists, user exists and is granted to it
+    print_info "INSTALLATION RÉUSSIE"
+else
+    print_error "IL Y A PEUT-ETRE UN PROBLEME AVEC L'INSTALLATION, VERIFIEZ VOTRE BASE DE DONNEES !!!"
+    exit 1;
+fi

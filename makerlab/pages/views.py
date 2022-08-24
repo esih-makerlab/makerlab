@@ -15,15 +15,15 @@ def home(request):
 def about(request):
     return render(request, 'pages/about.html')
 
-def error403(request):
-    return render(request, 'pages/403.html') 
+# Error Views ...
+def error403(request, exception=None):
+    return render(request, '403.html', status=403) 
 
-def error404(request):
-    return render(request, 'pages/404.html')
+def error404(request, exception=None):
+    return render(request, '404.html', status=404)
 
 def error500(request):
-    return render(request, 'pages/500.html') 
-
+    return render(request, '500.html', status=500)
 
 
 def dashboard(request):
